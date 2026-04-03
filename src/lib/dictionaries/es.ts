@@ -9,6 +9,7 @@ const es: Dictionary = {
   },
   hero: {
     label: "Estudio Digital Boutique — Seattle, WA",
+    labelWords: ["Estudio", "Digital", "Boutique"],
     heading: ["Construimos marcas", "que comunican", "con claridad."],
     body: "Ayudamos a empresas de servicios a verse tan bien como el trabajo que hacen — con estrategia, diseño y tecnología que realmente convierte.",
     cta: "Iniciar un proyecto",

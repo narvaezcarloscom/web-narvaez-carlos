@@ -62,13 +62,15 @@ export default function Hero({ lang, dict }: HeroProps) {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-end">
           <div className="md:col-span-8">
-            <p
+            <div
               data-anim="label"
-              className="text-xs sm:text-sm uppercase tracking-wide text-graphite/60 mb-2"
+              className="flex items-center gap-12 sm:gap-20 md:gap-32 text-xs sm:text-sm uppercase tracking-[0.25em] text-graphite/40 mb-2"
               style={{ opacity: 0 }}
             >
-              {dict.hero.label}
-            </p>
+              {dict.hero.labelWords.map((word: string) => (
+                <span key={word}>{word}</span>
+              ))}
+            </div>
             <DiagonalSlash className="text-graphite/20 mb-3 sm:mb-4" />
             <h1
               data-anim="heading"

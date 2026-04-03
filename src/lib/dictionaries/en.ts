@@ -7,6 +7,7 @@ const en = {
   },
   hero: {
     label: "Boutique Digital Studio — Seattle, WA",
+    labelWords: ["Boutique", "Digital", "Studio"],
     heading: ["We build brands", "that communicate", "with clarity."],
     body: "We help service businesses look as good as the work they do — through strategy, design, and technology that actually converts.",
     cta: "Start a project",
