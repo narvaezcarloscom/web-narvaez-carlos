@@ -8,6 +8,7 @@ import type { Locale } from "../lib/i18n";
 import type { Dictionary } from "../lib/dictionaries/en";
 import Container from "./Container";
 import GridTexture from "./GridTexture";
+import DiagonalSlash from "./DiagonalSlash";
 
 interface HeroProps {
   lang: Locale;
@@ -73,6 +74,7 @@ export default function Hero({ lang, dict }: HeroProps) {
             >
               {dict.hero.label}
             </p>
+            <DiagonalSlash className="text-graphite/20 mb-4 sm:mb-6" />
             <h1
               data-anim="heading"
               className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] editorial-heading text-charcoal"

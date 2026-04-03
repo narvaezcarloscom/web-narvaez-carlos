@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { projects } from "../../../lib/projects";
 import Container from "../../../components/Container";
+import DiagonalSlash from "../../../components/DiagonalSlash";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -21,6 +22,7 @@ export default function WorkPage() {
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 Selected work
               </p>
+              <DiagonalSlash className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 Projects built
                 <br />

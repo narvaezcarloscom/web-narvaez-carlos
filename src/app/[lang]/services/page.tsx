@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { services } from "../../../lib/services";
 import Container from "../../../components/Container";
 import ProcessDots from "../../../components/ProcessDots";
+import DiagonalSlash from "../../../components/DiagonalSlash";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -40,6 +41,7 @@ export default function ServicesPage() {
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 Services
               </p>
+              <DiagonalSlash className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 Strategy, design,
                 <br />

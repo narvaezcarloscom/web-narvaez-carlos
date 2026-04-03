@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "../lib/i18n";
 import type { Dictionary } from "../lib/dictionaries/en";
 import Container from "./Container";
+import DiagonalSlash from "./DiagonalSlash";
 
 const socialLinks = [
   { label: "Instagram", href: "https://instagram.com/narvaezcarloscom/" },
@@ -52,11 +53,11 @@ export default function Footer({ lang, dict }: FooterProps) {
               <p className="font-medium text-charcoal uppercase tracking-wide text-xs mb-4">
                 {dict.footer.brand}
               </p>
-              <p className="leading-relaxed">
-                {dict.footer.studio}
-                <br />
-                {dict.footer.location}
-              </p>
+              <div className="flex items-center gap-3 leading-relaxed">
+                <span>{dict.footer.studio}</span>
+                <DiagonalSlash className="text-graphite/20 w-5 h-2.5 shrink-0" />
+                <span>{dict.footer.location}</span>
+              </div>
             </div>
             <div>
               <p className="font-medium text-charcoal uppercase tracking-wide text-xs mb-4">

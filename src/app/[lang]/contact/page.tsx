@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "../../../components/Container";
 import ContactForm from "../../../components/ContactForm";
 import GridTexture from "../../../components/GridTexture";
+import DiagonalSlash from "../../../components/DiagonalSlash";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -21,6 +22,7 @@ export default function ContactPage() {
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 Contact
               </p>
+              <DiagonalSlash className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 Let&apos;s start a
                 <br />

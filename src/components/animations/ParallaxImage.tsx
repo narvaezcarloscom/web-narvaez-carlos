@@ -14,6 +14,7 @@ interface ParallaxImageProps {
   className?: string;
   speed?: number;
   priority?: boolean;
+  arcClip?: boolean;
 }
 
 export default function ParallaxImage({
@@ -22,6 +23,7 @@ export default function ParallaxImage({
   className = "",
   speed = 0.15,
   priority = false,
+  arcClip = false,
 }: ParallaxImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -49,7 +51,11 @@ export default function ParallaxImage({
   );
 
   return (
-    <div ref={containerRef} className={`overflow-hidden ${className}`}>
+    <div
+      ref={containerRef}
+      className={`overflow-hidden ${className}`}
+      style={arcClip ? { borderRadius: "0 0 0 30%" } : undefined}
+    >
       <div ref={imageRef} className="relative w-full h-[120%]">
         <Image
           src={src}

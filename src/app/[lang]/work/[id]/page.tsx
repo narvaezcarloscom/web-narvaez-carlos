@@ -102,6 +102,7 @@ export default async function ProjectDetail({ params }: Props) {
                   className="aspect-[4/3] w-full bg-neutral-light"
                   speed={0.08}
                   priority
+                  arcClip
                 />
               </div>
             </div>

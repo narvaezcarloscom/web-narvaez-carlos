@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { articles } from "../../../lib/journal";
 import Container from "../../../components/Container";
+import DiagonalSlash from "../../../components/DiagonalSlash";
 
 export const metadata: Metadata = {
   title: "Journal",
@@ -20,6 +21,7 @@ export default function JournalPage() {
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 Journal
               </p>
+              <DiagonalSlash className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 Thinking out
                 <br />
