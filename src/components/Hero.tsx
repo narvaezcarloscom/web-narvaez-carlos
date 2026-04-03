@@ -69,12 +69,12 @@ export default function Hero({ lang, dict }: HeroProps) {
           <div className="md:col-span-8">
             <p
               data-anim="label"
-              className="text-xs sm:text-sm uppercase tracking-wide text-graphite/60 mb-4 sm:mb-6"
+              className="text-xs sm:text-sm uppercase tracking-wide text-graphite/60 mb-2"
               style={{ opacity: 0 }}
             >
               {dict.hero.label}
             </p>
-            <DiagonalSlash className="text-graphite/20 mb-4 sm:mb-6" />
+            <DiagonalSlash className="text-graphite/20 mb-3 sm:mb-4" />
             <h1
               data-anim="heading"
               className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] editorial-heading text-charcoal"
