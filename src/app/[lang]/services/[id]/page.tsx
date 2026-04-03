@@ -38,7 +38,7 @@ export default async function ServiceDetail({ params }: Props) {
           >
             All services
           </Link>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading mt-6">
+          <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading mt-6">
             {svc.name}
           </h1>
         </Container>

@@ -41,7 +41,7 @@ export default async function ArticleDetail({ params }: Props) {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mt-6">
             <div className="md:col-span-8">
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
+              <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 {article.title}
               </h1>
               <p className="mt-6 text-graphite text-lg md:text-xl max-w-2xl leading-relaxed">

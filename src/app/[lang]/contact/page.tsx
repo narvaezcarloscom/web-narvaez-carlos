@@ -23,7 +23,7 @@ export default function ContactPage() {
                 Contact
               </p>
               <DiagonalSlash className="text-graphite/20 mb-4" />
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
+              <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 Let&apos;s start a
                 <br />
                 <span className="italic">conversation.</span>
