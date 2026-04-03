@@ -57,7 +57,7 @@ export default function Hero({ lang, dict }: HeroProps) {
   );
 
   return (
-    <section ref={ref} className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center pt-10 sm:pt-0">
+    <section ref={ref} className="relative min-h-[85vh] sm:min-h-[90vh] flex items-end pb-16 sm:items-center sm:pb-0">
       <GridTexture />
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-end">
@@ -74,7 +74,7 @@ export default function Hero({ lang, dict }: HeroProps) {
             <DiagonalSlash className="text-graphite/20 mb-3 sm:mb-4" />
             <h1
               data-anim="heading"
-              className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] editorial-heading text-charcoal"
+              className="font-serif text-[3.25rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] editorial-heading text-charcoal"
             >
               {dict.hero.heading.map((line, i) => (
                 <span key={i} className="block" style={{ opacity: 0 }}>
