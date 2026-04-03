@@ -3,11 +3,7 @@
 @source "../../src";
 
 @theme {
-  /* Colors */
-  --color-ivory: #F8F9F5;
-  --color-neutral-light: #EDEDED;
-  --color-graphite: #323232;
-  --color-charcoal: #212121;
+  /* Static colors (don't change with theme) */
   --color-narvaez-red: #F43B3E;
   --color-narvaez-red-hover: #D93134;
 
@@ -20,9 +16,43 @@
 }
 
 @layer base {
+  /* Theme CSS variables — light mode (default) */
+  :root {
+    --bg-primary: #F8F9F5;
+    --bg-secondary: #EDEDED;
+    --bg-inverted: #212121;
+    --text-body: #323232;
+    --text-heading: #212121;
+    --text-muted: rgba(50, 50, 50, 0.5);
+    --text-faint: rgba(50, 50, 50, 0.3);
+    --border-color: #EDEDED;
+    --text-on-dark: #F8F9F5;
+    --text-on-dark-muted: rgba(248, 249, 245, 0.5);
+    --iso-bg: #343434;
+    --iso-fg: #ececed;
+    color-scheme: light;
+  }
+
+  /* Dark mode */
+  .dark {
+    --bg-primary: #171717;
+    --bg-secondary: #232323;
+    --bg-inverted: #F8F9F5;
+    --text-body: #A3A3A3;
+    --text-heading: #F0F0F0;
+    --text-muted: rgba(163, 163, 163, 0.6);
+    --text-faint: rgba(163, 163, 163, 0.3);
+    --border-color: #2A2A2A;
+    --text-on-dark: #171717;
+    --text-on-dark-muted: rgba(23, 23, 23, 0.5);
+    --iso-bg: #F0F0F0;
+    --iso-fg: #171717;
+    color-scheme: dark;
+  }
+
   ::selection {
     background-color: var(--color-narvaez-red);
-    color: var(--color-ivory);
+    color: var(--bg-primary);
   }
 
   html {
@@ -32,21 +62,20 @@
   }
 
   body {
-    background-color: var(--color-ivory);
-    color: var(--color-graphite);
+    background-color: var(--bg-primary);
+    color: var(--text-body);
     font-family: var(--font-mulish), sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: var(--color-charcoal);
+    color: var(--text-heading);
     font-family: var(--font-instrument), serif;
   }
 }
 
 /*
  * Override Tailwind's font utilities to use next/font CSS variables.
- * These are outside @layer so they have higher specificity than Tailwind's
- * utility layer, ensuring the runtime CSS variables from next/font resolve.
  */
 .font-serif {
   font-family: var(--font-instrument), serif !important;
@@ -55,6 +84,36 @@
 .font-sans {
   font-family: var(--font-mulish), sans-serif !important;
 }
+
+/*
+ * Theme-aware color overrides.
+ * Maps Tailwind color utilities to CSS variables so dark mode works
+ * without rewriting every component.
+ */
+.text-graphite { color: var(--text-body) !important; }
+.text-graphite\/60, [class*="text-graphite/6"] { color: var(--text-muted) !important; }
+.text-graphite\/50, [class*="text-graphite/5"] { color: var(--text-muted) !important; }
+.text-graphite\/40, [class*="text-graphite/4"] { color: var(--text-faint) !important; }
+.text-graphite\/30, [class*="text-graphite/3"] { color: var(--text-faint) !important; }
+.text-charcoal { color: var(--text-heading) !important; }
+.bg-ivory { background-color: var(--bg-primary) !important; }
+.bg-charcoal { background-color: var(--bg-inverted) !important; }
+.bg-neutral-light { background-color: var(--bg-secondary) !important; }
+.border-neutral-light { border-color: var(--border-color) !important; }
+.text-ivory { color: var(--text-on-dark) !important; }
+[class*="text-ivory/"] { color: var(--text-on-dark-muted) !important; }
+[class*="border-ivory/"] { border-color: color-mix(in srgb, var(--text-on-dark) 10%, transparent) !important; }
+
+/* Work Preview section: in dark mode, invert the inverted section */
+.dark .bg-charcoal {
+  background-color: var(--bg-secondary) !important;
+}
+.dark .bg-charcoal .text-ivory { color: var(--text-heading) !important; }
+.dark .bg-charcoal [class*="text-ivory/"] { color: var(--text-muted) !important; }
+.dark .bg-charcoal [class*="border-ivory/"] { border-color: var(--border-color) !important; }
+
+/* Navbar blur in dark mode */
+.dark .bg-ivory\/90 { background-color: color-mix(in srgb, var(--bg-primary) 90%, transparent) !important; }
 
 @layer components {
   .editorial-heading {
