@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Container from "../../../components/Container";
 import ContactForm from "../../../components/ContactForm";
+import GridTexture from "../../../components/GridTexture";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -12,7 +13,8 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-16 md:pt-24 pb-16 md:pb-20">
+      <section className="relative pt-16 md:pt-24 pb-16 md:pb-20">
+        <GridTexture />
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             <div className="md:col-span-7">

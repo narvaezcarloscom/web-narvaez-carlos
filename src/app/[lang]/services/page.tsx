@@ -2,12 +2,32 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { services } from "../../../lib/services";
 import Container from "../../../components/Container";
+import ProcessDots from "../../../components/ProcessDots";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
     "Web design, SEO, digital advertising, and content strategy for service-based businesses.",
 };
+
+const process = [
+  {
+    label: "Discovery",
+    description: "We learn your business, your market, and your goals before touching a single pixel.",
+  },
+  {
+    label: "Strategy",
+    description: "A clear plan built around what will actually move the needle for your business.",
+  },
+  {
+    label: "Design & Build",
+    description: "Every element designed with intention and built for performance.",
+  },
+  {
+    label: "Launch & Grow",
+    description: "We launch, measure, and optimize — because the work does not stop at delivery.",
+  },
+];
 
 export default function ServicesPage() {
   return (
@@ -35,6 +55,18 @@ export default function ServicesPage() {
                 disciplines.
               </p>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Process */}
+      <section className="pb-20 md:pb-24">
+        <Container>
+          <div className="border-t border-neutral-light pt-12 md:pt-16">
+            <p className="text-xs uppercase tracking-widest text-graphite/50 mb-10 md:mb-12">
+              Our process
+            </p>
+            <ProcessDots steps={process} />
           </div>
         </Container>
       </section>

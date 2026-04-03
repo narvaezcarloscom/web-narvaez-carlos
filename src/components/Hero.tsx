@@ -7,6 +7,7 @@ import gsap from "gsap";
 import type { Locale } from "../lib/i18n";
 import type { Dictionary } from "../lib/dictionaries/en";
 import Container from "./Container";
+import GridTexture from "./GridTexture";
 
 interface HeroProps {
   lang: Locale;
@@ -60,7 +61,8 @@ export default function Hero({ lang, dict }: HeroProps) {
   );
 
   return (
-    <section ref={ref} className="min-h-[85vh] sm:min-h-[90vh] flex items-center pt-10 sm:pt-0">
+    <section ref={ref} className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center pt-10 sm:pt-0">
+      <GridTexture />
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-end">
           <div className="md:col-span-8">
