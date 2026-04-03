@@ -51,12 +51,7 @@ export default function Hero({ lang, dict }: HeroProps) {
           { y: 0, opacity: 1, duration: 1.2 },
           "-=0.8"
         )
-        .fromTo(
-          "[data-anim='scroll']",
-          { opacity: 0 },
-          { opacity: 1, duration: 1.5 },
-          "-=0.5"
-        );
+;
     },
     { scope: ref }
   );
@@ -116,14 +111,6 @@ export default function Hero({ lang, dict }: HeroProps) {
           </div>
         </div>
 
-        <div
-          data-anim="scroll"
-          className="mt-12 sm:mt-20 lg:mt-32 flex items-center gap-3 text-graphite/40 text-xs uppercase tracking-widest"
-          style={{ opacity: 0 }}
-        >
-          <span className="w-8 h-[1px] bg-graphite/30" />
-          {dict.hero.scroll}
-        </div>
       </Container>
     </section>
   );
