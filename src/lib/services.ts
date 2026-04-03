@@ -10,19 +10,21 @@ export const services = [
       "Landing pages",
       "Website redesigns",
       "Speed & Core Web Vitals optimization",
+      "SEO-ready structure & search visibility",
     ],
   },
   {
-    id: "seo",
-    name: "SEO",
-    summary: "Get found by the customers already searching for what you do.",
+    id: "custom-apps-platforms",
+    name: "Custom Apps & Platforms",
+    summary:
+      "Tailored digital tools that streamline your operations and grow your revenue.",
     content:
-      "We build SEO strategies grounded in data and focused on sustainable growth. From technical audits to local optimization, we make sure your business shows up when and where it matters — in your city, in your industry, in front of your ideal customer.",
+      "We build complete digital platforms that go beyond a website — from e-commerce storefronts with online ordering and loyalty programs to internal systems that automate complex workflows. Every platform is designed around your business logic, your customers, and your growth goals.",
     capabilities: [
-      "Local SEO & Google Business Profile",
-      "On-page & technical SEO",
-      "Keyword strategy",
-      "Analytics & conversion tracking",
+      "E-commerce & online ordering (pickup & delivery)",
+      "Mobile apps with loyalty & rewards programs",
+      "Business dashboards & inventory management",
+      "Custom internal systems & workflow automation",
     ],
   },
   {

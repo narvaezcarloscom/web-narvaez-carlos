@@ -117,7 +117,7 @@ export default function ContactForm() {
           >
             <option value="">Select a service</option>
             <option value="Web Design & Development">Web Design & Development</option>
-            <option value="SEO">SEO</option>
+            <option value="Custom Apps & Platforms">Custom Apps & Platforms</option>
             <option value="Digital Advertising">Digital Advertising</option>
             <option value="Content & Social Media">Content & Social Media</option>
           </select>
