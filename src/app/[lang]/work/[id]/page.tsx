@@ -94,13 +94,17 @@ export default async function ProjectDetail({ params }: Props) {
       {project.image && (
         <section className="pb-16 md:pb-24">
           <Container>
-            <ParallaxImage
-              src={project.image}
-              alt={`${project.name} — website screenshot`}
-              className="aspect-[16/9] w-full bg-neutral-light"
-              speed={0.08}
-              priority
-            />
+            <div className="grid grid-cols-1 md:grid-cols-12">
+              <div className="md:col-span-8">
+                <ParallaxImage
+                  src={project.image}
+                  alt={`${project.name} — website screenshot`}
+                  className="aspect-[4/3] w-full bg-neutral-light"
+                  speed={0.08}
+                  priority
+                />
+              </div>
+            </div>
           </Container>
         </section>
       )}
