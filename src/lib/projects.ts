@@ -1,4 +1,50 @@
 export const projects = [
+  // — 2025 —
+  {
+    id: "bloom-sante",
+    name: "Bloom Santé",
+    tagline: "Beauty born from care — a curated wellness brand.",
+    year: "2025",
+    category: "E-commerce & Branding",
+    services: ["Web Design", "Branding", "Content Strategy"],
+    url: "https://bloomsante.shop",
+    image: "/work/bloom-sante.jpg",
+    overview:
+      "Bloom Santé is a curated beauty and wellness brand that believes beauty is not perfection — it is presence. They needed an online store that reflected their philosophy of intentional self-care and communicated the quality of their curated product selection.",
+    challenge:
+      "The wellness e-commerce space is saturated with brands that look identical — pastel colors, generic product shots, and empty promises. Bloom Santé needed to stand out with a visual identity that felt elevated, personal, and aligned with their philosophy that caring for yourself is also blooming.",
+    solution:
+      "We designed an e-commerce experience with warm, editorial photography, a refined color palette rooted in soft naturals, and typography that communicates elegance without pretension. Every product page tells a story. The brand voice is intimate and confident — not clinical, not trendy.",
+    results: [
+      "Brand identity that stands out in saturated wellness market",
+      "E-commerce experience aligned with brand philosophy",
+      "Editorial product storytelling approach",
+      "Mobile-first shopping experience",
+    ],
+  },
+  {
+    id: "swc-decor",
+    name: "SWC Decor",
+    tagline: "Wallcoverings that redefine sophisticated interiors.",
+    year: "2025",
+    category: "Web Design & Development",
+    services: ["Web Design", "SEO", "Content Strategy"],
+    url: "https://swcdecor.com",
+    image: "/work/swc-decor.jpg",
+    overview:
+      "SWC Decor is a premium wallcovering company based in Seattle, serving architects and interior designers with exceptional materials. They needed a website that communicated the tactile, high-end nature of their products in a digital format.",
+    challenge:
+      "Selling a physical, textural product online is inherently difficult — you cannot feel a wallcovering through a screen. SWC Decor needed to bridge the gap between the digital experience and the sensory reality of their materials, while serving a professional audience of architects and designers.",
+    solution:
+      "We created a visually rich website where large-format photography showcases texture and material quality at scale. The design uses generous whitespace and refined typography to mirror the sophistication of the interiors their products inhabit. A product discovery flow serves the professional workflow of specifiers and designers.",
+    results: [
+      "Premium digital presence for tactile product category",
+      "Architect and designer-focused user experience",
+      "Product discovery optimized for professional workflow",
+      "Local SEO for Seattle design market",
+    ],
+  },
+  // — 2024 —
   {
     id: "gtr-appliance-repair",
     name: "Luxury Appliance Repair",
@@ -44,28 +90,6 @@ export const projects = [
     ],
   },
   {
-    id: "bloom-sante",
-    name: "Bloom Santé",
-    tagline: "Beauty born from care — a curated wellness brand.",
-    year: "2025",
-    category: "E-commerce & Branding",
-    services: ["Web Design", "Branding", "Content Strategy"],
-    url: "https://bloomsante.shop",
-    image: "/work/bloom-sante.jpg",
-    overview:
-      "Bloom Santé is a curated beauty and wellness brand that believes beauty is not perfection — it is presence. They needed an online store that reflected their philosophy of intentional self-care and communicated the quality of their curated product selection.",
-    challenge:
-      "The wellness e-commerce space is saturated with brands that look identical — pastel colors, generic product shots, and empty promises. Bloom Santé needed to stand out with a visual identity that felt elevated, personal, and aligned with their philosophy that caring for yourself is also blooming.",
-    solution:
-      "We designed an e-commerce experience with warm, editorial photography, a refined color palette rooted in soft naturals, and typography that communicates elegance without pretension. Every product page tells a story. The brand voice is intimate and confident — not clinical, not trendy.",
-    results: [
-      "Brand identity that stands out in saturated wellness market",
-      "E-commerce experience aligned with brand philosophy",
-      "Editorial product storytelling approach",
-      "Mobile-first shopping experience",
-    ],
-  },
-  {
     id: "yhon-pena",
     name: "Yhon Peña",
     tagline: "A photographer's portfolio as refined as his eye.",
@@ -85,28 +109,6 @@ export const projects = [
       "Fast-loading optimized image galleries",
       "Streamlined booking inquiry flow",
       "Mobile experience matching desktop quality",
-    ],
-  },
-  {
-    id: "swc-decor",
-    name: "SWC Decor",
-    tagline: "Wallcoverings that redefine sophisticated interiors.",
-    year: "2025",
-    category: "Web Design & Development",
-    services: ["Web Design", "SEO", "Content Strategy"],
-    url: "https://swcdecor.com",
-    image: "/work/swc-decor.jpg",
-    overview:
-      "SWC Decor is a premium wallcovering company based in Seattle, serving architects and interior designers with exceptional materials. They needed a website that communicated the tactile, high-end nature of their products in a digital format.",
-    challenge:
-      "Selling a physical, textural product online is inherently difficult — you cannot feel a wallcovering through a screen. SWC Decor needed to bridge the gap between the digital experience and the sensory reality of their materials, while serving a professional audience of architects and designers.",
-    solution:
-      "We created a visually rich website where large-format photography showcases texture and material quality at scale. The design uses generous whitespace and refined typography to mirror the sophistication of the interiors their products inhabit. A product discovery flow serves the professional workflow of specifiers and designers.",
-    results: [
-      "Premium digital presence for tactile product category",
-      "Architect and designer-focused user experience",
-      "Product discovery optimized for professional workflow",
-      "Local SEO for Seattle design market",
     ],
   },
 ];
