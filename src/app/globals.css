@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@source "../../src";
+
+@theme {
+  /* Colors */
+  --color-ivory: #F8F9F5;
+  --color-neutral-light: #EDEDED;
+  --color-graphite: #323232;
+  --color-charcoal: #212121;
+  --color-narvaez-red: #F43B3E;
+  --color-narvaez-red-hover: #D93134;
+
+  /* Letter Spacing */
+  --tracking-editorial: -0.04em;
+
+  /* Disable Tailwind's default font theme so we control it via runtime CSS vars */
+  --font-sans: initial;
+  --font-serif: initial;
+}
+
+@layer base {
+  ::selection {
+    background-color: var(--color-narvaez-red);
+    color: var(--color-ivory);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-graphite);
+    font-family: var(--font-mulish), sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-charcoal);
+    font-family: var(--font-instrument), serif;
+  }
+}
+
+/*
+ * Override Tailwind's font utilities to use next/font CSS variables.
+ * These are outside @layer so they have higher specificity than Tailwind's
+ * utility layer, ensuring the runtime CSS variables from next/font resolve.
+ */
+.font-serif {
+  font-family: var(--font-instrument), serif !important;
+}
+
+.font-sans {
+  font-family: var(--font-mulish), sans-serif !important;
+}
+
+@layer components {
+  .editorial-heading {
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+  }
+
+  .link-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}

@@ -1,0 +1,100 @@
+export const projects = [
+  {
+    id: "gtr-appliance-repair",
+    name: "GTR Appliance Repair",
+    tagline: "Luxury appliance repair for Florida's finest homes.",
+    year: "2024",
+    category: "Web Design & Development",
+    services: ["Web Design", "SEO", "Content Strategy"],
+    url: "https://gtrappliancerepair.com",
+    image: "/work/gtr-appliance-repair.png",
+    overview:
+      "GTR Appliance Repair is a premium appliance service company based in South Florida, specializing in high-end brands like Sub-Zero, Wolf, and Viking. They needed a digital presence that matched the luxury positioning of their brand and the clientele they serve.",
+    challenge:
+      "The previous website failed to communicate the premium nature of their service. It looked generic, lacked trust signals, and didn't convert visitors into booked appointments. The challenge was to reposition GTR as the go-to luxury appliance repair service in the Florida market.",
+    solution:
+      "We designed and developed a custom website with a refined, dark aesthetic that immediately communicates premium quality. The layout emphasizes trust — certified technicians, warranty-backed repairs, and fast discreet service. A clear booking flow reduces friction from visit to appointment.",
+    results: [
+      "Premium brand perception established",
+      "Clear conversion path from visit to booking",
+      "Mobile-optimized for on-the-go homeowners",
+      "Local SEO foundation for South Florida market",
+    ],
+  },
+  {
+    id: "arepa-fusion",
+    name: "Arepa Fusion",
+    tagline: "Bringing Venezuelan flavor to the digital table.",
+    year: "2024",
+    category: "Web Design & Development",
+    services: ["Web Design", "Content Strategy"],
+    url: "#",
+    image: null,
+    overview: "A vibrant restaurant brand that needed a website matching the energy of their food and culture.",
+    challenge: "No online presence beyond social media. Needed a fast, mobile-first site for menu, location, and online ordering.",
+    solution: "Custom website with bold visuals, integrated menu, and clear CTAs for ordering and directions.",
+    results: [
+      "First professional web presence launched",
+      "Menu and location easily accessible on mobile",
+      "Social media traffic now converts to orders",
+    ],
+  },
+  {
+    id: "rigos-remodeling",
+    name: "Rigo's Remodeling",
+    tagline: "Quality craftsmanship, now visible online.",
+    year: "2024",
+    category: "Web Design & Development",
+    services: ["Web Design", "SEO"],
+    url: "#",
+    image: null,
+    overview: "A remodeling contractor with years of experience but zero digital visibility.",
+    challenge: "Relied entirely on word-of-mouth. Needed a website to showcase work and generate leads from search.",
+    solution: "Portfolio-driven website with project galleries, service pages optimized for local SEO, and a contact flow designed for lead generation.",
+    results: [
+      "Professional portfolio showcasing completed projects",
+      "Local SEO visibility for remodeling keywords",
+      "Consistent lead flow from organic search",
+    ],
+  },
+  {
+    id: "jasons-hood",
+    name: "Jason's Hood",
+    tagline: "Hood cleaning services with a clean digital presence.",
+    year: "2025",
+    category: "Web Design & Development",
+    services: ["Web Design"],
+    url: "#",
+    image: null,
+    overview: "Commercial kitchen hood cleaning service expanding across multiple locations.",
+    challenge: "Needed a scalable website that could serve multiple service areas while maintaining a professional image.",
+    solution: "Location-based service pages, clear pricing communication, and fast mobile experience for restaurant owners.",
+    results: [
+      "Multi-location service area coverage",
+      "Professional brand presence established",
+      "Mobile-first design for busy restaurant owners",
+    ],
+  },
+  {
+    id: "dianas-cleaning-llc",
+    name: "Diana's Cleaning LLC",
+    tagline: "Spotless homes, spotless brand.",
+    year: "2025",
+    category: "Web Design & Development",
+    services: ["Web Design", "SEO"],
+    url: "#",
+    image: null,
+    overview: "Residential cleaning service looking to professionalize their brand and attract higher-value clients.",
+    challenge: "Competing in a saturated market with no differentiation. Needed a website that built trust and justified premium pricing.",
+    solution: "Clean, trustworthy design with testimonials, service breakdowns, and an easy booking experience.",
+    results: [
+      "Premium positioning in local market",
+      "Trust-building design with social proof",
+      "Streamlined booking process",
+    ],
+  },
+];
+
+export function getProject(id: string) {
+  return projects.find((p) => p.id === id);
+}
