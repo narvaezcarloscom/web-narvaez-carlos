@@ -1,6 +1,28 @@
 export const projects = [
   // — 2025 —
   {
+    id: "sircon",
+    name: "SIRCON",
+    tagline: "Consular operations, streamlined from scan to record.",
+    year: "2025",
+    category: "Custom Apps & Platforms",
+    services: ["Custom Platform", "Dashboard & Analytics", "Workflow Automation"],
+    url: "https://sircon.app",
+    image: "/work/sircon.jpg",
+    overview:
+      "SIRCON is a consular records management system built for the Consulate of Guatemala in Washington, DC. It automates the extraction, classification, and tracking of passport application forms — replacing a fully manual process with an intelligent digital workflow.",
+    challenge:
+      "Consular staff processed hundreds of handwritten D4 forms manually — reading each field, typing data into spreadsheets, and tracking application status across disconnected tools. The process was slow, error-prone, and impossible to scale during peak demand periods.",
+    solution:
+      "We designed and built a complete platform with OCR-powered form scanning that extracts handwritten data automatically, a real-time dashboard with application metrics and classification analytics, and role-based access for consular staff. The system turns a paper-heavy workflow into a fast, searchable, and auditable digital process.",
+    results: [
+      "Automated data extraction from handwritten forms via OCR",
+      "Real-time dashboard with metrics by type and status",
+      "Role-based access for consular staff",
+      "Processing time reduced from minutes to seconds per form",
+    ],
+  },
+  {
     id: "bloom-sante",
     name: "Bloom Santé",
     tagline: "Beauty born from care — a curated wellness brand.",
