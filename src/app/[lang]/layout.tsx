@@ -94,6 +94,12 @@ export default async function LangLayout({
   return (
     <html lang={lang}>
       <head>
+        {/* Prevent dark mode flash — runs before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

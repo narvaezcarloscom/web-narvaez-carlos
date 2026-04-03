@@ -2,6 +2,8 @@
 
 @source "../../src";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Static colors (don't change with theme) */
   --color-narvaez-red: #F43B3E;
