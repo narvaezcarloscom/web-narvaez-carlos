@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { projects } from "../../../lib/projects";
 import Container from "../../../components/Container";
@@ -82,19 +81,6 @@ export default function WorkPage() {
                   </div>
                 </div>
 
-                {/* Project Image Preview (if available) */}
-                {project.image && (
-                  <div className="overflow-hidden mb-8 md:mb-10 ml-8 md:ml-14">
-                    <div className="relative aspect-[16/9] max-w-3xl bg-neutral-light overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={`${project.name} — website preview`}
-                        fill
-                        className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-                      />
-                    </div>
-                  </div>
-                )}
               </Link>
             ))}
           </div>
