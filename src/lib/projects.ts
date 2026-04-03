@@ -1,7 +1,7 @@
 export const projects = [
   {
     id: "gtr-appliance-repair",
-    name: "GTR Appliance Repair",
+    name: "Luxury Appliance Repair",
     tagline: "Luxury appliance repair for Florida's finest homes.",
     year: "2024",
     category: "Web Design & Development",

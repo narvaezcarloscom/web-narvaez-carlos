@@ -54,7 +54,7 @@ export default function ParallaxImage({
     <div
       ref={containerRef}
       className={`overflow-hidden ${className}`}
-      style={arcClip ? { borderRadius: "0 0 0 30%" } : undefined}
+      style={undefined}
     >
       <div ref={imageRef} className="relative w-full h-[120%]">
         <Image
