@@ -36,7 +36,7 @@ export default function AnimatedDiagonal({
       { strokeDashoffset: strokeLength },
       {
         strokeDashoffset: 0,
-        duration: 0.8,
+        duration: 1.0,
         ease: "power2.inOut",
         scrollTrigger: {
           trigger: ref.current,
