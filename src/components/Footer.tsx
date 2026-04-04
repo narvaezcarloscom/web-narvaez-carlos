@@ -54,9 +54,9 @@ export default function Footer({ lang, dict }: FooterProps) {
                 {dict.footer.brand}
               </p>
               <div className="flex items-center gap-3 leading-relaxed">
-                <span>{dict.footer.studio}</span>
-                <DiagonalSlash className="text-graphite/20 w-5 h-2.5 shrink-0" />
-                <span>{dict.footer.location}</span>
+                <span>designing with intention</span>
+                <DiagonalSlash size="sm" className="text-graphite/20 shrink-0" />
+                <span>from brand to platform</span>
               </div>
             </div>
             <div>
