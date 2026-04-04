@@ -60,24 +60,61 @@ export async function generateMetadata({
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["ProfessionalService", "MarketingAgency"],
   name: "Narvaez Digital Marketing",
   url: BASE_URL,
   logo: `${BASE_URL}/logo.svg`,
+  image: `${BASE_URL}/logo.svg`,
   description:
-    "Boutique digital studio helping service-based businesses build clear brands, effective digital presence, and high-performing websites.",
+    "Boutique digital studio based in Seattle, serving businesses across the Americas. We design brands, build websites, and develop custom platforms for service-based companies that value clarity, craft, and results.",
+  founder: {
+    "@type": "Person",
+    name: "Carlos A Narvaez Urbina",
+    jobTitle: "Founder & Creative Director",
+  },
+  telephone: "+1-206-981-7078",
+  email: "hello@narvaezcarlos.com",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Seattle",
+    streetAddress: "1431 Jefferson Ave NE",
+    addressLocality: "Renton",
     addressRegion: "WA",
+    postalCode: "98056",
     addressCountry: "US",
   },
+  areaServed: [
+    { "@type": "State", name: "Washington", containedInPlace: { "@type": "Country", name: "US" } },
+    { "@type": "State", name: "Florida", containedInPlace: { "@type": "Country", name: "US" } },
+    { "@type": "State", name: "Texas", containedInPlace: { "@type": "Country", name: "US" } },
+    { "@type": "Country", name: "Mexico" },
+    { "@type": "Country", name: "Venezuela" },
+    { "@type": "Country", name: "Chile" },
+  ],
+  knowsLanguage: ["en", "es"],
+  priceRange: "$$",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Digital Services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web Design & Development" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Custom Apps & Platforms" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Advertising" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Content & Social Media" } },
+    ],
+  },
   sameAs: [
-    "https://instagram.com/narvaezcarloscom/",
+    "https://www.facebook.com/narvaezcarloscom/",
+    "https://www.instagram.com/narvaezcarloscom/",
     "https://youtube.com/@narvaezcarloscom",
     "https://github.com/narvaezcarloscom",
-    "https://linkedin.com/in/narvaezcarlos",
+    "https://www.linkedin.com/in/narvaezcarlos",
   ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "23",
+    bestRating: "5",
+  },
 };
 
 export default async function LangLayout({
