@@ -95,12 +95,9 @@ export default async function AboutPage({
             </div>
             <div className="md:col-span-4 md:col-start-9 flex items-end">
               <div>
-                <p className="text-charcoal text-base md:text-lg leading-relaxed font-medium">
+                <p className="text-charcoal text-base md:text-lg leading-relaxed font-medium mb-2">
                   {isEn ? "designing with intention" : "diseñando con intención"}
                 </p>
-                <div className="flex items-center gap-3 my-2">
-                  <DiagonalSlash size="sm" className="text-graphite/30 shrink-0" />
-                </div>
                 <p className="text-graphite/50 text-sm md:text-base leading-relaxed italic">
                   {isEn ? "from brand to platform" : "de la marca a la plataforma"}
                 </p>
