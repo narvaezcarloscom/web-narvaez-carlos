@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
 import Container from "../../../components/Container";
 import DiagonalSlash from "../../../components/DiagonalSlash";
+import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
 
 export async function generateMetadata({
   params,
@@ -87,7 +88,7 @@ export default async function AboutPage({
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 {isEn ? "About the studio" : "Acerca del estudio"}
               </p>
-              <DiagonalSlash className="text-graphite/20 mb-4" />
+              <AnimatedDiagonal className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 {isEn ? (
                   <>

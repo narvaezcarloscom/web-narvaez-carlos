@@ -4,7 +4,7 @@ import type { Locale } from "../../../lib/i18n";
 import { services } from "../../../lib/services";
 import Container from "../../../components/Container";
 import ProcessDots from "../../../components/ProcessDots";
-import DiagonalSlash from "../../../components/DiagonalSlash";
+import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
 
 export async function generateMetadata({
   params,
@@ -53,7 +53,7 @@ export default function ServicesPage() {
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 Services
               </p>
-              <DiagonalSlash className="text-graphite/20 mb-4" />
+              <AnimatedDiagonal className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 Strategy, design,
                 <br />

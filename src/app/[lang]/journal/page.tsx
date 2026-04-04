@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
 import { articles } from "../../../lib/journal";
 import Container from "../../../components/Container";
-import DiagonalSlash from "../../../components/DiagonalSlash";
+import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
 
 export async function generateMetadata({
   params,
@@ -33,7 +33,7 @@ export default function JournalPage() {
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 Journal
               </p>
-              <DiagonalSlash className="text-graphite/20 mb-4" />
+              <AnimatedDiagonal className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
                 Thinking out
                 <br />
