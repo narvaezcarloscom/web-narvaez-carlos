@@ -67,6 +67,11 @@ const jsonLd = {
   image: `${BASE_URL}/logo.svg`,
   description:
     "Boutique digital studio based in Seattle, serving businesses across the Americas. We design brands, build websites, and develop custom platforms for service-based companies that value clarity, craft, and results.",
+  foundingDate: "2022",
+  foundingLocation: {
+    "@type": "Place",
+    name: "Seattle, Washington, US",
+  },
   founder: {
     "@type": "Person",
     name: "Carlos A Narvaez Urbina",

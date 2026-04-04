@@ -32,10 +32,16 @@ function aboutJsonLd(isEn: boolean) {
       "@type": "Person",
       name: "Carlos A Narvaez Urbina",
       jobTitle: "Founder & Creative Director",
+      url: BASE_URL + "/about",
       worksFor: {
         "@type": "Organization",
         name: "Narvaez Digital Marketing",
         url: BASE_URL,
+        foundingDate: "2022",
+        foundingLocation: {
+          "@type": "Place",
+          name: "Seattle, Washington",
+        },
       },
       knowsLanguage: ["en", "es"],
       nationality: { "@type": "Country", name: "Venezuela" },
@@ -48,6 +54,11 @@ function aboutJsonLd(isEn: boolean) {
           addressCountry: "US",
         },
       },
+      sameAs: [
+        "https://www.linkedin.com/in/narvaezcarlos",
+        "https://www.instagram.com/narvaezcarloscom/",
+        "https://github.com/narvaezcarloscom",
+      ],
     },
   };
 }
@@ -120,13 +131,13 @@ export default async function AboutPage({
               <div className="md:col-span-7">
                 <p className="text-graphite text-base md:text-lg leading-relaxed mb-6">
                   {isEn
-                    ? "Narvaez Digital Marketing is the independent practice of Carlos Narvaez — working at the intersection of branding, technology, and digital growth."
-                    : "Narvaez Digital Marketing es la práctica independiente de Carlos Narvaez — trabajando en la intersección de branding, tecnología y crecimiento digital."}
+                    ? "Founded in 2022, Narvaez Digital Marketing is a bilingual (English/Spanish) boutique digital studio based in Seattle, Washington, serving service-based businesses across the United States and Latin America."
+                    : "Fundado en 2022, Narvaez Digital Marketing es un estudio digital boutique bilingüe (inglés/español) basado en Seattle, Washington, sirviendo a empresas de servicios en Estados Unidos y América Latina."}
                 </p>
                 <p className="text-graphite text-base md:text-lg leading-relaxed">
                   {isEn
-                    ? "What started as a hands-on approach to web development has evolved into a refined practice focused on building complete digital ecosystems — from brand identity to custom platforms."
-                    : "Lo que comenzó como un enfoque práctico hacia el desarrollo web ha evolucionado hacia una práctica refinada enfocada en construir ecosistemas digitales completos — desde identidad de marca hasta plataformas a medida."}
+                    ? "The independent practice of Carlos Narvaez — working at the intersection of branding, technology, and digital growth. What started as a hands-on approach to web development has evolved into a refined practice focused on building complete digital ecosystems — from brand identity to custom platforms."
+                    : "La práctica independiente de Carlos Narvaez — trabajando en la intersección de branding, tecnología y crecimiento digital. Lo que comenzó como un enfoque práctico hacia el desarrollo web ha evolucionado hacia una práctica refinada enfocada en construir ecosistemas digitales completos — desde identidad de marca hasta plataformas a medida."}
                 </p>
               </div>
               <div className="md:col-span-3 md:col-start-10 flex items-end">
