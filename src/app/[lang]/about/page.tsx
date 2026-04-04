@@ -72,40 +72,22 @@ export default async function AboutPage({
       <section className="pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <div className="md:col-span-7">
+            <div className="md:col-span-8">
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
                 {isEn ? "About the studio" : "Acerca del estudio"}
               </p>
               <DiagonalSlash className="text-graphite/20 mb-4" />
-              <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
-                {isEn ? (
-                  <>
-                    A studio built
-                    <br />
-                    on <span className="italic">intention.</span>
-                  </>
-                ) : (
-                  <>
-                    Un estudio construido
-                    <br />
-                    con <span className="italic">intención.</span>
-                  </>
-                )}
+              <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading text-charcoal">
+                {isEn ? "Designing with intention" : "Diseñando con intención"}
               </h1>
-            </div>
-            <div className="md:col-span-4 md:col-start-9 flex items-end">
-              <div>
-                <p className="text-graphite text-base md:text-lg leading-relaxed mb-3">
-                  {isEn
-                    ? "A boutique digital studio designing with intention — from brand to platform."
-                    : "Un estudio digital boutique que diseña con intención — de la marca a la plataforma."}
-                </p>
-                <p className="text-graphite/60 text-sm md:text-base">
-                  {isEn
-                    ? "Founded by Carlos Narvaez — Venezuelan-born, Seattle-based."
-                    : "Fundado por Carlos Narvaez — venezolano, basado en Seattle."}
-                </p>
-              </div>
+              <p className="font-serif text-graphite/40 text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-2 md:mt-3 italic">
+                {isEn ? "from brand to platform" : "de la marca a la plataforma"}
+              </p>
+              <p className="text-graphite/50 text-sm md:text-base mt-8 md:mt-10">
+                {isEn
+                  ? "Founded by Carlos Narvaez — Venezuelan-born, Seattle-based."
+                  : "Fundado por Carlos Narvaez — venezolano, basado en Seattle."}
+              </p>
             </div>
           </div>
         </Container>
