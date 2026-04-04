@@ -34,10 +34,16 @@ export default function Hero({ lang, dict }: HeroProps) {
         { y: 0, opacity: 1, duration: 1.2 }
       )
         .fromTo(
+          "[data-anim='diagonal'] line",
+          { strokeDashoffset: 44 },
+          { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" },
+          "-=0.6"
+        )
+        .fromTo(
           "[data-anim='heading'] > *",
           { y: 80, opacity: 0 },
           { y: 0, opacity: 1, duration: 1.6, stagger: 0.18 },
-          "-=0.8"
+          "-=0.4"
         )
         .fromTo(
           "[data-anim='body']",
@@ -71,7 +77,26 @@ export default function Hero({ lang, dict }: HeroProps) {
                 <span key={word}>{word}</span>
               ))}
             </div>
-            <DiagonalSlash className="text-graphite/20 mb-3 sm:mb-4" />
+            <svg
+              data-anim="diagonal"
+              width="40"
+              height="17.81"
+              viewBox="0 0 40 17.81"
+              fill="none"
+              className="text-graphite/20 mb-3 sm:mb-4"
+              aria-hidden="true"
+            >
+              <line
+                x1="0"
+                y1="17.81"
+                x2="40"
+                y2="0"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeDasharray="44"
+                strokeDashoffset="44"
+              />
+            </svg>
             <h1
               data-anim="heading"
               className="font-serif text-[3.25rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[7rem] editorial-heading text-charcoal"
