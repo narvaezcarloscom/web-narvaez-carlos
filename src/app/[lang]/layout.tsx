@@ -34,13 +34,13 @@ export async function generateMetadata({
   return {
     title: {
       default: isEn
-        ? "Narvaez Digital Marketing | Boutique Digital Studio in Seattle"
-        : "Narvaez Digital Marketing | Estudio Digital Boutique en Seattle",
+        ? "Narvaez Digital Marketing · Boutique Studio in Seattle"
+        : "Narvaez Digital Marketing · Estudio Boutique en Seattle",
       template: "%s | Narvaez Digital Marketing",
     },
     description: isEn
-      ? "Boutique digital studio helping service-based businesses build clear brands, effective digital presence, and high-performing websites."
-      : "Estudio digital boutique que ayuda a empresas de servicios a construir marcas claras, presencia digital efectiva y sitios web de alto rendimiento.",
+      ? "Boutique digital studio in Seattle. We design brands, websites, and platforms for service-based businesses ready to grow with clarity."
+      : "Estudio digital boutique en Seattle. Diseñamos marcas, sitios web y plataformas para negocios de servicios listos para crecer con claridad.",
     metadataBase: new URL(BASE_URL),
     openGraph: {
       title: "Narvaez Digital Marketing",

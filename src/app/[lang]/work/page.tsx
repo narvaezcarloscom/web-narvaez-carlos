@@ -1,14 +1,26 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { Locale } from "../../../lib/i18n";
 import { projects } from "../../../lib/projects";
 import Container from "../../../components/Container";
 import DiagonalSlash from "../../../components/DiagonalSlash";
 
-export const metadata: Metadata = {
-  title: "Work",
-  description:
-    "Selected projects — websites, brands, and digital experiences built for service-based businesses.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const isEn = lang === "en";
+  return {
+    title: isEn
+      ? "Work · Selected Projects"
+      : "Portafolio · Proyectos Seleccionados",
+    description: isEn
+      ? "Selected projects — websites, brands, and digital platforms built for businesses that value design as a competitive edge."
+      : "Proyectos seleccionados — sitios web, marcas y plataformas digitales para negocios que valoran el diseño como ventaja competitiva.",
+  };
+}
 
 export default function WorkPage() {
   return (

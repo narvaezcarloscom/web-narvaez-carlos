@@ -1,14 +1,26 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { Locale } from "../../../lib/i18n";
 import { articles } from "../../../lib/journal";
 import Container from "../../../components/Container";
 import DiagonalSlash from "../../../components/DiagonalSlash";
 
-export const metadata: Metadata = {
-  title: "Journal",
-  description:
-    "Perspectives on branding, web design, and digital strategy for service-based businesses.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const isEn = lang === "en";
+  return {
+    title: isEn
+      ? "Journal · Perspectives on Digital Design"
+      : "Journal · Perspectivas sobre Diseño Digital",
+    description: isEn
+      ? "Perspectives on branding, web design, and digital strategy from a boutique studio in Seattle."
+      : "Perspectivas sobre branding, diseño web y estrategia digital desde un estudio boutique en Seattle.",
+  };
+}
 
 export default function JournalPage() {
   return (

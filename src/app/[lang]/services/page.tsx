@@ -1,15 +1,27 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { Locale } from "../../../lib/i18n";
 import { services } from "../../../lib/services";
 import Container from "../../../components/Container";
 import ProcessDots from "../../../components/ProcessDots";
 import DiagonalSlash from "../../../components/DiagonalSlash";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Web design, SEO, digital advertising, and content strategy for service-based businesses.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const isEn = lang === "en";
+  return {
+    title: isEn
+      ? "Services · Digital Strategy & Design"
+      : "Servicios · Estrategia Digital y Diseño",
+    description: isEn
+      ? "Web design, custom platforms, digital advertising, and content strategy — crafted for service businesses that demand precision."
+      : "Diseño web, plataformas a medida, publicidad digital y estrategia de contenido — para negocios que exigen precisión.",
+  };
+}
 
 const process = [
   {

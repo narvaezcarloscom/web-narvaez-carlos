@@ -1,14 +1,26 @@
 import type { Metadata } from "next";
+import type { Locale } from "../../../lib/i18n";
 import Container from "../../../components/Container";
 import ContactForm from "../../../components/ContactForm";
 import GridTexture from "../../../components/GridTexture";
 import DiagonalSlash from "../../../components/DiagonalSlash";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Start a project with Narvaez Digital Marketing. Free consultation for service-based businesses.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const isEn = lang === "en";
+  return {
+    title: isEn
+      ? "Start a Project · Free Consultation"
+      : "Iniciar un Proyecto · Consulta Gratuita",
+    description: isEn
+      ? "Ready to elevate your digital presence? Start a conversation with our Seattle-based studio."
+      : "¿Listo para elevar tu presencia digital? Inicia una conversación con nuestro estudio en Seattle.",
+  };
+}
 
 export default function ContactPage() {
   return (
