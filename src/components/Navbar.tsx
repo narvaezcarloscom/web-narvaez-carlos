@@ -21,6 +21,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
   const links = [
     { href: `${prefix}/services`, label: dict.nav.services },
     { href: `${prefix}/work`, label: dict.nav.work },
+    { href: `${prefix}/about`, label: dict.nav.about },
     { href: `${prefix}/journal`, label: dict.nav.journal },
     { href: `${prefix}/contact`, label: dict.nav.contact },
   ];

@@ -2,6 +2,7 @@ const en = {
   nav: {
     services: "Services",
     work: "Work",
+    about: "About",
     journal: "Journal",
     contact: "Contact",
   },

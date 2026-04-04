@@ -4,6 +4,7 @@ const es: Dictionary = {
   nav: {
     services: "Servicios",
     work: "Proyectos",
+    about: "Acerca",
     journal: "Journal",
     contact: "Contacto",
   },
