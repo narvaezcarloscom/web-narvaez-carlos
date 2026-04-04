@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
@@ -127,6 +128,24 @@ export default async function AboutPage({
                     : "Lo que comenzó como un enfoque práctico hacia el desarrollo web ha evolucionado hacia una práctica refinada enfocada en construir ecosistemas digitales completos — desde identidad de marca hasta plataformas a medida."}
                 </p>
               </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Founder portrait */}
+      <section className="pb-20 md:pb-24">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-12">
+            <div className="md:col-span-5 md:col-start-4">
+              <Image
+                src="/carlos-narvaez.jpg"
+                alt="Carlos Narvaez — Founder of Narvaez Digital Marketing"
+                width={1233}
+                height={1224}
+                className="w-full grayscale"
+                priority
+              />
             </div>
           </div>
         </Container>
