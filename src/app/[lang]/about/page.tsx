@@ -148,6 +148,7 @@ export default async function AboutPage({
           <div className="border-t border-neutral-light pt-12 md:pt-16">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-7">
+                <DiagonalSlash size="sm" className="text-graphite/20 mb-8" />
                 <p className="text-graphite text-base md:text-lg leading-relaxed mb-6">
                   {isEn
                     ? "This is not a volume-driven agency."
@@ -310,6 +311,7 @@ export default async function AboutPage({
           <div className="border-t border-neutral-light pt-16 md:pt-20">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-7">
+                <DiagonalSlash size="lg" className="text-graphite/15 mb-8" />
                 <p className="font-serif text-charcoal text-2xl md:text-3xl lg:text-4xl editorial-heading leading-[1.1]">
                   {isEn
                     ? "A small studio by structure."
