@@ -312,27 +312,6 @@ export default async function AboutPage({
                   </span>
                 </p>
               </div>
-              <div className="md:col-span-4 md:col-start-9 flex items-end">
-                <Link
-                  href={`${prefix}/contact`}
-                  className="group inline-flex items-center gap-3 text-charcoal hover:text-narvaez-red transition-colors duration-300"
-                >
-                  <span className="font-serif text-lg md:text-xl italic">
-                    {isEn
-                      ? "Let's start a conversation"
-                      : "Iniciemos una conversación"}
-                  </span>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    className="text-graphite/30 group-hover:text-narvaez-red transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" strokeWidth="1.5" />
-                  </svg>
-                </Link>
-              </div>
             </div>
           </div>
         </Container>
