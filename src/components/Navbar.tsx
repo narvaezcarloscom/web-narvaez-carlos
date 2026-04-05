@@ -64,6 +64,18 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 </li>
               ))}
               <li>
+                <a
+                  href="https://app.narvaezcarlos.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline transition-colors"
+                  style={{ color: "var(--text-body)" }}
+                  translate="no"
+                >
+                  Studio OS
+                </a>
+              </li>
+              <li>
                 <Link
                   href={switchHref}
                   className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
@@ -132,6 +144,16 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 {l.label}
               </Link>
             ))}
+            <a
+              href="https://app.narvaezcarlos.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="text-ivory font-serif text-4xl sm:text-5xl editorial-heading hover:text-narvaez-red transition-colors duration-300"
+              translate="no"
+            >
+              Studio OS
+            </a>
           </nav>
           <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <span className="text-ivory/50 text-xs sm:text-sm">
