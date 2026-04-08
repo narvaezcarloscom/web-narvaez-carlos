@@ -22,7 +22,13 @@ export async function generateMetadata({
   };
 }
 
-export default function ContactPage() {
+export default async function ContactPage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
+
   return (
     <>
       {/* Hero */}
@@ -57,7 +63,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20">
             {/* Form */}
             <div className="md:col-span-7">
-              <ContactForm />
+              <ContactForm lang={lang} />
             </div>
 
             {/* Info Sidebar */}

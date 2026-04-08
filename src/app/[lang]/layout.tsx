@@ -4,6 +4,7 @@ import { Instrument_Serif, Mulish } from "next/font/google";
 import { getDictionary, type Locale, locales } from "../../lib/i18n";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import CookieBanner from "../../components/CookieBanner";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -142,6 +143,12 @@ export default async function LangLayout({
             __html: `(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
           }}
         />
+        {/* Google Consent Mode v2 — default denied before GTM loads */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});`,
+          }}
+        />
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
@@ -165,6 +172,7 @@ export default async function LangLayout({
           <main className="flex-1">{children}</main>
           <Footer lang={lang} dict={dict} />
         </div>
+        <CookieBanner lang={lang} />
       </body>
     </html>
   );
