@@ -10,9 +10,9 @@ export const projects = [
     url: "https://sircon.app",
     image: "/work/sircon.jpg",
     overview:
-      "SIRCON is a consular records management system built for the Consulate of Guatemala in Washington, DC. It automates the extraction, classification, and tracking of passport application forms — replacing a fully manual process with an intelligent digital workflow.",
+      "SIRCON is a white-label consular records management system designed for diplomatic offices and consulates. It automates the extraction, classification, and tracking of application forms — replacing fully manual processes with an intelligent digital workflow.",
     challenge:
-      "Consular staff processed hundreds of handwritten D4 forms manually — reading each field, typing data into spreadsheets, and tracking application status across disconnected tools. The process was slow, error-prone, and impossible to scale during peak demand periods.",
+      "Consular staff processed hundreds of handwritten forms manually — reading each field, typing data into spreadsheets, and tracking application status across disconnected tools. The process was slow, error-prone, and impossible to scale during peak demand periods.",
     solution:
       "We designed and built a complete platform with OCR-powered form scanning that extracts handwritten data automatically, a real-time dashboard with application metrics and classification analytics, and role-based access for consular staff. The system turns a paper-heavy workflow into a fast, searchable, and auditable digital process.",
     results: [

@@ -309,8 +309,8 @@ export default async function AboutPage({
                 </p>
                 <p className="text-graphite text-base md:text-lg leading-relaxed">
                   {isEn
-                    ? "The studio maintains a consistent record of 5-star reviews and has developed projects ranging from commercial brand platforms to consular systems — including SIRCON, built for the Consulate of Guatemala in Washington, D.C."
-                    : "El estudio mantiene un historial consistente de reseñas de 5 estrellas y ha desarrollado proyectos que van desde plataformas comerciales de marca hasta sistemas consulares — incluyendo SIRCON, construido para el Consulado de Guatemala en Washington, D.C."}
+                    ? "The studio maintains a consistent record of 5-star reviews and has developed projects ranging from commercial brand platforms to consular systems — including SIRCON, a white-label platform built for diplomatic offices and consulates."
+                    : "El estudio mantiene un historial consistente de reseñas de 5 estrellas y ha desarrollado proyectos que van desde plataformas comerciales de marca hasta sistemas consulares — incluyendo SIRCON, una plataforma white-label construida para oficinas diplomáticas y consulados."}
                 </p>
               </div>
             </div>
