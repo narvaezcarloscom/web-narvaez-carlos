@@ -111,6 +111,7 @@ const es: Dictionary = {
     connect: "Conecta",
     rights: "Todos los derechos reservados.",
     privacy: "Política de Privacidad",
+    terms: "Términos de Servicio",
   },
   common: {
     startProject: "Iniciar un proyecto",

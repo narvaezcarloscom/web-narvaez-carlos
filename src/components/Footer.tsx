@@ -97,6 +97,10 @@ export default function Footer({ lang, dict }: FooterProps) {
                 {dict.footer.privacy}
               </Link>
               <span className="text-graphite/30">|</span>
+              <Link href={`${prefix}/terms`} className="hover:text-graphite transition-colors">
+                {dict.footer.terms}
+              </Link>
+              <span className="text-graphite/30">|</span>
               <CookieSettingsButton lang={lang} />
             </div>
           </div>

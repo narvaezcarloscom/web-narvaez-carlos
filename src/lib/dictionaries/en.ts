@@ -109,6 +109,7 @@ const en = {
     connect: "Connect",
     rights: "All rights reserved.",
     privacy: "Privacy Policy",
+    terms: "Terms of Service",
   },
   common: {
     startProject: "Start a project",
