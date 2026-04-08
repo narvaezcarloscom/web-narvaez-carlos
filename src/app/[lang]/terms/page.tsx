@@ -78,7 +78,7 @@ function EnglishContent() {
   return (
     <>
       <Paragraph>
-        These Terms of Service (&quot;Terms&quot;) govern your access to and use of the website narvaezcarlos.com (&quot;Website&quot;) operated by Narvaez Digital Marketing LLC (&quot;NDM,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a company registered in Washington State, United States. By accessing or using our Website, you agree to be bound by these Terms.
+        These Terms of Service (&quot;Terms&quot;) govern your access to and use of the website narvaezcarlos.com (&quot;Website&quot;) operated by Narvaez Digital Marketing (&quot;NDM,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a registered business in Washington State, United States. By accessing or using our Website, you agree to be bound by these Terms.
       </Paragraph>
 
       <SectionTitle>1. Services</SectionTitle>
@@ -101,10 +101,10 @@ function EnglishContent() {
 
       <SectionTitle>3. Intellectual Property</SectionTitle>
       <Paragraph>
-        All content on this Website — including but not limited to text, design, graphics, logos, icons, images, code, and the overall look and feel — is the property of Narvaez Digital Marketing LLC and is protected by United States and international copyright, trademark, and other intellectual property laws.
+        All content on this Website — including but not limited to text, design, graphics, logos, icons, images, code, and the overall look and feel — is the property of Narvaez Digital Marketing and is protected by United States and international copyright, trademark, and other intellectual property laws.
       </Paragraph>
       <Paragraph>
-        The NDM name, logo, and diagonal slash mark are trademarks of Narvaez Digital Marketing LLC. You may not use, reproduce, or distribute any content from this Website without our prior written permission.
+        The NDM name, logo, and diagonal slash mark are trademarks of Narvaez Digital Marketing. You may not use, reproduce, or distribute any content from this Website without our prior written permission.
       </Paragraph>
       <Paragraph>
         Project case studies displayed in our portfolio are shown with client authorization and remain the intellectual property of their respective owners where applicable.
@@ -130,7 +130,7 @@ function EnglishContent() {
 
       <SectionTitle>7. Limitation of Liability</SectionTitle>
       <Paragraph>
-        To the maximum extent permitted by applicable law, Narvaez Digital Marketing LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, data, or goodwill, arising out of or in connection with your use of the Website.
+        To the maximum extent permitted by applicable law, Narvaez Digital Marketing shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, data, or goodwill, arising out of or in connection with your use of the Website.
       </Paragraph>
       <Paragraph>
         Our total liability for any claim arising from these Terms or your use of the Website shall not exceed $100 USD.
@@ -138,7 +138,7 @@ function EnglishContent() {
 
       <SectionTitle>8. Indemnification</SectionTitle>
       <Paragraph>
-        You agree to indemnify and hold harmless Narvaez Digital Marketing LLC, its owner, and its contractors from any claims, damages, losses, or expenses (including reasonable attorney fees) arising from your use of the Website or violation of these Terms.
+        You agree to indemnify and hold harmless Narvaez Digital Marketing, its owner, and its contractors from any claims, damages, losses, or expenses (including reasonable attorney fees) arising from your use of the Website or violation of these Terms.
       </Paragraph>
 
       <SectionTitle>9. Governing Law and Disputes</SectionTitle>
@@ -165,7 +165,7 @@ function EnglishContent() {
       </Paragraph>
       <div className="text-graphite text-base leading-relaxed mb-4 pl-4 border-l-2 border-neutral-light">
         <p>Email: <a href="mailto:hello@narvaezcarlos.com" className="link-underline text-charcoal">hello@narvaezcarlos.com</a></p>
-        <p>Narvaez Digital Marketing LLC</p>
+        <p>Narvaez Digital Marketing</p>
         <p>1431 Jefferson Ave NE, Renton, WA 98056, United States</p>
       </div>
     </>
@@ -176,7 +176,7 @@ function SpanishContent() {
   return (
     <>
       <Paragraph>
-        Estos Términos de Servicio (&quot;Términos&quot;) rigen tu acceso y uso del sitio web narvaezcarlos.com (&quot;Sitio Web&quot;) operado por Narvaez Digital Marketing LLC (&quot;NDM,&quot; &quot;nosotros&quot; o &quot;nuestro&quot;), una empresa registrada en el Estado de Washington, Estados Unidos. Al acceder o usar nuestro Sitio Web, aceptas estar sujeto a estos Términos.
+        Estos Términos de Servicio (&quot;Términos&quot;) rigen tu acceso y uso del sitio web narvaezcarlos.com (&quot;Sitio Web&quot;) operado por Narvaez Digital Marketing (&quot;NDM,&quot; &quot;nosotros&quot; o &quot;nuestro&quot;), un negocio registrado en el Estado de Washington, Estados Unidos. Al acceder o usar nuestro Sitio Web, aceptas estar sujeto a estos Términos.
       </Paragraph>
 
       <SectionTitle>1. Servicios</SectionTitle>
@@ -199,10 +199,10 @@ function SpanishContent() {
 
       <SectionTitle>3. Propiedad Intelectual</SectionTitle>
       <Paragraph>
-        Todo el contenido de este Sitio Web — incluyendo pero no limitado a texto, diseño, gráficos, logotipos, íconos, imágenes, código y la apariencia general — es propiedad de Narvaez Digital Marketing LLC y está protegido por las leyes de derechos de autor, marcas registradas y otras leyes de propiedad intelectual de Estados Unidos e internacionales.
+        Todo el contenido de este Sitio Web — incluyendo pero no limitado a texto, diseño, gráficos, logotipos, íconos, imágenes, código y la apariencia general — es propiedad de Narvaez Digital Marketing y está protegido por las leyes de derechos de autor, marcas registradas y otras leyes de propiedad intelectual de Estados Unidos e internacionales.
       </Paragraph>
       <Paragraph>
-        El nombre NDM, el logotipo y la marca diagonal son marcas comerciales de Narvaez Digital Marketing LLC. No puedes usar, reproducir o distribuir ningún contenido de este Sitio Web sin nuestro permiso previo por escrito.
+        El nombre NDM, el logotipo y la marca diagonal son marcas comerciales de Narvaez Digital Marketing. No puedes usar, reproducir o distribuir ningún contenido de este Sitio Web sin nuestro permiso previo por escrito.
       </Paragraph>
       <Paragraph>
         Los casos de estudio de proyectos mostrados en nuestro portafolio se presentan con autorización del cliente y siguen siendo propiedad intelectual de sus respectivos dueños cuando corresponda.
@@ -228,7 +228,7 @@ function SpanishContent() {
 
       <SectionTitle>7. Limitación de Responsabilidad</SectionTitle>
       <Paragraph>
-        En la máxima medida permitida por la ley aplicable, Narvaez Digital Marketing LLC no será responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos, ni por pérdida de beneficios, datos o buena voluntad, que surjan de o en conexión con tu uso del Sitio Web.
+        En la máxima medida permitida por la ley aplicable, Narvaez Digital Marketing no será responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos, ni por pérdida de beneficios, datos o buena voluntad, que surjan de o en conexión con tu uso del Sitio Web.
       </Paragraph>
       <Paragraph>
         Nuestra responsabilidad total por cualquier reclamación derivada de estos Términos o tu uso del Sitio Web no excederá $100 USD.
@@ -236,7 +236,7 @@ function SpanishContent() {
 
       <SectionTitle>8. Indemnización</SectionTitle>
       <Paragraph>
-        Aceptas indemnizar y mantener indemne a Narvaez Digital Marketing LLC, su propietario y sus contratistas de cualquier reclamación, daño, pérdida o gasto (incluidos honorarios razonables de abogados) que surjan de tu uso del Sitio Web o violación de estos Términos.
+        Aceptas indemnizar y mantener indemne a Narvaez Digital Marketing, su propietario y sus contratistas de cualquier reclamación, daño, pérdida o gasto (incluidos honorarios razonables de abogados) que surjan de tu uso del Sitio Web o violación de estos Términos.
       </Paragraph>
 
       <SectionTitle>9. Ley Aplicable y Disputas</SectionTitle>
@@ -263,7 +263,7 @@ function SpanishContent() {
       </Paragraph>
       <div className="text-graphite text-base leading-relaxed mb-4 pl-4 border-l-2 border-neutral-light">
         <p>Correo: <a href="mailto:hello@narvaezcarlos.com" className="link-underline text-charcoal">hello@narvaezcarlos.com</a></p>
-        <p>Narvaez Digital Marketing LLC</p>
+        <p>Narvaez Digital Marketing</p>
         <p>1431 Jefferson Ave NE, Renton, WA 98056, Estados Unidos</p>
       </div>
     </>

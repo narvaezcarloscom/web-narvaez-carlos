@@ -78,7 +78,7 @@ function EnglishContent() {
   return (
     <>
       <Paragraph>
-        Narvaez Digital Marketing LLC (&quot;NDM,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is a digital studio registered in Washington State, United States. This Privacy Policy explains how we collect, use, disclose, and protect your personal data when you visit our website at narvaezcarlos.com or interact with our services.
+        Narvaez Digital Marketing (&quot;NDM,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is a registered digital studio based in Washington State, United States. This Privacy Policy explains how we collect, use, disclose, and protect your personal data when you visit our website at narvaezcarlos.com or interact with our services.
       </Paragraph>
       <Paragraph>
         We are committed to protecting your privacy and handling your data with transparency. This policy applies to all visitors, regardless of location, and addresses requirements under applicable laws including GDPR (EU), CCPA/CPRA (California), LFPDPPP (Mexico), and Washington State privacy regulations.
@@ -89,7 +89,7 @@ function EnglishContent() {
         The data controller responsible for your personal data is:
       </Paragraph>
       <div className="text-graphite text-base leading-relaxed mb-4 pl-4 border-l-2 border-neutral-light">
-        <p className="font-medium text-charcoal">Narvaez Digital Marketing LLC</p>
+        <p className="font-medium text-charcoal">Narvaez Digital Marketing</p>
         <p>1431 Jefferson Ave NE, Renton, WA 98056, United States</p>
         <p>Email: hello@narvaezcarlos.com</p>
       </div>
@@ -221,7 +221,7 @@ function EnglishContent() {
       </Paragraph>
       <div className="text-graphite text-base leading-relaxed mb-4 pl-4 border-l-2 border-neutral-light">
         <p>Email: <a href="mailto:hello@narvaezcarlos.com" className="link-underline text-charcoal">hello@narvaezcarlos.com</a></p>
-        <p>Narvaez Digital Marketing LLC</p>
+        <p>Narvaez Digital Marketing</p>
         <p>1431 Jefferson Ave NE, Renton, WA 98056, United States</p>
       </div>
     </>
@@ -232,7 +232,7 @@ function SpanishContent() {
   return (
     <>
       <Paragraph>
-        Narvaez Digital Marketing LLC (&quot;NDM,&quot; &quot;nosotros&quot; o &quot;nuestro&quot;) es un estudio digital registrado en el Estado de Washington, Estados Unidos. Esta Política de Privacidad explica cómo recopilamos, usamos, compartimos y protegemos tus datos personales cuando visitas nuestro sitio web en narvaezcarlos.com o interactúas con nuestros servicios.
+        Narvaez Digital Marketing (&quot;NDM,&quot; &quot;nosotros&quot; o &quot;nuestro&quot;) es un estudio digital registrado en el Estado de Washington, Estados Unidos. Esta Política de Privacidad explica cómo recopilamos, usamos, compartimos y protegemos tus datos personales cuando visitas nuestro sitio web en narvaezcarlos.com o interactúas con nuestros servicios.
       </Paragraph>
       <Paragraph>
         Nos comprometemos a proteger tu privacidad y manejar tus datos con transparencia. Esta política aplica a todos los visitantes, independientemente de su ubicación, y aborda los requisitos de las leyes aplicables, incluyendo el RGPD (UE), CCPA/CPRA (California), LFPDPPP (México) y las regulaciones de privacidad del Estado de Washington.
@@ -243,7 +243,7 @@ function SpanishContent() {
         El responsable del tratamiento de tus datos personales es:
       </Paragraph>
       <div className="text-graphite text-base leading-relaxed mb-4 pl-4 border-l-2 border-neutral-light">
-        <p className="font-medium text-charcoal">Narvaez Digital Marketing LLC</p>
+        <p className="font-medium text-charcoal">Narvaez Digital Marketing</p>
         <p>1431 Jefferson Ave NE, Renton, WA 98056, Estados Unidos</p>
         <p>Correo: hello@narvaezcarlos.com</p>
       </div>
@@ -375,7 +375,7 @@ function SpanishContent() {
       </Paragraph>
       <div className="text-graphite text-base leading-relaxed mb-4 pl-4 border-l-2 border-neutral-light">
         <p>Correo: <a href="mailto:hello@narvaezcarlos.com" className="link-underline text-charcoal">hello@narvaezcarlos.com</a></p>
-        <p>Narvaez Digital Marketing LLC</p>
+        <p>Narvaez Digital Marketing</p>
         <p>1431 Jefferson Ave NE, Renton, WA 98056, Estados Unidos</p>
       </div>
     </>
