@@ -45,10 +45,29 @@ export async function generateMetadata({
     metadataBase: new URL(BASE_URL),
     openGraph: {
       title: "Narvaez Digital Marketing",
+      description: isEn
+        ? "Designing with intention — from brand to platform. Boutique digital studio in Seattle serving businesses across the Americas."
+        : "Diseñando con intención — de la marca a la plataforma. Estudio digital boutique en Seattle sirviendo negocios en las Américas.",
       url: BASE_URL,
       siteName: "Narvaez Digital Marketing",
       locale: isEn ? "en_US" : "es_ES",
       type: "website",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 1200,
+          alt: "Narvaez Digital Marketing",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary",
+      title: "Narvaez Digital Marketing",
+      description: isEn
+        ? "Designing with intention — from brand to platform."
+        : "Diseñando con intención — de la marca a la plataforma.",
+      images: ["/og-image.png"],
     },
     alternates: {
       languages: {
