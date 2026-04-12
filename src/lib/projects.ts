@@ -1,4 +1,27 @@
 export const projects = [
+  // — 2026 —
+  {
+    id: "angle-stone",
+    name: "Angle Stone",
+    tagline: "Stone hardscapes that elevate Seattle's finest outdoor spaces.",
+    year: "2026",
+    category: "Web Design & Development",
+    services: ["Web Design", "SEO", "Content Strategy"],
+    url: "https://anglestonellc.com",
+    image: "/work/angle-stone.jpg",
+    overview:
+      "Angle Stone is a Seattle-based outdoor construction company specializing in stone hardscapes, deck installation, irrigation systems, and low-voltage landscape lighting. They serve homeowners across King County — from Seattle and Kirkland to Edmonds, Federal Way, and North Bend — with premium craftsmanship rooted in years of construction experience.",
+    challenge:
+      "Angle Stone had the craft, the client roster, and the portfolio — but their digital presence didn't reflect the caliber of the work. The category is crowded with contractor websites that look interchangeable: stock photos, generic service lists, and no sense of place. They needed a site that could speak to homeowners who care about design as much as durability, and that could anchor their authority across the Seattle metro.",
+    solution:
+      "We designed a dark, editorial website that lets the outdoor photography lead. The palette — warm tan accents against deep black — evokes outdoor spaces at dusk, when landscape lighting comes alive. We structured the site around real projects with real client names and real Seattle-area neighborhoods (Kirkland, Lake Tapps, Federal Way), giving prospects immediate geographic proof of authority. A four-step process section communicates craft and transparency, while a video reel showcases the work in motion.",
+    results: [
+      "Geographic authority anchored in King County service areas",
+      "Project showcase with named clients and specific neighborhoods",
+      "Editorial dark theme matching the craft positioning",
+      "Local SEO foundation for the Seattle metro market",
+    ],
+  },
   // — 2025 —
   {
     id: "sircon",
