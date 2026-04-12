@@ -48,23 +48,23 @@ export const projects = [
   {
     id: "bloom-sante",
     name: "Bloom Santé",
-    tagline: "Beauty born from care — a curated wellness brand.",
+    tagline: "A wellness brand designed to feel like presence, not perfection.",
     year: "2025",
-    category: "E-commerce & Branding",
-    services: ["Web Design", "Branding", "Content Strategy"],
-    url: "https://bloomsante.shop",
+    category: "Branding & Web Design",
+    services: ["Brand Identity", "Web Design", "Content Direction"],
+    url: "#",
     image: "/work/bloom-sante.jpg",
     overview:
-      "Bloom Santé is a curated beauty and wellness brand that believes beauty is not perfection — it is presence. They needed an online store that reflected their philosophy of intentional self-care and communicated the quality of their curated product selection.",
+      "Bloom Santé is a curated beauty and wellness brand built around a single conviction — that beauty is not perfection, it is presence. Our work was to translate that philosophy into a complete visual system: the brand identity, the editorial voice, the photographic language, and the digital foundation from which the store would grow.",
     challenge:
-      "The wellness e-commerce space is saturated with brands that look identical — pastel colors, generic product shots, and empty promises. Bloom Santé needed to stand out with a visual identity that felt elevated, personal, and aligned with their philosophy that caring for yourself is also blooming.",
+      "The wellness category is saturated with brands that blur into each other — pastel palettes, interchangeable product grids, and promises that feel rehearsed. Bloom Santé needed a visual identity that felt quiet and deliberate, a counter-signal to the noise. Something that would read as a boutique apothecary, not another dropshipping storefront.",
     solution:
-      "We designed an e-commerce experience with warm, editorial photography, a refined color palette rooted in soft naturals, and typography that communicates elegance without pretension. Every product page tells a story. The brand voice is intimate and confident — not clinical, not trendy.",
+      "We designed a brand system rooted in burgundy, ivory, and warm neutrals, paired with serif typography that carries the cadence of editorial print. The photographic direction leans into natural light, real skin, and everyday rituals — no stock imagery. Copy is intimate and unhurried, written to be read slowly. Every screen of the digital experience — from hero to product detail to footer — reinforces a single editorial voice that sounds like a letter from a friend, not a sales funnel.",
     results: [
-      "Brand identity that stands out in saturated wellness market",
-      "E-commerce experience aligned with brand philosophy",
-      "Editorial product storytelling approach",
-      "Mobile-first shopping experience",
+      "Brand identity and visual system that stands apart in the wellness category",
+      "Editorial photographic direction and brand voice",
+      "Digital foundation ready for product rollout",
+      "Complete design system documented for future growth",
     ],
   },
   {
