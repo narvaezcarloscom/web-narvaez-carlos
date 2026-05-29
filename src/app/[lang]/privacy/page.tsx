@@ -146,6 +146,9 @@ function EnglishContent() {
           <strong>Microsoft Corporation</strong> — Microsoft Clarity, used for session replay and heatmaps to improve usability, loaded only after you grant consent on the cookie banner (Redmond, WA, USA). <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Statement</a>
         </ListItem>
         <ListItem>
+          <strong>Meta Platforms, Inc.</strong> — Meta Pixel, used to measure the effectiveness of our advertising on Facebook and Instagram, build custom audiences for retargeting, and report conversions. Loaded only after you grant consent on the cookie banner (Menlo Park, CA, USA). <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Policy</a>
+        </ListItem>
+        <ListItem>
           <strong>Hostinger International Ltd.</strong> — email delivery for contact form submissions (Lithuania/USA). <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Policy</a>
         </ListItem>
       </ul>
@@ -159,6 +162,9 @@ function EnglishContent() {
         </ListItem>
         <ListItem>
           <strong>Analytics (consent required):</strong> Google Analytics cookies (_ga, _ga_*) and Microsoft Clarity cookies (_clck, _clsk, MUID) — used to measure site traffic, usage patterns, and recorded user sessions. These are only activated if you click &quot;Accept&quot; on the cookie banner.
+        </ListItem>
+        <ListItem>
+          <strong>Advertising (consent required):</strong> Meta Pixel cookies (_fbp, _fbc) — used to measure advertising effectiveness, build custom audiences, and attribute conversions on Facebook and Instagram campaigns. These are only activated if you click &quot;Accept&quot; on the cookie banner.
         </ListItem>
         <ListItem>
           <strong>Aggregated metrics (no consent required):</strong> Vercel Analytics and Speed Insights collect anonymized, aggregated pageviews and performance metrics without setting cookies or fingerprinting visitors.
@@ -306,6 +312,9 @@ function SpanishContent() {
           <strong>Microsoft Corporation</strong> — Microsoft Clarity, usado para grabaciones de sesión y mapas de calor que nos ayudan a mejorar la usabilidad, cargado solo después de que otorgues consentimiento en el banner de cookies (Redmond, WA, EE.UU.). <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Declaración de Privacidad</a>
         </ListItem>
         <ListItem>
+          <strong>Meta Platforms, Inc.</strong> — Meta Pixel, usado para medir la efectividad de nuestras campañas publicitarias en Facebook e Instagram, construir audiencias personalizadas para retargeting y reportar conversiones. Cargado solo después de que otorgues consentimiento en el banner de cookies (Menlo Park, CA, EE.UU.). <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Política de Privacidad</a>
+        </ListItem>
+        <ListItem>
           <strong>Hostinger International Ltd.</strong> — envío de correos del formulario de contacto (Lituania/EE.UU.). <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Política de Privacidad</a>
         </ListItem>
       </ul>
@@ -319,6 +328,9 @@ function SpanishContent() {
         </ListItem>
         <ListItem>
           <strong>Analíticas (requieren consentimiento):</strong> cookies de Google Analytics (_ga, _ga_*) y de Microsoft Clarity (_clck, _clsk, MUID) — utilizadas para medir tráfico, patrones de uso y grabaciones de sesiones de usuario. Solo se activan si haces clic en &quot;Aceptar&quot; en el banner de cookies.
+        </ListItem>
+        <ListItem>
+          <strong>Publicidad (requiere consentimiento):</strong> cookies de Meta Pixel (_fbp, _fbc) — utilizadas para medir la efectividad de nuestra publicidad, construir audiencias personalizadas y atribuir conversiones en campañas de Facebook e Instagram. Solo se activan si haces clic en &quot;Aceptar&quot; en el banner de cookies.
         </ListItem>
         <ListItem>
           <strong>Métricas agregadas (sin consentimiento):</strong> Vercel Analytics y Speed Insights recopilan vistas de página y métricas de rendimiento anonimizadas y agregadas sin colocar cookies ni rastrear visitantes individualmente.

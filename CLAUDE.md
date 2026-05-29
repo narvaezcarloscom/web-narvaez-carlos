@@ -135,7 +135,7 @@ Elemento de identidad visual derivado del logo. Angulo fijo de 24°.
 - **Security Headers**: X-Frame-Options, X-Content-Type-Options, Referrer-Policy, HSTS, Permissions-Policy, X-DNS-Prefetch-Control
 - **Footer**: links a Privacy Policy, Terms of Service, y Cookie Settings
 - **Jurisdicciones cubiertas**: WA State, CCPA (California), GDPR (EU/España), LFPDPPP (Mexico)
-- **Procesadores declarados**: Vercel (hosting + Analytics + Speed Insights), Google (Analytics 4 + GTM), Microsoft (Clarity), Hostinger SMTP
+- **Procesadores declarados**: Vercel (hosting + Analytics + Speed Insights), Google (Analytics 4 + GTM), Microsoft (Clarity), Meta (Pixel — Facebook/Instagram Ads), Hostinger SMTP
 
 ## Servicios
 
