@@ -152,10 +152,10 @@ export default async function LangLayout({
             __html: `(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}})()`,
           }}
         />
-        {/* Google Consent Mode v2 — default denied before GTM loads */}
+        {/* Google Consent Mode v2 — read prior decision from localStorage before GTM loads */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});`,
+            __html: `(function(){window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};var s='denied';try{var v=localStorage.getItem('cookie_consent');if(v==='granted')s='granted';}catch(e){}window.gtag('consent','default',{'analytics_storage':s,'ad_storage':s,'ad_user_data':s,'ad_personalization':s,'wait_for_update':500});})();`,
           }}
         />
         {/* JSON-LD Structured Data */}
