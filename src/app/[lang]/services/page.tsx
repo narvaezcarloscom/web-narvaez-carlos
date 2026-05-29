@@ -1,10 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { buildAlternates } from "../../../lib/seo";
 import { services } from "../../../lib/services";
 import Container from "../../../components/Container";
 import ProcessDots from "../../../components/ProcessDots";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -20,6 +22,7 @@ export async function generateMetadata({
     description: isEn
       ? "Web design, custom platforms, digital advertising, and content strategy — crafted for service businesses that demand precision."
       : "Diseño web, plataformas a medida, publicidad digital y estrategia de contenido — para negocios que exigen precisión.",
+    alternates: buildAlternates("/services", lang),
   };
 }
 
@@ -42,9 +45,19 @@ const process = [
   },
 ];
 
-export default function ServicesPage() {
+export default async function ServicesPage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
+  const isEn = lang === "en";
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[{ name: isEn ? "Services" : "Servicios", path: "/services" }]}
+      />
       {/* Hero */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>

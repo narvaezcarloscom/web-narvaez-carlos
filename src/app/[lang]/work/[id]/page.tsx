@@ -1,10 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProject, projects } from "../../../../lib/projects";
+import type { Locale } from "../../../../lib/i18n";
+import { buildAlternates } from "../../../../lib/seo";
 import Container from "../../../../components/Container";
 import ParallaxImage from "../../../../components/animations/ParallaxImage";
+import Breadcrumbs from "../../../../components/Breadcrumbs";
 
-type Params = { id: string };
+type Params = { lang: Locale; id: string };
 type Props = { params: Promise<Params> };
 
 export function generateStaticParams() {
@@ -12,24 +15,33 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { id } = await params;
+  const { lang, id } = await params;
   const project = getProject(id);
   return {
     title: project ? project.name : "Project not found",
     description: project?.tagline ?? "Project detail",
+    alternates: buildAlternates(`/work/${id}`, lang),
   };
 }
 
 export default async function ProjectDetail({ params }: Props) {
-  const { id } = await params;
+  const { lang, id } = await params;
   const project = getProject(id);
   if (!project) return notFound();
 
+  const isEn = lang === "en";
   const currentIndex = projects.findIndex((p) => p.id === id);
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[
+          { name: isEn ? "Work" : "Proyectos", path: "/work" },
+          { name: project.name, path: `/work/${id}` },
+        ]}
+      />
       {/* Hero */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>

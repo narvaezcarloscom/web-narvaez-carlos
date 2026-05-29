@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 
 interface ContactFormProps {
   lang?: "en" | "es";
@@ -34,6 +35,7 @@ export default function ContactForm({ lang = "en" }: ContactFormProps) {
       });
 
       if (res.ok) {
+        track("contact_submit", { service: service || "unspecified", lang });
         setSubmitted(true);
         setName("");
         setEmail("");
@@ -41,6 +43,7 @@ export default function ContactForm({ lang = "en" }: ContactFormProps) {
         setService("");
         setMessage("");
       } else {
+        track("contact_submit_error", { lang });
         setError(true);
       }
     } catch {

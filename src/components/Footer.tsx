@@ -39,6 +39,9 @@ export default function Footer({ lang, dict }: FooterProps) {
             <div className="mt-8">
               <Link
                 href={`${prefix}/contact`}
+                data-track-event="cta_click"
+                data-track-prop-location="footer_hero"
+                data-track-prop-lang={lang}
                 className="inline-flex items-center gap-2 bg-narvaez-red text-ivory px-8 py-4 text-sm font-medium tracking-wide uppercase hover:bg-narvaez-red-hover transition-colors duration-300"
               >
                 {dict.footer.cta}
@@ -81,7 +84,15 @@ export default function Footer({ lang, dict }: FooterProps) {
               <ul className="space-y-2 list-none m-0 p-0">
                 {socialLinks.map((l) => (
                   <li key={l.href}>
-                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="link-underline hover:text-charcoal transition-colors">
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-track-event="social_click"
+                      data-track-prop-network={l.label}
+                      data-track-prop-location="footer"
+                      className="link-underline hover:text-charcoal transition-colors"
+                    >
                       {l.label}
                     </a>
                   </li>

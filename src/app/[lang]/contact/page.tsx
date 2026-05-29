@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { buildAlternates } from "../../../lib/seo";
 import Container from "../../../components/Container";
 import ContactForm from "../../../components/ContactForm";
 import GridTexture from "../../../components/GridTexture";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -19,6 +21,7 @@ export async function generateMetadata({
     description: isEn
       ? "Ready to elevate your digital presence? Start a conversation with our Seattle-based studio."
       : "¿Listo para elevar tu presencia digital? Inicia una conversación con nuestro estudio en Seattle.",
+    alternates: buildAlternates("/contact", lang),
   };
 }
 
@@ -28,9 +31,14 @@ export default async function ContactPage({
   params: Promise<{ lang: Locale }>;
 }) {
   const { lang } = await params;
+  const isEn = lang === "en";
 
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[{ name: isEn ? "Contact" : "Contacto", path: "/contact" }]}
+      />
       {/* Hero */}
       <section className="relative pt-16 md:pt-24 pb-16 md:pb-20">
         <GridTexture />

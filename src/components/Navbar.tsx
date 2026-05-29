@@ -68,6 +68,9 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                   href="https://app.narvaezcarlos.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-track-event="external_click"
+                  data-track-prop-destination="studio_os"
+                  data-track-prop-location="navbar_desktop"
                   className="link-underline transition-colors"
                   style={{ color: "var(--text-body)" }}
                   translate="no"
@@ -78,6 +81,10 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               <li>
                 <Link
                   href={switchHref}
+                  data-track-event="lang_toggle"
+                  data-track-prop-from={lang}
+                  data-track-prop-to={switchLang}
+                  data-track-prop-location="navbar_desktop"
                   className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
                   style={{ color: "var(--text-body)", borderColor: "var(--border-color)", border: "1px solid", padding: "4px 12px" }}
                 >
@@ -149,6 +156,9 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
+              data-track-event="external_click"
+              data-track-prop-destination="studio_os"
+              data-track-prop-location="navbar_mobile"
               className="text-ivory font-serif text-4xl sm:text-5xl editorial-heading hover:text-narvaez-red transition-colors duration-300"
               translate="no"
             >
@@ -163,6 +173,10 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               <Link
                 href={switchHref}
                 onClick={() => setIsOpen(false)}
+                data-track-event="lang_toggle"
+                data-track-prop-from={lang}
+                data-track-prop-to={switchLang}
+                data-track-prop-location="navbar_mobile"
                 className="text-xs uppercase tracking-widest text-ivory/40 hover:text-ivory transition-colors border border-ivory/20 px-3 py-1.5"
               >
                 {switchLang.toUpperCase()}

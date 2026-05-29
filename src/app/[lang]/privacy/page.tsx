@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { buildAlternates } from "../../../lib/seo";
 import Container from "../../../components/Container";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -15,10 +17,11 @@ export async function generateMetadata({
     description: isEn
       ? "How Narvaez Digital Marketing collects, uses, and protects your personal data."
       : "Cómo Narvaez Digital Marketing recopila, usa y protege tus datos personales.",
+    alternates: buildAlternates("/privacy", lang),
   };
 }
 
-const LAST_UPDATED = "April 8, 2026";
+const LAST_UPDATED = "May 28, 2026";
 
 export default async function PrivacyPage({
   params,
@@ -30,6 +33,12 @@ export default async function PrivacyPage({
 
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[
+          { name: isEn ? "Privacy Policy" : "Política de Privacidad", path: "/privacy" },
+        ]}
+      />
       <section className="relative pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>
           <div className="max-w-3xl">
@@ -128,10 +137,13 @@ function EnglishContent() {
       <Paragraph>We share your data with the following service providers, solely for the purposes described above:</Paragraph>
       <ul className="list-disc pl-6 space-y-2 mb-4">
         <ListItem>
-          <strong>Vercel Inc.</strong> — website hosting and delivery (San Francisco, CA, USA). <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Policy</a>
+          <strong>Vercel Inc.</strong> — website hosting, delivery, Vercel Analytics (aggregated pageviews and Core Web Vitals), and Speed Insights (San Francisco, CA, USA). <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Policy</a>
         </ListItem>
         <ListItem>
-          <strong>Google LLC</strong> — analytics via Google Analytics 4 and Google Tag Manager (USA). <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Policy</a>
+          <strong>Google LLC</strong> — analytics via Google Analytics 4 and Google Tag Manager, loaded only after you grant consent on the cookie banner (USA). <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Policy</a>
+        </ListItem>
+        <ListItem>
+          <strong>Microsoft Corporation</strong> — Microsoft Clarity, used for session replay and heatmaps to improve usability, loaded only after you grant consent on the cookie banner (Redmond, WA, USA). <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Statement</a>
         </ListItem>
         <ListItem>
           <strong>Hostinger International Ltd.</strong> — email delivery for contact form submissions (Lithuania/USA). <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Privacy Policy</a>
@@ -146,7 +158,10 @@ function EnglishContent() {
           <strong>Essential (no consent required):</strong> theme preference (localStorage), language preference, cookie consent status.
         </ListItem>
         <ListItem>
-          <strong>Analytics (consent required):</strong> Google Analytics cookies (_ga, _ga_*) — used to measure site traffic and usage patterns. These are only activated if you click &quot;Accept&quot; on the cookie banner.
+          <strong>Analytics (consent required):</strong> Google Analytics cookies (_ga, _ga_*) and Microsoft Clarity cookies (_clck, _clsk, MUID) — used to measure site traffic, usage patterns, and recorded user sessions. These are only activated if you click &quot;Accept&quot; on the cookie banner.
+        </ListItem>
+        <ListItem>
+          <strong>Aggregated metrics (no consent required):</strong> Vercel Analytics and Speed Insights collect anonymized, aggregated pageviews and performance metrics without setting cookies or fingerprinting visitors.
         </ListItem>
       </ul>
       <Paragraph>
@@ -169,7 +184,7 @@ function EnglishContent() {
           <strong>Contact form data:</strong> retained in our email system for up to 24 months after the last interaction, or until you request deletion.
         </ListItem>
         <ListItem>
-          <strong>Analytics data:</strong> retained by Google Analytics for 14 months (default GA4 setting), in anonymized/aggregated form.
+          <strong>Analytics data:</strong> retained by Google Analytics for 14 months (default GA4 setting) and by Microsoft Clarity for 13 months, in anonymized/aggregated form. Vercel Analytics retains pageview data for 30 days.
         </ListItem>
         <ListItem>
           <strong>Cookie preferences:</strong> stored on your device until you clear your browser data or change your preferences.
@@ -282,10 +297,13 @@ function SpanishContent() {
       <Paragraph>Compartimos tus datos con los siguientes proveedores de servicios, exclusivamente para los fines descritos anteriormente:</Paragraph>
       <ul className="list-disc pl-6 space-y-2 mb-4">
         <ListItem>
-          <strong>Vercel Inc.</strong> — alojamiento y distribución del sitio web (San Francisco, CA, EE.UU.). <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Política de Privacidad</a>
+          <strong>Vercel Inc.</strong> — alojamiento y distribución del sitio web, Vercel Analytics (vistas de página y Core Web Vitals agregados) y Speed Insights (San Francisco, CA, EE.UU.). <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Política de Privacidad</a>
         </ListItem>
         <ListItem>
-          <strong>Google LLC</strong> — analítica mediante Google Analytics 4 y Google Tag Manager (EE.UU.). <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Política de Privacidad</a>
+          <strong>Google LLC</strong> — analítica mediante Google Analytics 4 y Google Tag Manager, cargado solo después de que otorgues consentimiento en el banner de cookies (EE.UU.). <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Política de Privacidad</a>
+        </ListItem>
+        <ListItem>
+          <strong>Microsoft Corporation</strong> — Microsoft Clarity, usado para grabaciones de sesión y mapas de calor que nos ayudan a mejorar la usabilidad, cargado solo después de que otorgues consentimiento en el banner de cookies (Redmond, WA, EE.UU.). <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Declaración de Privacidad</a>
         </ListItem>
         <ListItem>
           <strong>Hostinger International Ltd.</strong> — envío de correos del formulario de contacto (Lituania/EE.UU.). <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="link-underline text-charcoal">Política de Privacidad</a>
@@ -300,7 +318,10 @@ function SpanishContent() {
           <strong>Esenciales (sin consentimiento requerido):</strong> preferencia de tema (localStorage), preferencia de idioma, estado del consentimiento de cookies.
         </ListItem>
         <ListItem>
-          <strong>Analíticas (requieren consentimiento):</strong> cookies de Google Analytics (_ga, _ga_*) — utilizadas para medir el tráfico y patrones de uso del sitio. Solo se activan si haces clic en &quot;Aceptar&quot; en el banner de cookies.
+          <strong>Analíticas (requieren consentimiento):</strong> cookies de Google Analytics (_ga, _ga_*) y de Microsoft Clarity (_clck, _clsk, MUID) — utilizadas para medir tráfico, patrones de uso y grabaciones de sesiones de usuario. Solo se activan si haces clic en &quot;Aceptar&quot; en el banner de cookies.
+        </ListItem>
+        <ListItem>
+          <strong>Métricas agregadas (sin consentimiento):</strong> Vercel Analytics y Speed Insights recopilan vistas de página y métricas de rendimiento anonimizadas y agregadas sin colocar cookies ni rastrear visitantes individualmente.
         </ListItem>
       </ul>
       <Paragraph>
@@ -323,7 +344,7 @@ function SpanishContent() {
           <strong>Datos del formulario de contacto:</strong> retenidos en nuestro sistema de correo hasta 24 meses después de la última interacción, o hasta que solicites su eliminación.
         </ListItem>
         <ListItem>
-          <strong>Datos analíticos:</strong> retenidos por Google Analytics durante 14 meses (configuración predeterminada de GA4), en forma anonimizada/agregada.
+          <strong>Datos analíticos:</strong> retenidos por Google Analytics durante 14 meses (configuración predeterminada de GA4) y por Microsoft Clarity durante 13 meses, en forma anonimizada/agregada. Vercel Analytics retiene los datos de vistas de página durante 30 días.
         </ListItem>
         <ListItem>
           <strong>Preferencias de cookies:</strong> almacenadas en tu dispositivo hasta que borres los datos del navegador o cambies tus preferencias.

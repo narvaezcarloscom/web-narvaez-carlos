@@ -1,9 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getService, services } from "../../../../lib/services";
+import type { Locale } from "../../../../lib/i18n";
+import { buildAlternates } from "../../../../lib/seo";
 import Container from "../../../../components/Container";
+import Breadcrumbs from "../../../../components/Breadcrumbs";
 
-type Params = { id: string };
+type Params = { lang: Locale; id: string };
 type Props = { params: Promise<Params> };
 
 export function generateStaticParams() {
@@ -11,24 +14,33 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { id } = await params;
+  const { lang, id } = await params;
   const svc = getService(id);
   return {
     title: svc ? svc.name : "Service not found",
     description: svc?.summary ?? "Service detail",
+    alternates: buildAlternates(`/services/${id}`, lang),
   };
 }
 
 export default async function ServiceDetail({ params }: Props) {
-  const { id } = await params;
+  const { lang, id } = await params;
   const svc = getService(id);
   if (!svc) return notFound();
 
+  const isEn = lang === "en";
   const currentIndex = services.findIndex((s) => s.id === id);
   const nextService = services[(currentIndex + 1) % services.length];
 
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[
+          { name: isEn ? "Services" : "Servicios", path: "/services" },
+          { name: svc.name, path: `/services/${id}` },
+        ]}
+      />
       {/* Hero */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>

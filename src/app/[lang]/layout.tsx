@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Instrument_Serif, Mulish } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getDictionary, type Locale, locales } from "../../lib/i18n";
+import { buildAlternates } from "../../lib/seo";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CookieBanner from "../../components/CookieBanner";
+import AnalyticsEvents from "../../components/AnalyticsEvents";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -52,29 +56,15 @@ export async function generateMetadata({
       siteName: "Narvaez Digital Marketing",
       locale: isEn ? "en_US" : "es_ES",
       type: "website",
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1200,
-          height: 1200,
-          alt: "Narvaez Digital Marketing",
-        },
-      ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: "Narvaez Digital Marketing",
       description: isEn
         ? "Designing with intention — from brand to platform."
         : "Diseñando con intención — de la marca a la plataforma.",
-      images: ["/og-image.png"],
     },
-    alternates: {
-      languages: {
-        en: `${BASE_URL}/`,
-        es: `${BASE_URL}/es`,
-      },
-    },
+    alternates: buildAlternates("", lang),
   };
 }
 
@@ -192,6 +182,9 @@ export default async function LangLayout({
           <Footer lang={lang} dict={dict} />
         </div>
         <CookieBanner lang={lang} />
+        <AnalyticsEvents />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

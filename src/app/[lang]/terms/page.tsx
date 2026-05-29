@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { buildAlternates } from "../../../lib/seo";
 import Container from "../../../components/Container";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -15,6 +17,7 @@ export async function generateMetadata({
     description: isEn
       ? "Terms and conditions governing the use of narvaezcarlos.com and Narvaez Digital Marketing services."
       : "Términos y condiciones que rigen el uso de narvaezcarlos.com y los servicios de Narvaez Digital Marketing.",
+    alternates: buildAlternates("/terms", lang),
   };
 }
 
@@ -30,6 +33,12 @@ export default async function TermsPage({
 
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[
+          { name: isEn ? "Terms of Service" : "Términos de Servicio", path: "/terms" },
+        ]}
+      />
       <section className="relative pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>
           <div className="max-w-3xl">

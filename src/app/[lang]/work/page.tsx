@@ -1,9 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { buildAlternates } from "../../../lib/seo";
 import { projects } from "../../../lib/projects";
 import Container from "../../../components/Container";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -19,12 +21,23 @@ export async function generateMetadata({
     description: isEn
       ? "Selected projects — websites, brands, and digital platforms built for businesses that value design as a competitive edge."
       : "Proyectos seleccionados — sitios web, marcas y plataformas digitales para negocios que valoran el diseño como ventaja competitiva.",
+    alternates: buildAlternates("/work", lang),
   };
 }
 
-export default function WorkPage() {
+export default async function WorkPage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
+  const isEn = lang === "en";
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[{ name: isEn ? "Work" : "Proyectos", path: "/work" }]}
+      />
       {/* Hero */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>

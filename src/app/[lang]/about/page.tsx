@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { buildAlternates } from "../../../lib/seo";
 import Container from "../../../components/Container";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 import DiagonalSlash from "../../../components/DiagonalSlash";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
 
@@ -20,6 +22,7 @@ export async function generateMetadata({
     description: isEn
       ? "A boutique digital studio designing with intention — from brand to platform. Founded by Carlos Narvaez, Venezuelan-born, Seattle-based."
       : "Un estudio digital boutique que diseña con intención — de la marca a la plataforma. Fundado por Carlos Narvaez, venezolano, basado en Seattle.",
+    alternates: buildAlternates("/about", lang),
   };
 }
 
@@ -75,6 +78,10 @@ export default async function AboutPage({
 
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[{ name: isEn ? "About" : "Acerca", path: "/about" }]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd(isEn)) }}

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { buildAlternates } from "../../../lib/seo";
 import { articles } from "../../../lib/journal";
 import Container from "../../../components/Container";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -19,12 +21,22 @@ export async function generateMetadata({
     description: isEn
       ? "Perspectives on branding, web design, and digital strategy from a boutique studio in Seattle."
       : "Perspectivas sobre branding, diseño web y estrategia digital desde un estudio boutique en Seattle.",
+    alternates: buildAlternates("/journal", lang),
   };
 }
 
-export default function JournalPage() {
+export default async function JournalPage({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
   return (
     <>
+      <Breadcrumbs
+        lang={lang}
+        items={[{ name: "Journal", path: "/journal" }]}
+      />
       {/* Hero */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-20">
         <Container>
