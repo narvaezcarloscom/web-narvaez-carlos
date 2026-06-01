@@ -27,6 +27,9 @@ export default function CountUp({
     () => {
       if (!ref.current) return;
 
+      ref.current.textContent = "0" + suffix;
+      counterRef.current.value = 0;
+
       gsap.to(counterRef.current, {
         value: end,
         duration,
@@ -49,7 +52,8 @@ export default function CountUp({
 
   return (
     <span ref={ref} className={className}>
-      0{suffix}
+      {end}
+      {suffix}
     </span>
   );
 }
