@@ -137,6 +137,14 @@ Elemento de identidad visual derivado del logo. Angulo fijo de 24°.
 - **Jurisdicciones cubiertas**: WA State, CCPA (California), GDPR (EU/España), LFPDPPP (Mexico)
 - **Procesadores declarados**: Vercel (hosting + Analytics + Speed Insights), Google (Analytics 4 + GTM), Microsoft (Clarity), Meta (Pixel — Facebook/Instagram Ads), Hostinger SMTP
 
+## Contenido vs. animacion (SSR-first)
+
+Regla: todo dato que comunique confianza o sea indexable (cifras, texto, structured data) debe existir en el HTML renderizado en servidor. Las animaciones solo decoran contenido ya presente.
+
+- OK: animar `opacity`/`transform` sobre contenido SSR (`FadeUp`, `TextReveal`, `LineReveal`, `ParallaxImage`).
+- NO: reescribir `textContent` desde JS para crear el valor final. Si la animacion necesita partir de 0, el SSR renderiza el valor real y `useGSAP` lo resetea a 0 antes del paint, luego anima de vuelta. Ver `components/animations/CountUp.tsx`.
+- Validacion: `curl https://narvaezcarlos.com/<ruta>` debe mostrar las cifras y texto reales sin ejecutar JS. Aplicar antes de cada release que toque componentes animados.
+
 ## Servicios
 
 1. Web Design & Development (incluye SEO-ready structure)
