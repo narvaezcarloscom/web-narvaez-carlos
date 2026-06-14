@@ -295,11 +295,11 @@ function ReviewBlock({
       <blockquote
         cite={review.reviewUrl}
         lang={review.language}
-        className="font-serif text-xl md:text-2xl text-charcoal editorial-heading leading-snug mb-6"
+        className="text-base md:text-lg text-charcoal leading-relaxed mb-6"
       >
         “{review.body}”
         {review.bodyTruncated && (
-          <span className="block mt-2 text-sm font-sans not-italic text-graphite/60">
+          <span className="block mt-2 text-sm text-graphite/60">
             {truncatedNote}
           </span>
         )}
@@ -312,9 +312,11 @@ function ReviewBlock({
           {review.initials}
         </span>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-charcoal">{review.authorName}</p>
+          <p className="font-serif text-lg md:text-xl editorial-heading text-charcoal leading-tight">
+            {review.authorName}
+          </p>
           {review.authorContext && (
-            <p className="text-xs text-graphite/60">{review.authorContext}</p>
+            <p className="text-xs text-graphite/60 mt-1">{review.authorContext}</p>
           )}
         </div>
         <a

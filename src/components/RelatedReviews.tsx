@@ -39,7 +39,7 @@ export default async function RelatedReviews({
               <blockquote
                 cite={r.reviewUrl}
                 lang={r.language}
-                className="font-serif text-lg md:text-xl text-charcoal editorial-heading leading-snug mb-5"
+                className="text-base text-charcoal leading-relaxed mb-5"
               >
                 “{r.body.length > 220 ? `${r.body.slice(0, 220).trimEnd()}…` : r.body}”
               </blockquote>
@@ -51,9 +51,11 @@ export default async function RelatedReviews({
                   {r.initials}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-charcoal">{r.authorName}</p>
+                  <p className="font-serif text-lg editorial-heading text-charcoal leading-tight">
+                    {r.authorName}
+                  </p>
                   {r.authorContext && (
-                    <p className="text-xs text-graphite/60">{r.authorContext}</p>
+                    <p className="text-xs text-graphite/60 mt-1">{r.authorContext}</p>
                   )}
                 </div>
               </figcaption>
