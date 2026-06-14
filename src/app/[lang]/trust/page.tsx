@@ -50,19 +50,13 @@ export default async function TrustPage({
     description: t.description,
     inLanguage: lang === "en" ? "en-US" : "es-ES",
     isPartOf: { "@id": `${BASE_URL}/#website` },
+    // Same @id as the global JSON-LD in [lang]/layout.tsx — Google consolidates
+    // both blocks into a single Organization. The global block contributes name,
+    // url, address, sameAs (incl. GMB), telephone, priceRange, etc; this block
+    // contributes aggregateRating + review[].
     mainEntity: {
       "@type": ["Organization", "ProfessionalService"],
       "@id": `${BASE_URL}/#organization`,
-      name: "Narvaez Digital Marketing",
-      url: BASE_URL,
-      sameAs: [
-        "https://www.facebook.com/narvaezcarloscom/",
-        "https://www.instagram.com/narvaezcarloscom/",
-        "https://youtube.com/@narvaezcarloscom",
-        "https://github.com/narvaezcarloscom",
-        "https://www.linkedin.com/in/narvaezcarlos",
-        gmbProfile.url,
-      ],
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: gmbProfile.ratingValue.toFixed(1),
