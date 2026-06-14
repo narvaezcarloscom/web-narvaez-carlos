@@ -71,6 +71,7 @@ export async function generateMetadata({
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": ["ProfessionalService", "MarketingAgency"],
+  "@id": `${BASE_URL}/#organization`,
   name: "Narvaez Digital Marketing",
   url: BASE_URL,
   logo: `${BASE_URL}/logo.svg`,
