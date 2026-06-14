@@ -200,6 +200,37 @@ El cruce IA ↔ Google se hace por `sameAs`:
 - **Google Places API en runtime**: cap de 5 reseñas, requiere atribucion forzada con foto, dependencia de API key + cuota. NO compensa el control editorial perdido.
 - **Carrusel animado/rotativo**: rompe SSR-first, contenido inicial oculto, menos scanneable, no encaja con brand editorial. NO.
 
+### Regla critica de JSON-LD: una entidad, un solo lugar
+
+Cuando varios archivos necesitan referenciar la misma entidad (ej. la Organization aparece en el layout global y queremos asociarle reviews en /trust):
+
+- **NO redefinir la entidad en dos bloques JSON-LD distintos** aunque les des el mismo `@id`. JSON-LD's `@id` es un identificador de grafo, **no una directiva de merge/dedup**. Google y otros parsers **concatenan** los campos en lugar de unificarlos: `sameAs` x2, `aggregateRating` x2, `url` x2, `@type` concatenados. Doble `aggregateRating` dispara el error critico "La reseña tiene varias puntuaciones agregadas" en cualquier Review snippet que apunte a la entidad.
+- **Patron correcto**: la entidad se define **exactamente una vez** (en el layout global, con todos sus campos: name, url, sameAs, aggregateRating, address, etc). Las paginas que la mencionan usan `@graph` con entidades top-level que **solo referencian por `@id`**:
+
+  ```ts
+  // /trust/page.tsx — pagina que agrega reviews sobre la Organization
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": pageUrl,
+        mainEntity: { "@id": `${BASE_URL}/#organization` }, // solo referencia
+        about: { "@id": `${BASE_URL}/#organization` },
+      },
+      ...reviews.map((r) => ({
+        "@type": "Review",
+        "@id": `${pageUrl}#review-${r.id}`,
+        // ... campos del review
+        itemReviewed: { "@id": `${BASE_URL}/#organization` }, // solo referencia
+      })),
+    ],
+  };
+  ```
+
+- **Validacion**: despues de cualquier cambio que toque schema.org, correr [Google Rich Results Test](https://search.google.com/test/rich-results) contra la URL de produccion. Indicadores de problema: "X elementos no validos", "campo duplicado", "varias puntuaciones agregadas", o multiples "entidades detectadas" para lo que deberia ser una sola entidad. Si aparecen, la causa casi siempre es duplicacion entre bloques JSON-LD — consolidar al patron `@graph` con referencias por `@id`.
+- **Historico**: este patron se descubrio en PRs #4 (regresion por intentar consolidar con `@id`) y #5 (fix definitivo con `@graph`). Aplicable a cualquier proyecto futuro que mezcle JSON-LD global + JSON-LD por pagina sobre la misma entidad.
+
 ## Contenido vs. animacion (SSR-first)
 
 Regla: todo dato que comunique confianza o sea indexable (cifras, texto, structured data) debe existir en el HTML renderizado en servidor. Las animaciones solo decoran contenido ya presente.
