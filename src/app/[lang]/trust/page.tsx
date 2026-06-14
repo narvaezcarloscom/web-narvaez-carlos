@@ -41,31 +41,32 @@ export default async function TrustPage({
   const fmt = dateFormatter(lang);
   const pageUrl = `${BASE_URL}${lang === "en" ? "" : "/es"}/trust`;
 
+  // @graph pattern: WebPage references the Organization by @id only (no field
+  // redefinition), and Review[] entities live at the top level pointing back to
+  // the same @id via itemReviewed. The Organization itself is defined once and
+  // only once — in the global JSON-LD in [lang]/layout.tsx (which carries
+  // aggregateRating, sameAs incl. GMB, address, telephone, etc).
+  //
+  // This avoids field accumulation: redefining the Organization here would make
+  // Google concatenate every field (sameAs x2, aggregateRating x2, url x2…)
+  // and trigger the critical "review has multiple aggregate ratings" error.
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": pageUrl,
-    url: pageUrl,
-    name: t.label,
-    description: t.description,
-    inLanguage: lang === "en" ? "en-US" : "es-ES",
-    isPartOf: { "@id": `${BASE_URL}/#website` },
-    // Same @id as the global JSON-LD in [lang]/layout.tsx — Google consolidates
-    // both blocks into a single Organization. The global block contributes name,
-    // url, address, sameAs (incl. GMB), telephone, priceRange, etc; this block
-    // contributes aggregateRating + review[].
-    mainEntity: {
-      "@type": ["Organization", "ProfessionalService"],
-      "@id": `${BASE_URL}/#organization`,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: gmbProfile.ratingValue.toFixed(1),
-        reviewCount: gmbProfile.reviewCount,
-        bestRating: gmbProfile.bestRating,
-        worstRating: gmbProfile.worstRating,
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": pageUrl,
+        url: pageUrl,
+        name: t.label,
+        description: t.description,
+        inLanguage: lang === "en" ? "en-US" : "es-ES",
+        isPartOf: { "@id": `${BASE_URL}/#website` },
+        mainEntity: { "@id": `${BASE_URL}/#organization` },
+        about: { "@id": `${BASE_URL}/#organization` },
       },
-      review: reviews.map((r) => ({
+      ...reviews.map((r) => ({
         "@type": "Review",
+        "@id": `${pageUrl}#review-${r.id}`,
         author: { "@type": "Person", name: r.authorName },
         datePublished: r.datePublished,
         reviewBody: r.body,
@@ -84,7 +85,7 @@ export default async function TrustPage({
         itemReviewed: { "@id": `${BASE_URL}/#organization` },
         url: r.reviewUrl,
       })),
-    },
+    ],
   };
 
   return (
