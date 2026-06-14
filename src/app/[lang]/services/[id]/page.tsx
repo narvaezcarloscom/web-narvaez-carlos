@@ -5,6 +5,8 @@ import type { Locale } from "../../../../lib/i18n";
 import { buildAlternates } from "../../../../lib/seo";
 import Container from "../../../../components/Container";
 import Breadcrumbs from "../../../../components/Breadcrumbs";
+import RelatedReviews from "../../../../components/RelatedReviews";
+import type { ServiceId } from "../../../../lib/reviews";
 
 type Params = { lang: Locale; id: string };
 type Props = { params: Promise<Params> };
@@ -90,6 +92,15 @@ export default async function ServiceDetail({ params }: Props) {
                 </Link>
               </div>
             </div>
+          </div>
+
+          {/* Related verified reviews — renders nothing if no reviews match. */}
+          <div className="mt-24 md:mt-32">
+            <RelatedReviews
+              lang={lang}
+              serviceId={id as ServiceId}
+              location={`service_${id}`}
+            />
           </div>
 
           {/* Next Service */}

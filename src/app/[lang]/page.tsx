@@ -3,6 +3,7 @@ import Hero from "../../components/Hero";
 import ServicesSection from "../../components/ServicesSection";
 import WorkPreview from "../../components/WorkPreview";
 import AboutPreview from "../../components/AboutPreview";
+import TrustHomeSection from "../../components/TrustHomeSection";
 
 export default async function Home({
   params,
@@ -17,6 +18,7 @@ export default async function Home({
       <Hero lang={lang} dict={dict} />
       <ServicesSection lang={lang} dict={dict} />
       <WorkPreview lang={lang} dict={dict} />
+      <TrustHomeSection lang={lang} />
       <AboutPreview dict={dict} />
     </>
   );

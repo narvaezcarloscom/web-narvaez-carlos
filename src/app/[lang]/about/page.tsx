@@ -7,6 +7,7 @@ import Container from "../../../components/Container";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import DiagonalSlash from "../../../components/DiagonalSlash";
 import AnimatedDiagonal from "../../../components/AnimatedDiagonal";
+import TrustSignal from "../../../components/TrustSignal";
 
 export async function generateMetadata({
   params,
@@ -314,11 +315,12 @@ export default async function AboutPage({
                     ? "Narvaez Digital Marketing is a registered studio in Washington State, serving clients across multiple countries."
                     : "Narvaez Digital Marketing es un estudio registrado en el Estado de Washington, sirviendo clientes en múltiples países."}
                 </p>
-                <p className="text-graphite text-base md:text-lg leading-relaxed">
+                <p className="text-graphite text-base md:text-lg leading-relaxed mb-6">
                   {isEn
                     ? "The studio maintains a consistent record of 5-star reviews and has developed projects ranging from commercial brand platforms to consular systems — including SIRCON, a white-label platform built for diplomatic offices and consulates."
                     : "El estudio mantiene un historial consistente de reseñas de 5 estrellas y ha desarrollado proyectos que van desde plataformas comerciales de marca hasta sistemas consulares — incluyendo SIRCON, una plataforma white-label construida para oficinas diplomáticas y consulados."}
                 </p>
+                <TrustSignal lang={lang} location="about_credibility" />
               </div>
             </div>
           </div>
