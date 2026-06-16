@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getProject, projects } from "../../../../lib/projects";
-import type { Locale } from "../../../../lib/i18n";
+import { type Locale, getDictionary } from "../../../../lib/i18n";
 import { buildAlternates } from "../../../../lib/seo";
-import Container from "../../../../components/Container";
-import ParallaxImage from "../../../../components/animations/ParallaxImage";
 import Breadcrumbs from "../../../../components/Breadcrumbs";
 
 type Params = { lang: Locale; id: string };
@@ -30,8 +29,15 @@ export default async function ProjectDetail({ params }: Props) {
   if (!project) return notFound();
 
   const isEn = lang === "en";
+  const dict = await getDictionary(lang);
+  const t = dict.work;
+
   const currentIndex = projects.findIndex((p) => p.id === id);
   const nextProject = projects[(currentIndex + 1) % projects.length];
+  const langPrefix = isEn ? "" : "/es";
+
+  const hasHeroImage = Boolean(project.image);
+  const heroPlaceholderText = project.editorialHeadline ?? project.tagline;
 
   return (
     <>
@@ -42,169 +48,303 @@ export default async function ProjectDetail({ params }: Props) {
           { name: project.name, path: `/work/${id}` },
         ]}
       />
-      {/* Hero */}
-      <section className="pt-16 md:pt-24 pb-16 md:pb-20">
-        <Container>
-          <Link
-            href="/work"
-            className="link-underline text-xs uppercase tracking-widest text-graphite/50 mb-8 inline-block"
-          >
-            All projects
-          </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mt-6">
-            <div className="md:col-span-8">
-              <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
-                {project.name}
-              </h1>
-              <p className="mt-6 text-graphite text-lg md:text-xl max-w-2xl">
-                {project.tagline}
-              </p>
-            </div>
-
-            {/* Meta */}
-            <div className="md:col-span-3 md:col-start-10 flex flex-col gap-6">
-              <div>
-                <p className="text-xs uppercase tracking-widest text-graphite/50 mb-2">
-                  Year
-                </p>
-                <p className="text-charcoal">{project.year}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-graphite/50 mb-2">
-                  Category
-                </p>
-                <p className="text-charcoal">{project.category}</p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-graphite/50 mb-2">
-                  Services
-                </p>
-                <p className="text-charcoal">{project.services.join(", ")}</p>
-              </div>
-              {project.url !== "#" && (
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-graphite/50 mb-2">
-                    Live site
-                  </p>
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline text-charcoal hover:text-narvaez-red transition-colors"
-                  >
-                    Visit website
-                  </a>
-                </div>
-              )}
-            </div>
+      {/* BLOQUE 1 — HERO full-viewport */}
+      <section
+        aria-label={project.name}
+        className="relative h-screen min-h-[600px] w-full overflow-hidden bg-charcoal"
+      >
+        {hasHeroImage ? (
+          <Image
+            src={project.image}
+            alt={`${project.name} — ${project.tagline}`}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-serif text-ivory/20 text-4xl md:text-6xl px-8 text-center max-w-4xl">
+              {heroPlaceholderText}
+            </span>
           </div>
-        </Container>
+        )}
+
+        {/* Overlay */}
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
+          aria-hidden="true"
+        />
+
+        {/* Hero content */}
+        <div className="relative z-10 flex h-full w-full items-center justify-center px-6 md:px-12">
+          <div className="text-center max-w-5xl">
+            <p className="text-xs uppercase tracking-[0.25em] text-ivory/60 mb-6">
+              {project.category}
+            </p>
+            <h1 className="font-serif editorial-heading text-ivory text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+              {project.name}
+            </h1>
+            <p className="mt-8 font-sans text-lg md:text-xl text-ivory/70 max-w-2xl mx-auto leading-relaxed">
+              {project.tagline}
+            </p>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 text-ivory/50">
+          <span className="text-[10px] uppercase tracking-[0.3em]">
+            {t.scrollHint}
+          </span>
+          <svg
+            className="animate-bounce"
+            width="14"
+            height="22"
+            viewBox="0 0 14 22"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M7 1V21M7 21L1 15M7 21L13 15"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinecap="square"
+            />
+          </svg>
+        </div>
       </section>
 
-      {/* Featured Image */}
-      {project.image && (
-        <section className="pb-16 md:pb-24">
-          <Container>
-            <div className="grid grid-cols-1 md:grid-cols-12">
-              <div className="md:col-span-8">
-                <ParallaxImage
-                  src={project.image}
-                  alt={`${project.name} — website screenshot`}
-                  className="aspect-[4/3] w-full bg-neutral-light"
-                  speed={0.08}
-                  priority
-                />
+      {/* BLOQUE 2 — METADATA BAR (sticky below navbar h-20) */}
+      <section className="sticky top-20 z-10 bg-ivory border-b border-neutral-light">
+        <div className="px-6 md:px-12 py-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
+            <dl className="grid grid-cols-2 md:flex md:flex-row md:items-end gap-6 md:gap-12 flex-1">
+              <div>
+                <dt className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 font-sans mb-2">
+                  {t.client}
+                </dt>
+                <dd className="font-serif text-charcoal text-base">
+                  {project.name}
+                </dd>
               </div>
+              <div>
+                <dt className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 font-sans mb-2">
+                  {t.category}
+                </dt>
+                <dd className="font-serif text-charcoal text-base">
+                  {project.category}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 font-sans mb-2">
+                  {t.servicesLabel}
+                </dt>
+                <dd className="font-serif text-charcoal text-base">
+                  {project.services.join(", ")}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 font-sans mb-2">
+                  {t.year}
+                </dt>
+                <dd className="font-serif text-charcoal text-base">
+                  {project.year}
+                </dd>
+              </div>
+            </dl>
+
+            {project.url !== "#" && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-charcoal hover:text-narvaez-red transition-colors self-start md:self-end"
+                data-track-event="external_click"
+                data-track-prop-location={`case_study_${id}`}
+                data-track-prop-destination="live_site"
+              >
+                {t.liveSite}
+                <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 3 — INTRO EDITORIAL */}
+      <section className="bg-ivory py-20 md:py-32 px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-[35fr_65fr] gap-12 md:gap-20 max-w-[1440px] mx-auto">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 mb-4">
+              {t.overview}
+            </p>
+            <p className="text-narvaez-red text-2xl leading-none mb-4" aria-hidden="true">
+              —
+            </p>
+            {project.editorialHeadline && (
+              <h2 className="font-serif editorial-heading text-charcoal text-3xl md:text-4xl">
+                {project.editorialHeadline}
+              </h2>
+            )}
+          </div>
+          <div>
+            <p className="font-sans text-graphite text-lg md:text-xl leading-relaxed">
+              {project.overview}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 4 — THE CHALLENGE */}
+      <section className="bg-neutral-light/40 py-20 md:py-32 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 mb-6">
+            {t.challenge}
+          </p>
+          <div className="max-w-3xl">
+            <p className="font-sans text-graphite text-lg leading-relaxed">
+              {project.challenge}
+            </p>
+            {project.pullQuote && (
+              <blockquote className="font-serif italic text-charcoal text-2xl md:text-3xl border-l-2 border-narvaez-red pl-6 my-10 leading-snug">
+                {project.pullQuote}
+              </blockquote>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* BLOQUE 5 — FULL-BLEED IMAGE */}
+      <section className="bg-charcoal" aria-hidden={!hasHeroImage}>
+        <div className="relative w-full h-[60vh] min-h-[400px] overflow-hidden">
+          {hasHeroImage ? (
+            <Image
+              src={project.image}
+              alt={`${project.name} — case study visual`}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="font-serif text-ivory/30 text-3xl md:text-5xl text-center px-8 max-w-3xl">
+                {heroPlaceholderText}
+              </span>
             </div>
-          </Container>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
-      {/* Case Study Content */}
-      <section className="pb-24 md:pb-32">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-20">
-            {/* Main Content */}
-            <div className="md:col-span-7 space-y-16 md:space-y-20">
-              {/* Overview */}
-              <div>
-                <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
-                  Overview
+      {/* BLOQUE 6 — THE SOLUTION */}
+      <section className="bg-ivory py-20 md:py-32 px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-[35fr_65fr] gap-12 md:gap-20 max-w-[1440px] mx-auto">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 mb-4">
+              {t.solution}
+            </p>
+            <h2 className="font-serif editorial-heading text-charcoal text-2xl md:text-3xl">
+              {isEn
+                ? "How we built it."
+                : "Cómo lo construimos."}
+            </h2>
+          </div>
+          <div>
+            <p className="font-sans text-graphite text-lg md:text-xl leading-relaxed mb-10">
+              {project.solution}
+            </p>
+            {project.solutionPoints && project.solutionPoints.length > 0 && (
+              <>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 mb-5">
+                  {t.keyDecisions}
                 </p>
-                <p className="text-graphite text-lg md:text-xl leading-relaxed">
-                  {project.overview}
-                </p>
-              </div>
-
-              {/* Challenge */}
-              <div>
-                <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
-                  The challenge
-                </p>
-                <p className="text-graphite text-lg md:text-xl leading-relaxed">
-                  {project.challenge}
-                </p>
-              </div>
-
-              {/* Solution */}
-              <div>
-                <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
-                  The solution
-                </p>
-                <p className="text-graphite text-lg md:text-xl leading-relaxed">
-                  {project.solution}
-                </p>
-              </div>
-            </div>
-
-            {/* Results Sidebar */}
-            <div className="md:col-span-4 md:col-start-9">
-              <div className="md:sticky md:top-28">
-                <p className="text-xs uppercase tracking-widest text-graphite/50 mb-6">
-                  Results
-                </p>
-                <ul className="space-y-0 list-none m-0 p-0">
-                  {project.results.map((result, i) => (
+                <ul className="list-none m-0 p-0 space-y-4">
+                  {project.solutionPoints.map((point, i) => (
                     <li
                       key={i}
-                      className="border-b border-neutral-light py-4 text-charcoal text-sm flex items-start gap-4"
+                      className="flex items-start gap-4 border-t border-neutral-light pt-4"
                     >
-                      <span className="text-narvaez-red text-xs mt-0.5 shrink-0">
+                      <span className="text-narvaez-red text-xs font-sans tracking-wider shrink-0 mt-1">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      {result}
+                      <span className="font-sans text-graphite text-base leading-relaxed">
+                        {point}
+                      </span>
                     </li>
                   ))}
                 </ul>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
 
-                <div className="mt-12">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 bg-narvaez-red text-ivory px-7 py-3.5 text-sm font-medium tracking-wide uppercase hover:bg-narvaez-red-hover transition-colors duration-300"
-                  >
-                    Start your project
-                  </Link>
-                </div>
+      {/* BLOQUE 7 — RESULTS (dark) */}
+      <section className="bg-charcoal text-ivory py-20 md:py-32 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-ivory/40 mb-12">
+            {t.results}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 md:gap-y-16">
+            {project.results.map((result, i) => (
+              <div key={i} className="flex flex-col gap-4">
+                <span className="font-serif text-narvaez-red text-5xl md:text-6xl editorial-heading">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="font-sans text-ivory/80 text-lg leading-relaxed max-w-md">
+                  {result}
+                </p>
               </div>
-            </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Next Project */}
-          <div className="mt-24 md:mt-32 pt-12 border-t border-neutral-light">
-            <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
-              Next project
-            </p>
-            <Link
-              href={`/work/${nextProject.id}`}
-              className="group inline-block"
+      {/* BLOQUE 8 — CTA STRIP */}
+      <section className="bg-narvaez-red py-16 md:py-20 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto flex flex-col items-center gap-8 text-center">
+          <h2 className="font-serif editorial-heading text-ivory text-3xl md:text-4xl">
+            {t.ctaHeading}
+          </h2>
+          <Link
+            href={`${langPrefix}/contact`}
+            data-track-event="cta_click"
+            data-track-prop-location={`case_study_${id}`}
+            data-track-prop-destination="contact"
+            className="inline-flex items-center gap-3 border-2 border-ivory text-ivory px-8 py-3.5 text-sm font-medium tracking-[0.2em] uppercase hover:bg-ivory hover:text-narvaez-red transition-colors duration-300"
+          >
+            {t.ctaButton}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 13L13 1M13 1H3M13 1V11" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </Link>
+        </div>
+      </section>
+
+      {/* BLOQUE 9 — NEXT PROJECT */}
+      <section className="bg-ivory border-t border-neutral-light py-16 md:py-24 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 mb-6">
+            {t.nextProject}
+          </p>
+          <Link
+            href={`${langPrefix}/work/${nextProject.id}`}
+            className="group inline-flex items-baseline gap-6 hover:gap-8 transition-all duration-300"
+          >
+            <h2 className="font-serif editorial-heading text-charcoal text-4xl md:text-5xl lg:text-6xl group-hover:text-narvaez-red transition-colors duration-300">
+              {nextProject.name}
+            </h2>
+            <span
+              aria-hidden="true"
+              className="text-narvaez-red text-3xl md:text-4xl shrink-0"
             >
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl editorial-heading text-charcoal group-hover:text-narvaez-red transition-colors duration-300">
-                {nextProject.name}
-              </h2>
-            </Link>
-          </div>
-        </Container>
+              →
+            </span>
+          </Link>
+        </div>
       </section>
     </>
   );
