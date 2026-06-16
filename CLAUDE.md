@@ -4,7 +4,7 @@ Sitio web del estudio digital boutique Narvaez Digital Marketing. Estilo editori
 
 ## Tech Stack
 
-- **Framework**: Next.js 15.5.2 (App Router)
+- **Framework**: Next.js 16.2.2 (App Router)
 - **Frontend**: React 19.1.0, TypeScript 5
 - **Styling**: Tailwind CSS 4 + PostCSS + autoprefixer
 - **Fonts**: Instrument Serif (headings) + Mulish (body) via Google Fonts
@@ -30,6 +30,12 @@ src/
     sitemap.ts                    # Sitemap XML dinamico (incluye paginas legales)
     robots.ts                     # robots.txt
     api/contact/route.ts          # API contacto (sanitizado, consent logging)
+    api/lead-emprendedor/route.ts # API del Programa Emprendedor (form noindex) — sanitiza, honeypot, rate limit, SMTP a mkt@, forward al OS lead-intake webhook
+    emprendedor/
+      layout.tsx                  # Shell self-contained (fonts, GTM, Consent Mode, Navbar minimalChrome, Footer minimal) — noindex
+      page.tsx                    # Landing Spanish-only del Programa Emprendedor Latino (fuera de [lang] para que el QR impreso tenga URL pelada)
+      opengraph-image.tsx         # OG dedicado para share en WhatsApp/IG DMs
+      gracias/page.tsx            # Thank-you con boton directo a WhatsApp pre-llenado
     [lang]/
       layout.tsx                  # Layout con Navbar + Footer + JSON-LD + GTM + CookieBanner + Vercel Analytics/Speed Insights
       opengraph-image.tsx         # OG image 1200x630 generado programaticamente (ImageResponse)
@@ -49,9 +55,9 @@ src/
         [id]/page.tsx             # Detalle de articulo
       contact/page.tsx            # Formulario de contacto
   components/
-    Navbar.tsx                    # Navegacion principal
+    Navbar.tsx                    # Navegacion principal — prop opcional hideLanguageToggle + minimalChrome (este ultimo deja solo isotipo + ThemeToggle, para campaign landings)
     Hero.tsx                      # Hero del home (GSAP timeline)
-    Footer.tsx                    # Footer con slogan + CTA + links legales + Cookie Settings
+    Footer.tsx                    # Footer con slogan + CTA + links legales + Cookie Settings — prop opcional minimal (solo bottom row legal, para campaign landings)
     Container.tsx                 # Wrapper de ancho maximo
     DiagonalSlash.tsx             # Signature Diagonal 24° (estatico, escalable)
     AnimatedDiagonal.tsx          # Signature Diagonal 24° (animado, ScrollTrigger)
@@ -69,6 +75,13 @@ src/
     TrustSignal.tsx               # Badge inline (5.0★ · 23 verified · See all reviews →) — SSR async
     TrustHomeSection.tsx          # Bloque editorial de Home (label, heading, body, 4 metricas, CTA) — SSR async
     RelatedReviews.tsx            # Crossover por servicio: hasta 2 reseñas + link a /trust. Returns null si no hay match
+    emprendedor/                  # Componentes exclusivos del Programa Emprendedor (ver seccion "Dedicated Campaign Landings")
+      EmprendedorHero.tsx
+      EmprendedorIncludes.tsx
+      EmprendedorProcess.tsx      # Envuelve ProcessDots con los 4 pasos del programa
+      EmprendedorCTA.tsx          # Cierre editorial + form inline (no link a /contact)
+      EmprendedorForm.tsx         # Client: 5 campos + honeypot invisible + redirect a /gracias con name query param
+      UtmAttribution.tsx          # Client: heuristica QR vs digital, persiste en sessionStorage, push a dataLayer
   lib/
     services.ts                   # Datos de servicios
     projects.ts                   # Datos del portafolio
@@ -239,6 +252,69 @@ Regla: todo dato que comunique confianza o sea indexable (cifras, texto, structu
 - NO: reescribir `textContent` desde JS para crear el valor final. Si la animacion necesita partir de 0, el SSR renderiza el valor real y `useGSAP` lo resetea a 0 antes del paint, luego anima de vuelta. Ver `components/animations/CountUp.tsx`.
 - Validacion: `curl https://narvaezcarlos.com/<ruta>` debe mostrar las cifras y texto reales sin ejecutar JS. Aplicar antes de cada release que toque componentes animados.
 
+## Dedicated Campaign Landings
+
+Paginas noindex de captacion dirigida (QR impreso, canal cerrado, audiencia especifica). La primera y referencia canonica es `/emprendedor` — Programa Emprendedor Latino, destino del QR del brochure entregado en El Centro de la Raza (Seattle).
+
+### Regla de oro: funnel cerrado
+
+Una campaign landing es **una sola pieza, un solo CTA**. El form inline ES el CTA. NO competing CTAs (`/contact` u otros), NO escape routes (nav links, Studio OS, link a `/work`, etc). Patron Stripe / Linear / Vercel.
+
+Implementacion sin duplicar componentes:
+- `Navbar` acepta `minimalChrome={true}` → esconde nav links + Studio OS + lang toggle + hamburger mobile. Solo deja isotipo + ThemeToggle.
+- `Footer` acepta `minimal={true}` → esconde el H2 grande + columnas brand/nav/social. Solo deja copyright + Privacy + Terms + Cookie Settings.
+- Ambos props son opcionales con default `false`. El resto del sitio (paginas evergreen) no se ve afectado.
+
+### Ubicacion en el routing
+
+Las dedicated landings viven **fuera de `[lang]`** (`app/emprendedor/...`, no `app/[lang]/emprendedor/...`). Razon: el QR impreso apunta a la URL pelada `narvaezcarlos.com/emprendedor` sin prefijo de idioma. Para no romper esa ruta:
+
+- `middleware.ts` excluye `/emprendedor` en el negative lookahead del matcher
+- `robots.ts` añade `Disallow: /emprendedor` y `/emprendedor/gracias`
+- `sitemap.ts` NO incluye estas rutas (acceso solo por link directo / QR)
+- `app/emprendedor/layout.tsx` es self-contained: carga fonts via next/font, theme persistence script, Consent Mode v2, GTM, CookieBanner, Vercel Analytics + Speed Insights. No hereda del `[lang]/layout.tsx` porque no es hijo de ese arbol.
+
+### Copy del landing
+
+Espejo de la pieza impresa (brochure PDF). Voz editorial sin compromisos de tiempo que puedan fallar (NO "te respondemos hoy mismo en horas habiles" — si llega un viernes a las 5pm la promesa se rompe). En su lugar: "Te leemos personalmente y te contactamos para agendar la primera conversacion". La urgencia queda cubierta por el boton WhatsApp en `/gracias` con mensaje pre-llenado.
+
+### Atribucion UTM (heuristica QR vs digital)
+
+`components/emprendedor/UtmAttribution.tsx` corre en mount y aplica esta logica:
+
+- Si la URL trae UTMs → respeta y registra
+- Si NO trae UTMs (visita pelada) → asume QR impreso y aplica `utm_source=brochure`, `utm_medium=qr`, `utm_campaign=elcentro`
+- Persiste el resultado en `sessionStorage` con clave `emprendedor_attribution`
+- Push a `window.dataLayer` con evento `landing_emprendedor_view`
+
+Esto es **heuristica de canal**, no atribucion exacta por lead — alguien podria tipear la URL a mano y caer en el bucket "brochure". Documentado en el codigo. Los UTMs viajan como hidden fields al endpoint en el submit, llegan al email (footer tecnico) y al OS pipeline (en las notas del lead).
+
+### Integracion con NDM Studio OS
+
+`/api/lead-emprendedor` hace dos cosas en orden:
+
+1. **Email a `mkt@narvaezcarlos.com`** via nodemailer (smtp.hostinger.com:465). Si falla → 500 al usuario. Es la red de seguridad por defecto.
+2. **Forward al OS webhook** `https://app.narvaezcarlos.com/api/webhooks/lead-intake` con bearer token (`LEAD_INTAKE_SECRET` env var compartida con el OS). Es best-effort en try/catch — si falla, log y sigue. El email fue la red de seguridad.
+
+El OS inserta el lead con `campaign='emprendedor-latino'` en la tabla `leads` (columna agregada en migracion 00038). El pipeline lo renderiza con pill roja "Emprendedor latino" para que el equipo lo identifique de un vistazo. Cualquier campaña futura usa el mismo webhook con un slug distinto — no hay que tocar enums, schema, ni endpoints.
+
+**Tech debt conocido (resiliencia):** hoy el orden email-primero significa que si Hostinger SMTP cae, el form devuelve 500 y el lead se pierde aunque el OS este sano. Tarea pendiente: invertir el orden (forward al OS primero, email best-effort) para que el lead siempre llegue al pipeline mientras al menos uno de los dos canales funcione.
+
+### Env vars requeridas en Vercel (proyecto web-narvaez-carlos)
+
+- `SMTP_USER` = `hello@narvaezcarlos.com` · `SMTP_PASS` (rotables — ver memoria `reference_hostinger_smtp.md`)
+- `LEAD_INTAKE_SECRET` (mismo valor que el OS)
+- `OS_LEAD_INTAKE_URL` = `https://app.narvaezcarlos.com/api/webhooks/lead-intake`
+
+### Para clonar el patron en una landing futura
+
+1. Decidir el slug de campaña (ej. `feria-utah-2026`) y el slug de URL (ej. `/feria-utah`)
+2. Crear `app/<slug>/{layout.tsx, page.tsx, opengraph-image.tsx, gracias/page.tsx}` copiando `/emprendedor` como template
+3. Crear `components/<slug>/` con los 5-6 componentes (Hero, Includes, Process, CTA, Form, UtmAttribution si la heuristica de canal es distinta)
+4. Excluir la ruta en `middleware.ts` matcher y agregarla al `Disallow` en `robots.ts`
+5. En el OS, agregar el slug al map `CAMPAIGN_LABELS` en `src/app/[locale]/(admin)/pipeline/pipeline-client.tsx` para que la pill muestre el label legible
+6. El form POSTea al mismo endpoint `/api/lead-emprendedor` o (mejor) creas uno paralelo `/api/lead-<slug>` que envia con `campaign='<slug>'`
+
 ## Servicios
 
 1. Web Design & Development (incluye SEO-ready structure)
@@ -252,8 +328,8 @@ SIRCON, Bloom Sante, SWC Decor, Luxury Appliance Repair, Myan Realty, Yhon Pena
 
 ## Notas
 
-- Next.js 15 usa async params: `params as Promise<T>` en paginas dinamicas
-- Middleware excluye sitemap.xml y robots.txt de la reescritura de idioma
+- Next.js 16 sigue requiriendo async params: `params as Promise<T>` y `searchParams as Promise<T>` en paginas dinamicas
+- Middleware excluye sitemap.xml, robots.txt y `/emprendedor*` (dedicated campaign landings) de la reescritura de idioma
 - Theme default es claro (no sigue preferencia del SO)
 - Animaciones GSAP: Hero usa timeline propio, subpaginas usan AnimatedDiagonal con ScrollTrigger
 - Fundado en 2022, Seattle, Washington
