@@ -12,9 +12,18 @@ interface NavbarProps {
   lang: Locale;
   dict: Dictionary;
   hideLanguageToggle?: boolean;
+  // Strips nav links + Studio OS + mobile hamburger. Leaves only the isotipo
+  // and the theme toggle. Used by dedicated campaign landings (e.g.
+  // /emprendedor) so the page acts as a closed funnel without escape routes.
+  minimalChrome?: boolean;
 }
 
-export default function Navbar({ lang, dict, hideLanguageToggle = false }: NavbarProps) {
+export default function Navbar({
+  lang,
+  dict,
+  hideLanguageToggle = false,
+  minimalChrome = false,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -51,7 +60,15 @@ export default function Navbar({ lang, dict, hideLanguageToggle = false }: Navba
               </svg>
             </Link>
 
+            {/* Minimal chrome: only theme toggle, no nav, no mobile menu. */}
+            {minimalChrome && (
+              <div className="flex items-center">
+                <ThemeToggle className="opacity-40 hover:opacity-100" />
+              </div>
+            )}
+
             {/* Desktop Nav */}
+            {!minimalChrome && (
             <ul className="hidden md:flex items-center gap-10 text-sm list-none m-0 p-0">
               {links.map((l) => (
                 <li key={l.href}>
@@ -98,8 +115,10 @@ export default function Navbar({ lang, dict, hideLanguageToggle = false }: Navba
                 <ThemeToggle className="opacity-40 hover:opacity-100" />
               </li>
             </ul>
+            )}
 
             {/* Mobile Toggle */}
+            {!minimalChrome && (
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden flex flex-col justify-center gap-1.5 w-8 h-8"
@@ -118,11 +137,13 @@ export default function Navbar({ lang, dict, hideLanguageToggle = false }: Navba
                 style={{ backgroundColor: "var(--text-heading)" }}
               />
             </button>
+            )}
           </nav>
         </Container>
       </header>
 
       {/* Mobile Overlay */}
+      {!minimalChrome && (
       <div
         className={`fixed inset-0 z-40 bg-charcoal transition-opacity duration-500 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -191,6 +212,7 @@ export default function Navbar({ lang, dict, hideLanguageToggle = false }: Navba
           </div>
         </div>
       </div>
+      )}
 
       <div className="h-20" />
     </>

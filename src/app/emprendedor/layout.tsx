@@ -78,9 +78,9 @@ export default async function EmprendedorLayout({
         </Script>
 
         <div className="min-h-screen flex flex-col">
-          <Navbar lang="es" dict={dict} hideLanguageToggle />
+          <Navbar lang="es" dict={dict} hideLanguageToggle minimalChrome />
           <main className="flex-1">{children}</main>
-          <Footer lang="es" dict={dict} />
+          <Footer lang="es" dict={dict} minimal />
         </div>
         <CookieBanner lang="es" />
         <AnalyticsEvents />
