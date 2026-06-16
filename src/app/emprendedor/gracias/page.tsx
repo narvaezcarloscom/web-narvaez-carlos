@@ -30,8 +30,8 @@ export default async function GraciasPage({
             {greeting}
           </h1>
           <p className="text-base md:text-lg text-graphite leading-relaxed mb-4">
-            Recibimos lo que nos contaste. Te respondemos hoy mismo en horas hábiles
-            (lun — vie, 9am — 6pm PST).
+            Recibimos lo que nos contaste. Lo leemos personalmente y te
+            contactamos para agendar la primera conversación.
           </p>
           <p className="text-base md:text-lg text-graphite leading-relaxed mb-12">
             Si prefieres, también puedes escribirnos directo por WhatsApp.

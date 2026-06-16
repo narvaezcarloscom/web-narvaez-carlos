@@ -12,8 +12,8 @@ export default function EmprendedorCTA() {
             Cada proyecto comienza con una <em>conversación.</em>
           </h2>
           <p className="text-base md:text-lg text-graphite leading-relaxed text-center max-w-xl mx-auto mb-16">
-            Cuéntanos un poco de tu negocio. Te respondemos hoy mismo en horas hábiles
-            (lun — vie, 9am — 6pm PST).
+            Cuéntanos un poco de tu negocio. Te leemos personalmente y te
+            contactamos para agendar la primera conversación.
           </p>
           <EmprendedorForm />
         </div>
