@@ -11,9 +11,19 @@ import ThemeToggle from "./ThemeToggle";
 interface NavbarProps {
   lang: Locale;
   dict: Dictionary;
+  hideLanguageToggle?: boolean;
+  // Strips nav links + Studio OS + mobile hamburger. Leaves only the isotipo
+  // and the theme toggle. Used by dedicated campaign landings (e.g.
+  // /emprendedor) so the page acts as a closed funnel without escape routes.
+  minimalChrome?: boolean;
 }
 
-export default function Navbar({ lang, dict }: NavbarProps) {
+export default function Navbar({
+  lang,
+  dict,
+  hideLanguageToggle = false,
+  minimalChrome = false,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -50,7 +60,15 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               </svg>
             </Link>
 
+            {/* Minimal chrome: only theme toggle, no nav, no mobile menu. */}
+            {minimalChrome && (
+              <div className="flex items-center">
+                <ThemeToggle className="opacity-40 hover:opacity-100" />
+              </div>
+            )}
+
             {/* Desktop Nav */}
+            {!minimalChrome && (
             <ul className="hidden md:flex items-center gap-10 text-sm list-none m-0 p-0">
               {links.map((l) => (
                 <li key={l.href}>
@@ -78,25 +96,29 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                   Studio OS
                 </a>
               </li>
-              <li>
-                <Link
-                  href={switchHref}
-                  data-track-event="lang_toggle"
-                  data-track-prop-from={lang}
-                  data-track-prop-to={switchLang}
-                  data-track-prop-location="navbar_desktop"
-                  className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
-                  style={{ color: "var(--text-body)", borderColor: "var(--border-color)", border: "1px solid", padding: "4px 12px" }}
-                >
-                  {switchLang.toUpperCase()}
-                </Link>
-              </li>
+              {!hideLanguageToggle && (
+                <li>
+                  <Link
+                    href={switchHref}
+                    data-track-event="lang_toggle"
+                    data-track-prop-from={lang}
+                    data-track-prop-to={switchLang}
+                    data-track-prop-location="navbar_desktop"
+                    className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
+                    style={{ color: "var(--text-body)", borderColor: "var(--border-color)", border: "1px solid", padding: "4px 12px" }}
+                  >
+                    {switchLang.toUpperCase()}
+                  </Link>
+                </li>
+              )}
               <li>
                 <ThemeToggle className="opacity-40 hover:opacity-100" />
               </li>
             </ul>
+            )}
 
             {/* Mobile Toggle */}
+            {!minimalChrome && (
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden flex flex-col justify-center gap-1.5 w-8 h-8"
@@ -115,11 +137,13 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 style={{ backgroundColor: "var(--text-heading)" }}
               />
             </button>
+            )}
           </nav>
         </Container>
       </header>
 
       {/* Mobile Overlay */}
+      {!minimalChrome && (
       <div
         className={`fixed inset-0 z-40 bg-charcoal transition-opacity duration-500 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -170,22 +194,25 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               {dict.common.studioLocation}
             </span>
             <div className="flex items-center gap-4">
-              <Link
-                href={switchHref}
-                onClick={() => setIsOpen(false)}
-                data-track-event="lang_toggle"
-                data-track-prop-from={lang}
-                data-track-prop-to={switchLang}
-                data-track-prop-location="navbar_mobile"
-                className="text-xs uppercase tracking-widest text-ivory/40 hover:text-ivory transition-colors border border-ivory/20 px-3 py-1.5"
-              >
-                {switchLang.toUpperCase()}
-              </Link>
+              {!hideLanguageToggle && (
+                <Link
+                  href={switchHref}
+                  onClick={() => setIsOpen(false)}
+                  data-track-event="lang_toggle"
+                  data-track-prop-from={lang}
+                  data-track-prop-to={switchLang}
+                  data-track-prop-location="navbar_mobile"
+                  className="text-xs uppercase tracking-widest text-ivory/40 hover:text-ivory transition-colors border border-ivory/20 px-3 py-1.5"
+                >
+                  {switchLang.toUpperCase()}
+                </Link>
+              )}
               <ThemeToggle className="text-ivory/40 hover:text-ivory" />
             </div>
           </div>
         </div>
       </div>
+      )}
 
       <div className="h-20" />
     </>

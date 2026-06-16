@@ -15,9 +15,13 @@ const socialLinks = [
 interface FooterProps {
   lang: Locale;
   dict: Dictionary;
+  // Strips the H2 CTA + brand/nav/social columns. Leaves only the bottom row
+  // (copyright + legal links). Used by dedicated campaign landings so the
+  // page acts as a closed funnel without a competing footer CTA.
+  minimal?: boolean;
 }
 
-export default function Footer({ lang, dict }: FooterProps) {
+export default function Footer({ lang, dict, minimal = false }: FooterProps) {
   const prefix = lang === "en" ? "" : `/${lang}`;
   const navLinks = [
     { label: dict.nav.services, href: `${prefix}/services` },
@@ -25,6 +29,29 @@ export default function Footer({ lang, dict }: FooterProps) {
     { label: dict.nav.journal, href: `${prefix}/journal` },
     { label: dict.nav.contact, href: `${prefix}/contact` },
   ];
+
+  if (minimal) {
+    return (
+      <footer className="border-t border-neutral-light mt-auto">
+        <Container>
+          <div className="py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-graphite/60">
+            <p>&copy; {new Date().getFullYear()} Narvaez Digital Marketing. {dict.footer.rights}</p>
+            <div className="flex items-center gap-4 flex-wrap">
+              <Link href={`${prefix}/privacy`} className="hover:text-graphite transition-colors">
+                {dict.footer.privacy}
+              </Link>
+              <span className="text-graphite/30">|</span>
+              <Link href={`${prefix}/terms`} className="hover:text-graphite transition-colors">
+                {dict.footer.terms}
+              </Link>
+              <span className="text-graphite/30">|</span>
+              <CookieSettingsButton lang={lang} />
+            </div>
+          </div>
+        </Container>
+      </footer>
+    );
+  }
 
   return (
     <footer className="border-t border-neutral-light mt-auto">
