@@ -11,9 +11,10 @@ import ThemeToggle from "./ThemeToggle";
 interface NavbarProps {
   lang: Locale;
   dict: Dictionary;
+  hideLanguageToggle?: boolean;
 }
 
-export default function Navbar({ lang, dict }: NavbarProps) {
+export default function Navbar({ lang, dict, hideLanguageToggle = false }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -78,19 +79,21 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                   Studio OS
                 </a>
               </li>
-              <li>
-                <Link
-                  href={switchHref}
-                  data-track-event="lang_toggle"
-                  data-track-prop-from={lang}
-                  data-track-prop-to={switchLang}
-                  data-track-prop-location="navbar_desktop"
-                  className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
-                  style={{ color: "var(--text-body)", borderColor: "var(--border-color)", border: "1px solid", padding: "4px 12px" }}
-                >
-                  {switchLang.toUpperCase()}
-                </Link>
-              </li>
+              {!hideLanguageToggle && (
+                <li>
+                  <Link
+                    href={switchHref}
+                    data-track-event="lang_toggle"
+                    data-track-prop-from={lang}
+                    data-track-prop-to={switchLang}
+                    data-track-prop-location="navbar_desktop"
+                    className="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
+                    style={{ color: "var(--text-body)", borderColor: "var(--border-color)", border: "1px solid", padding: "4px 12px" }}
+                  >
+                    {switchLang.toUpperCase()}
+                  </Link>
+                </li>
+              )}
               <li>
                 <ThemeToggle className="opacity-40 hover:opacity-100" />
               </li>
@@ -170,17 +173,19 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               {dict.common.studioLocation}
             </span>
             <div className="flex items-center gap-4">
-              <Link
-                href={switchHref}
-                onClick={() => setIsOpen(false)}
-                data-track-event="lang_toggle"
-                data-track-prop-from={lang}
-                data-track-prop-to={switchLang}
-                data-track-prop-location="navbar_mobile"
-                className="text-xs uppercase tracking-widest text-ivory/40 hover:text-ivory transition-colors border border-ivory/20 px-3 py-1.5"
-              >
-                {switchLang.toUpperCase()}
-              </Link>
+              {!hideLanguageToggle && (
+                <Link
+                  href={switchHref}
+                  onClick={() => setIsOpen(false)}
+                  data-track-event="lang_toggle"
+                  data-track-prop-from={lang}
+                  data-track-prop-to={switchLang}
+                  data-track-prop-location="navbar_mobile"
+                  className="text-xs uppercase tracking-widest text-ivory/40 hover:text-ivory transition-colors border border-ivory/20 px-3 py-1.5"
+                >
+                  {switchLang.toUpperCase()}
+                </Link>
+              )}
               <ThemeToggle className="text-ivory/40 hover:text-ivory" />
             </div>
           </div>
