@@ -48,6 +48,11 @@ const es: Dictionary = {
     challenge: "El desafío",
     solution: "La solución",
     results: "Resultados",
+    client: "Cliente",
+    scrollHint: "Desliza",
+    ctaHeading: "¿Listo para elevar tu marca?",
+    ctaButton: "Iniciar un proyecto",
+    keyDecisions: "Decisiones clave",
   },
   about: {
     label: "Acerca del estudio",

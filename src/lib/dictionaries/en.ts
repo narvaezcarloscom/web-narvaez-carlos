@@ -46,6 +46,11 @@ const en = {
     challenge: "The challenge",
     solution: "The solution",
     results: "Results",
+    client: "Client",
+    scrollHint: "Scroll",
+    ctaHeading: "Ready to elevate your brand?",
+    ctaButton: "Start a project",
+    keyDecisions: "Key decisions",
   },
   about: {
     label: "About the studio",
