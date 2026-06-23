@@ -123,7 +123,7 @@ const jsonLd = {
     "https://www.instagram.com/narvaezcarloscom/",
     "https://youtube.com/@narvaezcarloscom",
     "https://github.com/narvaezcarloscom",
-    "https://www.linkedin.com/in/narvaezcarlos",
+    "https://www.linkedin.com/in/narvaezcarloscom/",
     "https://maps.google.com/?cid=11170561863089871042",
   ],
   aggregateRating: {

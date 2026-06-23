@@ -9,7 +9,7 @@ const socialLinks = [
   { label: "Instagram", href: "https://instagram.com/narvaezcarloscom/" },
   { label: "YouTube", href: "https://youtube.com/@narvaezcarloscom" },
   { label: "GitHub", href: "https://github.com/narvaezcarloscom" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/narvaezcarlos" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/narvaezcarloscom/" },
 ];
 
 interface FooterProps {
