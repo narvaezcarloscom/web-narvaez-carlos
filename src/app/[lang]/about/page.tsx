@@ -60,7 +60,7 @@ function aboutJsonLd(isEn: boolean) {
         },
       },
       sameAs: [
-        "https://www.linkedin.com/in/narvaezcarlos",
+        "https://www.linkedin.com/in/narvaezcarloscom/",
         "https://www.instagram.com/narvaezcarloscom/",
         "https://github.com/narvaezcarloscom",
       ],
