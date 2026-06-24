@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getProject, projects } from "../../../../lib/projects";
-import { type Locale, getDictionary } from "../../../../lib/i18n";
+import { type Locale, getDictionary, t as localize } from "../../../../lib/i18n";
 import { buildAlternates } from "../../../../lib/seo";
 import Breadcrumbs from "../../../../components/Breadcrumbs";
 
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props) {
   const project = getProject(id);
   return {
     title: project ? project.name : "Project not found",
-    description: project?.tagline ?? "Project detail",
+    description: project ? localize(project.tagline, lang) : "Project detail",
     alternates: buildAlternates(`/work/${id}`, lang),
   };
 }
@@ -36,8 +36,22 @@ export default async function ProjectDetail({ params }: Props) {
   const nextProject = projects[(currentIndex + 1) % projects.length];
   const langPrefix = isEn ? "" : "/es";
 
+  // Localized content
+  const tagline = localize(project.tagline, lang);
+  const category = localize(project.category, lang);
+  const services = project.services.map((s) => localize(s, lang));
+  const overview = localize(project.overview, lang);
+  const challenge = localize(project.challenge, lang);
+  const solution = localize(project.solution, lang);
+  const pullQuote = project.pullQuote ? localize(project.pullQuote, lang) : undefined;
+  const editorialHeadline = project.editorialHeadline
+    ? localize(project.editorialHeadline, lang)
+    : undefined;
+  const solutionPoints = project.solutionPoints?.map((p) => localize(p, lang));
+  const results = project.results.map((r) => localize(r, lang));
+
   const hasHeroImage = Boolean(project.image);
-  const heroPlaceholderText = project.editorialHeadline ?? project.tagline;
+  const heroPlaceholderText = editorialHeadline ?? tagline;
 
   return (
     <>
@@ -57,7 +71,7 @@ export default async function ProjectDetail({ params }: Props) {
         {hasHeroImage ? (
           <Image
             src={project.image}
-            alt={`${project.name} — ${project.tagline}`}
+            alt={`${project.name} — ${tagline}`}
             fill
             priority
             sizes="100vw"
@@ -82,13 +96,13 @@ export default async function ProjectDetail({ params }: Props) {
         <div className="relative z-10 flex h-full w-full items-center justify-center px-6 md:px-12">
           <div className="text-center max-w-5xl">
             <p className="text-xs uppercase tracking-[0.25em] text-ivory/60 mb-6">
-              {project.category}
+              {category}
             </p>
             <h1 className="font-serif editorial-heading text-ivory text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
               {project.name}
             </h1>
             <p className="mt-8 font-sans text-lg md:text-xl text-ivory/70 max-w-2xl mx-auto leading-relaxed">
-              {project.tagline}
+              {tagline}
             </p>
           </div>
         </div>
@@ -134,7 +148,7 @@ export default async function ProjectDetail({ params }: Props) {
                   {t.category}
                 </dt>
                 <dd className="font-serif text-charcoal text-base">
-                  {project.category}
+                  {category}
                 </dd>
               </div>
               <div>
@@ -142,7 +156,7 @@ export default async function ProjectDetail({ params }: Props) {
                   {t.servicesLabel}
                 </dt>
                 <dd className="font-serif text-charcoal text-base">
-                  {project.services.join(", ")}
+                  {services.join(", ")}
                 </dd>
               </div>
               <div>
@@ -185,15 +199,15 @@ export default async function ProjectDetail({ params }: Props) {
             <p className="text-narvaez-red text-2xl leading-none mb-4" aria-hidden="true">
               —
             </p>
-            {project.editorialHeadline && (
+            {editorialHeadline && (
               <h2 className="font-serif editorial-heading text-charcoal text-3xl md:text-4xl">
-                {project.editorialHeadline}
+                {editorialHeadline}
               </h2>
             )}
           </div>
           <div>
             <p className="font-sans text-graphite text-lg md:text-xl leading-relaxed">
-              {project.overview}
+              {overview}
             </p>
           </div>
         </div>
@@ -207,11 +221,11 @@ export default async function ProjectDetail({ params }: Props) {
           </p>
           <div className="max-w-3xl">
             <p className="font-sans text-graphite text-lg leading-relaxed">
-              {project.challenge}
+              {challenge}
             </p>
-            {project.pullQuote && (
+            {pullQuote && (
               <blockquote className="font-serif italic text-charcoal text-2xl md:text-3xl border-l-2 border-narvaez-red pl-6 my-10 leading-snug">
-                {project.pullQuote}
+                {pullQuote}
               </blockquote>
             )}
           </div>
@@ -254,15 +268,15 @@ export default async function ProjectDetail({ params }: Props) {
           </div>
           <div>
             <p className="font-sans text-graphite text-lg md:text-xl leading-relaxed mb-10">
-              {project.solution}
+              {solution}
             </p>
-            {project.solutionPoints && project.solutionPoints.length > 0 && (
+            {solutionPoints && solutionPoints.length > 0 && (
               <>
                 <p className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 mb-5">
                   {t.keyDecisions}
                 </p>
                 <ul className="list-none m-0 p-0 space-y-4">
-                  {project.solutionPoints.map((point, i) => (
+                  {solutionPoints.map((point, i) => (
                     <li
                       key={i}
                       className="flex items-start gap-4 border-t border-neutral-light pt-4"
@@ -289,7 +303,7 @@ export default async function ProjectDetail({ params }: Props) {
             {t.results}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 md:gap-y-16">
-            {project.results.map((result, i) => (
+            {results.map((result, i) => (
               <div key={i} className="flex flex-col gap-4">
                 <span className="font-serif text-narvaez-red text-5xl md:text-6xl editorial-heading">
                   {String(i + 1).padStart(2, "0")}
