@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { Locale } from "../../../lib/i18n";
+import { getDictionary, t as localize } from "../../../lib/i18n";
 import { buildAlternates } from "../../../lib/seo";
 import { projects } from "../../../lib/projects";
 import Container from "../../../components/Container";
@@ -32,6 +33,10 @@ export default async function WorkPage({
 }) {
   const { lang } = await params;
   const isEn = lang === "en";
+  const dict = await getDictionary(lang);
+  const w = dict.work;
+  const [headingLine2Lead, ...headingLine2Rest] = w.pageHeading[1].split(" ");
+
   return (
     <>
       <Breadcrumbs
@@ -44,20 +49,19 @@ export default async function WorkPage({
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             <div className="md:col-span-7">
               <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
-                Selected work
+                {w.label}
               </p>
               <AnimatedDiagonal className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
-                Projects built
+                {w.pageHeading[0]}
                 <br />
-                with <span className="italic">intention.</span>
+                {headingLine2Lead}{" "}
+                <span className="italic">{headingLine2Rest.join(" ")}</span>
               </h1>
             </div>
             <div className="md:col-span-4 md:col-start-9 flex items-end">
               <p className="text-graphite text-base md:text-lg leading-relaxed">
-                Every project starts with a clear objective and ends with a
-                measurable result. Here&apos;s a selection of our recent work
-                for service-based businesses.
+                {w.pageDescription}
               </p>
             </div>
           </div>
@@ -85,7 +89,7 @@ export default async function WorkPage({
                   </div>
                   <div className="flex items-center gap-8 md:gap-12">
                     <span className="text-xs text-graphite/40 hidden md:block">
-                      {project.category}
+                      {localize(project.category, lang)}
                     </span>
                     <span className="text-xs text-graphite/40 hidden md:block">
                       {project.year}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type { Locale } from "../lib/i18n";
+import { type Locale, t as localize } from "../lib/i18n";
 import type { Dictionary } from "../lib/dictionaries/en";
 import Container from "./Container";
 import { projects } from "../lib/projects";
@@ -98,7 +98,7 @@ export default function WorkPreview({ lang, dict }: WorkPreviewProps) {
                 </h3>
               </div>
               <div className="hidden md:flex items-center gap-8 text-xs text-ivory/40">
-                <span>{project.category}</span>
+                <span>{localize(project.category, lang)}</span>
                 <span>{project.year}</span>
                 <svg
                   width="14"
