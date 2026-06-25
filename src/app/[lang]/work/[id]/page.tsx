@@ -50,7 +50,8 @@ export default async function ProjectDetail({ params }: Props) {
   const solutionPoints = project.solutionPoints?.map((p) => localize(p, lang));
   const results = project.results.map((r) => localize(r, lang));
 
-  const hasHeroImage = Boolean(project.image);
+  const heroImage = project.heroImage ?? project.image;
+  const hasHeroImage = Boolean(heroImage);
   const heroPlaceholderText = editorialHeadline ?? tagline;
 
   return (
@@ -70,7 +71,7 @@ export default async function ProjectDetail({ params }: Props) {
       >
         {hasHeroImage ? (
           <Image
-            src={project.image}
+            src={heroImage}
             alt={`${project.name} — ${tagline}`}
             fill
             priority

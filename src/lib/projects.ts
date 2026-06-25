@@ -9,6 +9,8 @@ export type Project = {
   services: LocaleText[];
   url: string;
   image: string;
+  /** Optional hero/full-bleed image. Falls back to `image` (the listing thumbnail) when absent. */
+  heroImage?: string;
   overview: LocaleText;
   challenge: LocaleText;
   solution: LocaleText;
@@ -39,6 +41,7 @@ export const projects: Project[] = [
     ],
     url: "https://anglestonellc.com",
     image: "/work/angle-stone.jpg",
+    heroImage: "/work/angle-stone-hero.webp",
     editorialHeadline: {
       en: "Craft that deserved a stage.",
       es: "Un oficio que merecía un escenario.",
@@ -166,6 +169,7 @@ export const projects: Project[] = [
     ],
     url: "#",
     image: "/work/bloom-sante.jpg",
+    heroImage: "/work/bloom-sante-hero.webp",
     overview: {
       en: "Bloom Santé is a curated beauty and wellness brand built around a single conviction — that beauty is not perfection, it is presence. Our work was to translate that philosophy into a complete visual system: the brand identity, the editorial voice, the photographic language, and the digital foundation from which the store would grow.",
       es: "Bloom Santé es una marca curada de belleza y bienestar construida en torno a una sola convicción: la belleza no es perfección, es presencia. Nuestro trabajo fue traducir esa filosofía a un sistema visual completo: la identidad de marca, la voz editorial, el lenguaje fotográfico y la base digital desde la cual crecería la tienda.",
@@ -216,6 +220,7 @@ export const projects: Project[] = [
     ],
     url: "https://swcdecor.com",
     image: "/work/swc-decor.jpg",
+    heroImage: "/work/swc-decor-hero.webp",
     overview: {
       en: "SWC Decor is a premium wallcovering company based in Seattle, serving architects and interior designers with exceptional materials. They needed a website that communicated the tactile, high-end nature of their products in a digital format.",
       es: "SWC Decor es una empresa premium de recubrimientos de pared con sede en Seattle, que ofrece materiales excepcionales a arquitectos y diseñadores de interiores. Necesitaban un sitio que comunicara en formato digital la naturaleza táctil y de alta gama de sus productos.",
@@ -267,6 +272,7 @@ export const projects: Project[] = [
     ],
     url: "https://gtrappliancerepair.com",
     image: "/work/gtr-appliance-repair.jpg",
+    heroImage: "/work/gtr-appliance-repair-hero.webp",
     overview: {
       en: "GTR Appliance Repair is a premium appliance service company based in South Florida, specializing in high-end brands like Sub-Zero, Wolf, and Viking. They needed a digital presence that matched the luxury positioning of their brand and the clientele they serve.",
       es: "GTR Appliance Repair es una empresa premium de servicio de electrodomésticos con sede en el sur de Florida, especializada en marcas de alta gama como Sub-Zero, Wolf y Viking. Necesitaban una presencia digital a la altura del posicionamiento de lujo de su marca y de la clientela que atienden.",
@@ -317,6 +323,7 @@ export const projects: Project[] = [
     ],
     url: "https://myanrealty.com",
     image: "/work/myan-realty.jpg",
+    heroImage: "/work/myan-realty-hero.webp",
     overview: {
       en: "Myan Realty is a real estate firm specializing in luxury properties across the Riviera Maya, Mexico. They needed a bilingual platform that could showcase high-end listings to international buyers while conveying the lifestyle and exclusivity of the region.",
       es: "Myan Realty es una firma inmobiliaria especializada en propiedades de lujo en la Riviera Maya, México. Necesitaban una plataforma bilingüe capaz de mostrar propiedades de alta gama a compradores internacionales, transmitiendo a la vez el estilo de vida y la exclusividad de la región.",
