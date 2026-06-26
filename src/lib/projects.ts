@@ -99,6 +99,83 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    id: "avante-group",
+    name: "Avante Group",
+    tagline: {
+      en: "A growth partner connecting Chile's wellness centers with the clients who value them.",
+      es: "Un partner de crecimiento que conecta a los centros de bienestar de Chile con los clientes que los valoran.",
+    },
+    year: "2026",
+    category: {
+      en: "Web Design & Development",
+      es: "Diseño y Desarrollo Web",
+    },
+    services: [
+      { en: "Brand Strategy", es: "Estrategia de Marca" },
+      { en: "Web Design", es: "Diseño Web" },
+      { en: "Custom Platform", es: "Plataforma a Medida" },
+    ],
+    url: "https://avantegroup.cl",
+    image: "/work/avante-group.jpg",
+    heroImage: "/work/avante-group-hero.webp",
+    editorialHeadline: {
+      en: "A brand returned to its own idea.",
+      es: "Una marca devuelta a su propia idea.",
+    },
+    overview: {
+      en: "Avante Group is a Santiago-based growth partner for health, aesthetics, and wellness centers across Chile. More than a conventional marketing agency, it builds exclusive alliances — bringing qualified clients to partner centers through segmented campaigns, with no ad spend required from the partner.",
+      es: "Avante Group es un partner de crecimiento con sede en Santiago para centros de salud, estética y bienestar en todo Chile. Más que una agencia de marketing convencional, construye alianzas exclusivas: lleva clientes cualificados a los centros asociados mediante campañas segmentadas, sin que el partner invierta en publicidad.",
+    },
+    challenge: {
+      en: "Avante's founder had a clear idea of what her brand meant — it simply hadn't found the place where it could be understood and built. The work she'd been handed developed the project before it had truly understood it, and the result drifted away from her core idea instead of toward it. For a business built on trust between wellness centers and discerning clients, the brand needed a place that would listen before it designed.",
+      es: "La fundadora de Avante tenía clara la idea de lo que su marca significaba; solo que aún no había encontrado el lugar donde pudiera ser entendida y construida. El trabajo que le habían entregado desarrolló el proyecto antes de comprenderlo de verdad, y el resultado se alejaba de su idea central en vez de acercarla. Para un negocio construido sobre la confianza entre centros de bienestar y clientes exigentes, la marca necesitaba un lugar que escuchara antes de diseñar.",
+    },
+    pullQuote: {
+      en: "The idea was sound — it just hadn't found the place to be understood.",
+      es: "La idea era sólida; solo no había encontrado el lugar donde ser entendida.",
+    },
+    solution: {
+      en: "We started where the work needed to begin: with her idea. Using the studio's intake methodology — structured through our own platform at app.narvaezcarlos.com — we extracted the essence of the brand before touching a single pixel. The rebrand gave the idea its own register — editorial calm: a cultivated palette, serif typography, and a cinematic scroll hero built around a single bonsai, a quiet metaphor for growth shaped with patience. Beyond the site, we built Avante a custom platform to run the operation: certificate issuance with a unique code and QR per purchase, redemption at partner centers, and a self-management dashboard for vendors, centers, operators, and reports.",
+      es: "Empezamos donde el trabajo debía empezar: por su idea. Con la metodología de intake del estudio —estructurada en nuestra propia plataforma en app.narvaezcarlos.com— extrajimos la esencia de la marca antes de tocar un solo píxel. El rebranding le dio a la idea su propio registro —una calma editorial: una paleta cultivada, tipografía serif y un hero cinematográfico construido en torno a un bonsái, una metáfora silenciosa del crecimiento moldeado con paciencia. Más allá del sitio, le construimos a Avante una plataforma a medida para operar el negocio: emisión de certificados con código único y QR por cada compra, canje en los centros asociados, y un dashboard de autogestión para vendedores, centros, operadores y reportes.",
+    },
+    solutionPoints: [
+      {
+        en: "Intake methodology run through the studio platform (app.narvaezcarlos.com) to capture the brand's essence before design",
+        es: "Metodología de intake ejecutada en la plataforma del estudio (app.narvaezcarlos.com) para captar la esencia de la marca antes de diseñar",
+      },
+      {
+        en: "Editorial rebrand — a cultivated palette and serif typography that finally matched the brand's own idea",
+        es: "Rebranding editorial — paleta cultivada y tipografía serif que por fin coincidieron con la idea propia de la marca",
+      },
+      {
+        en: "Cinematic scroll hero built around a single bonsai — growth shaped with intention",
+        es: "Hero cinematográfico construido en torno a un bonsái — crecimiento moldeado con intención",
+      },
+      {
+        en: "Custom management platform — unique-code and QR certificates, partner-center redemption, and a self-management dashboard",
+        es: "Plataforma de gestión a medida — certificados con código único y QR, canje en centros asociados y dashboard de autogestión",
+      },
+    ],
+    results: [
+      {
+        en: "A brand that finally reflected its founder's original idea",
+        es: "Una marca que por fin reflejó la idea original de su fundadora",
+      },
+      {
+        en: "The confidence to approach the right sector — wellness centers — with credibility",
+        es: "La confianza para acercarse al sector correcto —centros de bienestar— con credibilidad",
+      },
+      {
+        en: "First alliance deals closed with wellness centers",
+        es: "Primeros tratos de alianza cerrados con centros de bienestar",
+      },
+      {
+        en: "Custom platform handling certificate issuance, QR redemption, and operations end to end",
+        es: "Plataforma a medida que gestiona la emisión de certificados, el canje por QR y la operación de punta a punta",
+      },
+    ],
+  },
   // — 2025 —
   {
     id: "sircon",
