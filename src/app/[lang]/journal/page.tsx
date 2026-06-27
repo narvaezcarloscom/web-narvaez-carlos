@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import type { Locale } from "../../../lib/i18n";
+import { type Locale, localizeText } from "../../../lib/i18n";
 import { buildAlternates } from "../../../lib/seo";
 import { articles } from "../../../lib/journal";
 import Container from "../../../components/Container";
@@ -31,6 +31,7 @@ export default async function JournalPage({
   params: Promise<{ lang: Locale }>;
 }) {
   const { lang } = await params;
+  const isEn = lang === "en";
   return (
     <>
       <Breadcrumbs
@@ -47,15 +48,26 @@ export default async function JournalPage({
               </p>
               <AnimatedDiagonal className="text-graphite/20 mb-4" />
               <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
-                Thinking out
-                <br />
-                <span className="italic">loud.</span>
+                {isEn ? (
+                  <>
+                    Thinking out
+                    <br />
+                    <span className="italic">loud.</span>
+                  </>
+                ) : (
+                  <>
+                    Pensando en
+                    <br />
+                    <span className="italic">voz alta.</span>
+                  </>
+                )}
               </h1>
             </div>
             <div className="md:col-span-4 md:col-start-9 flex items-end">
               <p className="text-graphite text-base md:text-lg leading-relaxed">
-                Perspectives on branding, strategy, and the decisions that shape
-                how businesses show up online.
+                {isEn
+                  ? "Perspectives on branding, strategy, and the decisions that shape how businesses show up online."
+                  : "Perspectivas sobre branding, estrategia y las decisiones que definen cómo las marcas se presentan en línea."}
               </p>
             </div>
           </div>
@@ -81,16 +93,16 @@ export default async function JournalPage({
 
                   <div className="md:col-span-6">
                     <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-charcoal group-hover:text-narvaez-red transition-colors duration-300 editorial-heading leading-[1.1]">
-                      {article.title}
+                      {localizeText(article.title, lang)}
                     </h2>
                     <p className="mt-4 text-graphite/60 text-sm md:text-base leading-relaxed max-w-lg hidden md:block">
-                      {article.subtitle}
+                      {localizeText(article.subtitle, lang)}
                     </p>
                   </div>
 
                   <div className="md:col-span-4 md:col-start-9 flex items-center justify-between md:justify-end gap-6">
                     <span className="text-xs text-graphite/40">
-                      {article.readTime}
+                      {localizeText(article.readTime, lang)}
                     </span>
                     <svg
                       width="14"
