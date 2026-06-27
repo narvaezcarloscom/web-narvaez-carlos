@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getArticle, articles } from "../../../../lib/journal";
-import type { Locale } from "../../../../lib/i18n";
-import { buildAlternates } from "../../../../lib/seo";
+import type { ReactNode } from "react";
+import { getArticle, articles, type Article } from "../../../../lib/journal";
+import { type Locale, localizeText } from "../../../../lib/i18n";
+import { buildAlternates, BASE_URL } from "../../../../lib/seo";
 import Container from "../../../../components/Container";
 import Breadcrumbs from "../../../../components/Breadcrumbs";
 
@@ -17,9 +18,67 @@ export async function generateMetadata({ params }: Props) {
   const { lang, id } = await params;
   const article = getArticle(id);
   return {
-    title: article ? article.title : "Article not found",
-    description: article?.subtitle ?? "Journal article",
+    title: article ? localizeText(article.title, lang) : "Article not found",
+    description: article ? localizeText(article.subtitle, lang) : "Journal article",
     alternates: buildAlternates(`/journal/${id}`, lang),
+  };
+}
+
+/**
+ * Renders inline Markdown links — [label](url) — as real anchors and leaves the
+ * rest of the text untouched. No HTML is interpolated: only the matched link
+ * pattern becomes an <a>, so there is no injection surface.
+ */
+function renderRichText(text: string): ReactNode[] {
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
+    nodes.push(
+      <a
+        key={key++}
+        href={match[2]}
+        target="_blank"
+        rel="external noopener"
+        className="underline decoration-graphite/30 underline-offset-2 hover:decoration-narvaez-red transition-colors"
+      >
+        {match[1]}
+      </a>
+    );
+    lastIndex = pattern.lastIndex;
+  }
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+  return nodes;
+}
+
+/**
+ * Per-article JSON-LD. Models the post as an Article and references the canonical
+ * NDM Organization (#organization) and founder Person (#person) by @id — never
+ * redefining them (see CLAUDE.md "una entidad, un solo lugar").
+ */
+function articleJsonLd(article: Article, lang: Locale) {
+  const isEn = lang === "en";
+  const pageUrl = `${BASE_URL}${isEn ? "" : "/es"}/journal/${article.id}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${pageUrl}#article`,
+        headline: localizeText(article.title, lang),
+        description: localizeText(article.subtitle, lang),
+        datePublished: article.date,
+        dateModified: article.date,
+        inLanguage: lang,
+        url: pageUrl,
+        mainEntityOfPage: { "@id": pageUrl },
+        author: { "@id": `${BASE_URL}/#person` },
+        publisher: { "@id": `${BASE_URL}/#organization` },
+      },
+    ],
   };
 }
 
@@ -28,16 +87,36 @@ export default async function ArticleDetail({ params }: Props) {
   const article = getArticle(id);
   if (!article) return notFound();
 
+  const isEn = lang === "en";
+  const title = localizeText(article.title, lang);
+  const subtitle = localizeText(article.subtitle, lang);
+  const readTime = localizeText(article.readTime, lang);
+
   const currentIndex = articles.findIndex((a) => a.id === id);
   const nextArticle = articles[(currentIndex + 1) % articles.length];
 
+  const labels = {
+    published: isEn ? "Published" : "Publicado",
+    readingTime: isEn ? "Reading time" : "Tiempo de lectura",
+    listen: isEn ? "Listen to this article" : "Escucha este artículo",
+    ctaPrompt: isEn
+      ? "Have a project that needs this kind of thinking?"
+      : "¿Tienes un proyecto que pida este tipo de criterio?",
+    ctaButton: isEn ? "Start a conversation" : "Hablemos",
+    nextArticle: isEn ? "Next article" : "Siguiente artículo",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(article, lang)) }}
+      />
       <Breadcrumbs
         lang={lang}
         items={[
           { name: "Journal", path: "/journal" },
-          { name: article.title, path: `/journal/${id}` },
+          { name: title, path: `/journal/${id}` },
         ]}
       />
       {/* Hero */}
@@ -53,20 +132,20 @@ export default async function ArticleDetail({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mt-6">
             <div className="md:col-span-8">
               <h1 className="font-serif text-[2.75rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl editorial-heading">
-                {article.title}
+                {title}
               </h1>
               <p className="mt-6 text-graphite text-lg md:text-xl max-w-2xl leading-relaxed">
-                {article.subtitle}
+                {subtitle}
               </p>
             </div>
 
             <div className="md:col-span-3 md:col-start-10 flex flex-col gap-6 md:justify-end">
               <div>
                 <p className="text-xs uppercase tracking-widest text-graphite/50 mb-2">
-                  Published
+                  {labels.published}
                 </p>
                 <p className="text-charcoal">
-                  {new Date(article.date).toLocaleDateString("en-US", {
+                  {new Date(article.date).toLocaleDateString(isEn ? "en-US" : "es-ES", {
                     year: "numeric",
                     month: "long",
                   })}
@@ -74,9 +153,9 @@ export default async function ArticleDetail({ params }: Props) {
               </div>
               <div>
                 <p className="text-xs uppercase tracking-widest text-graphite/50 mb-2">
-                  Reading time
+                  {labels.readingTime}
                 </p>
-                <p className="text-charcoal">{article.readTime}</p>
+                <p className="text-charcoal">{readTime}</p>
               </div>
             </div>
           </div>
@@ -89,25 +168,30 @@ export default async function ArticleDetail({ params }: Props) {
           <div className="grid grid-cols-1 md:grid-cols-12">
             <div className="md:col-span-7 md:col-start-1">
               <div className="border-t border-neutral-light pt-12 space-y-12 md:space-y-16">
-                {article.body.map((block, i) => (
-                  <div key={i}>
-                    {block.heading && (
-                      <h2 className="font-serif text-2xl md:text-3xl editorial-heading leading-[1.15] mb-5">
-                        {block.heading}
-                      </h2>
-                    )}
-                    <p className="text-graphite text-base md:text-lg leading-[1.8]">
-                      {block.text}
-                    </p>
-                  </div>
-                ))}
+                {article.body.map((block, i) => {
+                  const heading = block.heading
+                    ? localizeText(block.heading, lang)
+                    : null;
+                  return (
+                    <div key={i}>
+                      {heading && (
+                        <h2 className="font-serif text-2xl md:text-3xl editorial-heading leading-[1.15] mb-5">
+                          {heading}
+                        </h2>
+                      )}
+                      <p className="text-graphite text-base md:text-lg leading-[1.8]">
+                        {renderRichText(localizeText(block.text, lang))}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Podcast Embed */}
               {article.spotifyEpisodeId && (
                 <div className="mt-16 md:mt-20 pt-12 border-t border-neutral-light">
                   <p className="text-xs uppercase tracking-widest text-graphite/50 mb-6">
-                    Listen to this article
+                    {labels.listen}
                   </p>
                   <iframe
                     src={`https://open.spotify.com/embed/episode/${article.spotifyEpisodeId}?utm_source=generator&theme=0`}
@@ -121,32 +205,32 @@ export default async function ArticleDetail({ params }: Props) {
                 </div>
               )}
 
-              {/* CTA */}
-              <div className="mt-16 md:mt-20 pt-12 border-t border-neutral-light">
-                <p className="text-graphite text-base mb-6">
-                  Have a project that needs this kind of thinking?
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-narvaez-red text-ivory px-7 py-3.5 text-sm font-medium tracking-wide uppercase hover:bg-narvaez-red-hover transition-colors duration-300"
-                >
-                  Start a conversation
-                </Link>
-              </div>
+              {/* CTA — suppressed for depth pieces where a sales funnel is tonally wrong */}
+              {!article.hideCta && (
+                <div className="mt-16 md:mt-20 pt-12 border-t border-neutral-light">
+                  <p className="text-graphite text-base mb-6">{labels.ctaPrompt}</p>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 bg-narvaez-red text-ivory px-7 py-3.5 text-sm font-medium tracking-wide uppercase hover:bg-narvaez-red-hover transition-colors duration-300"
+                  >
+                    {labels.ctaButton}
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Next Article */}
           <div className="mt-24 md:mt-32 pt-12 border-t border-neutral-light">
             <p className="text-xs uppercase tracking-widest text-graphite/50 mb-4">
-              Next article
+              {labels.nextArticle}
             </p>
             <Link
               href={`/journal/${nextArticle.id}`}
               className="group inline-block"
             >
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl editorial-heading text-charcoal group-hover:text-narvaez-red transition-colors duration-300">
-                {nextArticle.title}
+                {localizeText(nextArticle.title, lang)}
               </h2>
             </Link>
           </div>
