@@ -83,10 +83,11 @@ const jsonLd = {
     "@type": "Place",
     name: "Seattle, Washington, US",
   },
+  // Reference only — the canonical Person is defined on /about (#person).
   founder: {
     "@type": "Person",
+    "@id": `${BASE_URL}/#person`,
     name: "Carlos A Narvaez Urbina",
-    jobTitle: "Founder & Creative Director",
   },
   telephone: "+1-206-981-7078",
   email: "hello@narvaezcarlos.com",

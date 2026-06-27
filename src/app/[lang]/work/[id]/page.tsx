@@ -1,10 +1,64 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getProject, projects } from "../../../../lib/projects";
+import { getProject, projects, type Project } from "../../../../lib/projects";
 import { type Locale, getDictionary, t as localize } from "../../../../lib/i18n";
 import { buildAlternates } from "../../../../lib/seo";
 import Breadcrumbs from "../../../../components/Breadcrumbs";
+
+const BASE_URL = "https://narvaezcarlos.com";
+
+/**
+ * Per-case-study JSON-LD. Models the project as a CreativeWork and references the
+ * canonical NDM Organization (#organization) and founder Person (#person) by @id —
+ * never redefining them (see CLAUDE.md "una entidad, un solo lugar"). The client's
+ * live URL is emitted as `sameAs` for cross-source verification. Client geo lives on
+ * the `about` Organization only when `clientLocation` is set (omitted for white-label).
+ */
+function projectJsonLd(project: Project, lang: Locale) {
+  const isEn = lang === "en";
+  const pageUrl = `${BASE_URL}${isEn ? "" : "/es"}/work/${project.id}`;
+
+  const about: Record<string, unknown> = {
+    "@type": "Organization",
+    name: project.name,
+    url: project.url,
+  };
+  if (project.clientLocation) {
+    const loc = project.clientLocation;
+    about.address = {
+      "@type": "PostalAddress",
+      addressLocality: loc.city,
+      ...(loc.region ? { addressRegion: loc.region } : {}),
+      addressCountry: loc.country,
+    };
+    if (loc.areaServed) {
+      about.areaServed = { "@type": "Place", name: loc.areaServed };
+    }
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "@id": `${pageUrl}#project`,
+        name: project.name,
+        description: localize(project.tagline, lang),
+        url: project.url,
+        sameAs: [project.url],
+        image: `${BASE_URL}${project.heroImage ?? project.image}`,
+        datePublished: project.year,
+        inLanguage: lang,
+        keywords: project.services.map((s) => localize(s, lang)),
+        creator: { "@id": `${BASE_URL}/#organization` },
+        provider: { "@id": `${BASE_URL}/#organization` },
+        author: { "@id": `${BASE_URL}/#person` },
+        about,
+      },
+    ],
+  };
+}
 
 type Params = { lang: Locale; id: string };
 type Props = { params: Promise<Params> };
@@ -56,6 +110,10 @@ export default async function ProjectDetail({ params }: Props) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd(project, lang)) }}
+      />
       <Breadcrumbs
         lang={lang}
         items={[

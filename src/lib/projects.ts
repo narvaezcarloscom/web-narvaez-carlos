@@ -18,6 +18,21 @@ export type Project = {
   editorialHeadline?: LocaleText;
   pullQuote?: LocaleText;
   solutionPoints?: LocaleText[];
+  /**
+   * Public client location for the case study's `about` Organization geo in JSON-LD.
+   * OMIT for white-label / confidential projects (e.g. SIRCON) — exposing a country
+   * would break the white-label positioning. Only populate when the geo is already
+   * public in the project copy.
+   */
+  clientLocation?: {
+    city: string;
+    /** State/region, when public (e.g. "WA"). */
+    region?: string;
+    /** ISO 3166-1 alpha-2 code or country name (e.g. "CL", "US"). */
+    country: string;
+    /** Optional broader service area (e.g. "Chile", "King County"). */
+    areaServed?: string;
+  };
 };
 
 export const projects: Project[] = [
@@ -42,6 +57,7 @@ export const projects: Project[] = [
     url: "https://anglestonellc.com",
     image: "/work/angle-stone.jpg",
     heroImage: "/work/angle-stone-hero.webp",
+    clientLocation: { city: "Seattle", region: "WA", country: "US", areaServed: "King County" },
     editorialHeadline: {
       en: "Craft that deserved a stage.",
       es: "Un oficio que merecía un escenario.",
@@ -119,6 +135,7 @@ export const projects: Project[] = [
     url: "https://avantegroup.cl",
     image: "/work/avante-group.jpg",
     heroImage: "/work/avante-group-hero.webp",
+    clientLocation: { city: "Santiago", country: "CL", areaServed: "Chile" },
     editorialHeadline: {
       en: "A brand returned to its own idea.",
       es: "Una marca devuelta a su propia idea.",

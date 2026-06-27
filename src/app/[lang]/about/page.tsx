@@ -35,19 +35,12 @@ function aboutJsonLd(isEn: boolean) {
     "@type": "AboutPage",
     mainEntity: {
       "@type": "Person",
+      "@id": BASE_URL + "/#person",
       name: "Carlos A Narvaez Urbina",
       jobTitle: "Founder & Creative Director",
       url: BASE_URL + "/about",
-      worksFor: {
-        "@type": "Organization",
-        name: "Narvaez Digital Marketing",
-        url: BASE_URL,
-        foundingDate: "2022",
-        foundingLocation: {
-          "@type": "Place",
-          name: "Seattle, Washington",
-        },
-      },
+      // Reference only — the Organization is defined canonically in the global layout.
+      worksFor: { "@id": BASE_URL + "/#organization" },
       knowsLanguage: ["en", "es"],
       nationality: { "@type": "Country", name: "Venezuela" },
       workLocation: {
