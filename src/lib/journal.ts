@@ -23,6 +23,8 @@ export type Article = {
   spotifyEpisodeId?: string;
   /** Suppresses the site sales CTA for depth pieces where a funnel is tonally wrong. */
   hideCta?: boolean;
+  /** Optional cross-link to the IG carousel that shares this thesis (the "show" to this "tell"). */
+  instagramUrl?: string;
   body: BodyBlock[];
 };
 
@@ -40,6 +42,7 @@ export const articles: Article[] = [
     date: "2026-06-28",
     readTime: { en: "7 min read", es: "7 min de lectura" },
     hideCta: true,
+    instagramUrl: "https://www.instagram.com/p/DZyHYpekpp-/",
     body: [
       {
         heading: null,
