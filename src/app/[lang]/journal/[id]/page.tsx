@@ -104,6 +104,12 @@ export default async function ArticleDetail({ params }: Props) {
       : "¿Tienes un proyecto que pida este tipo de criterio?",
     ctaButton: isEn ? "Start a conversation" : "Hablemos",
     nextArticle: isEn ? "Next article" : "Siguiente artículo",
+    alsoOnInstagram: isEn
+      ? "Also explored on Instagram"
+      : "También conversado en Instagram",
+    viewCarousel: isEn
+      ? "View the visual carousel (June 2026)"
+      : "Ver el carrusel visual (junio 2026)",
   };
 
   return (
@@ -215,6 +221,23 @@ export default async function ArticleDetail({ params }: Props) {
                   >
                     {labels.ctaButton}
                   </Link>
+                </div>
+              )}
+
+              {/* Cross-link to the IG carousel — the visual "show" to this "tell" */}
+              {article.instagramUrl && (
+                <div className="mt-16 md:mt-20 pt-12 border-t border-neutral-light">
+                  <p className="text-xs uppercase tracking-widest text-graphite/50 mb-3">
+                    {labels.alsoOnInstagram}
+                  </p>
+                  <a
+                    href={article.instagramUrl}
+                    target="_blank"
+                    rel="external noopener"
+                    className="link-underline text-charcoal hover:text-narvaez-red transition-colors"
+                  >
+                    {labels.viewCarousel}
+                  </a>
                 </div>
               )}
             </div>
