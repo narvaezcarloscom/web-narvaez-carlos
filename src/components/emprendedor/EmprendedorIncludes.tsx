@@ -70,12 +70,12 @@ export default function EmprendedorIncludes() {
             Un sitio profesional, hecho para <em>crecer contigo.</em>
           </h2>
           <p className="text-base md:text-lg text-graphite leading-relaxed">
-            Es un producto del estudio, construido con los mismos estándares con
-            los que servimos a empresas. Conversamos, entendemos tu momento y
-            hacemos un sitio{" "}
+            Es un producto del estudio: adaptamos{" "}
             <strong className="font-semibold text-charcoal italic">
-              a tu medida y a tu alcance.
-            </strong>
+              los mismos estándares con los que servimos a empresas
+            </strong>{" "}
+            en una solución para que tu emprendimiento tenga presencia digital,
+            con espacio para crecer.
           </p>
         </div>
 
