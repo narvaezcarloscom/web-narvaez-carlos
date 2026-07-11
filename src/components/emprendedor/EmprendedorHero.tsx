@@ -25,8 +25,8 @@ export default function EmprendedorHero() {
             <p className="text-sm sm:text-base md:text-lg text-graphite leading-relaxed max-w-md">
               Somos un estudio digital boutique. Diseñamos sitios web con{" "}
               <strong className="font-semibold text-charcoal">estándar de empresa</strong>{" "}
-              — y creamos un programa para que el emprendedor latino entre al mercado
-              de Washington con percepción de calidad desde el primer día.
+              — y creamos un programa para que el emprendedor latino en Estados
+              Unidos entre al mercado con percepción de calidad desde el primer día.
             </p>
           </div>
         </div>
