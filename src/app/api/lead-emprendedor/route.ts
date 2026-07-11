@@ -141,6 +141,15 @@ export async function POST(request: NextRequest) {
   const safeEmail = sanitize(email);
   const safeBusiness = sanitize(businessDescription);
   const safeOperating = isOperating === "yes" ? "Sí, ya tiene clientes" : isOperating === "no" ? "Todavía no, está arrancando" : "—";
+  // Internal-only product suggestion for Candy — derived from is_operating.
+  // NEVER shown to the lead (not on the page, /gracias, or WhatsApp). Only
+  // appears in this internal email. A hint for the sales conversation, not a quote.
+  const productSuggestion =
+    isOperating === "no"
+      ? "Landing de arranque ($600)"
+      : isOperating === "yes"
+      ? "Landing intermedio ($800)"
+      : "Sin sugerencia (no respondió)";
   const safeUtmSource = sanitize(utm_source || "—");
   const safeUtmMedium = sanitize(utm_medium || "—");
   const safeUtmCampaign = sanitize(utm_campaign || "—");
@@ -178,6 +187,10 @@ export async function POST(request: NextRequest) {
             <tr>
               <td style="padding: 12px 0; border-bottom: 1px solid #EDEDED; color: #666;">Operando</td>
               <td style="padding: 12px 0; border-bottom: 1px solid #EDEDED; color: #212121;">${safeOperating}</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 0; border-bottom: 1px solid #EDEDED; color: #666;">Producto sugerido (propuesta)</td>
+              <td style="padding: 12px 0; border-bottom: 1px solid #EDEDED; color: #212121;">${productSuggestion}</td>
             </tr>
           </table>
           <div style="margin-top: 24px; padding: 20px; background: #F8F9F5;">
