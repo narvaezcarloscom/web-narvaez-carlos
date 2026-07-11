@@ -35,7 +35,7 @@ const base = [
 const options = [
   {
     name: "Arranque",
-    forWho: "Para quien está dando el primer paso y quiere estar en línea con dignidad, sin complicarse.",
+    forWho: "Para quien está dando el primer paso y quiere estar en línea, sin complicarse.",
     scope: [
       "Diseño del estudio, brandeado con tu identidad.",
       "Estructura editorial lista para colocar tu historia.",
@@ -70,10 +70,9 @@ export default function EmprendedorIncludes() {
             Un sitio profesional, hecho para <em>crecer contigo.</em>
           </h2>
           <p className="text-base md:text-lg text-graphite leading-relaxed">
-            No es una plantilla genérica ni un favor. Es un producto del estudio,
-            construido con los mismos estándares con los que servimos a empresas.
-            No eliges de un menú: conversamos, entendemos tu momento y te
-            recomendamos{" "}
+            Es un producto del estudio, construido con los mismos estándares con
+            los que servimos a empresas. No eliges de un menú: conversamos,
+            entendemos tu momento y te recomendamos{" "}
             <strong className="font-semibold text-charcoal italic">
               la forma de empezar que te corresponde.
             </strong>
