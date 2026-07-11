@@ -71,10 +71,10 @@ export default function EmprendedorIncludes() {
           </h2>
           <p className="text-base md:text-lg text-graphite leading-relaxed">
             Es un producto del estudio, construido con los mismos estándares con
-            los que servimos a empresas. No eliges de un menú: conversamos,
-            entendemos tu momento y te recomendamos{" "}
+            los que servimos a empresas. Conversamos, entendemos tu momento y
+            hacemos un sitio{" "}
             <strong className="font-semibold text-charcoal italic">
-              la forma de empezar que te corresponde.
+              a tu medida y a tu alcance.
             </strong>
           </p>
         </div>
