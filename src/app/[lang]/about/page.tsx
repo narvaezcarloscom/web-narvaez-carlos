@@ -39,8 +39,19 @@ function aboutJsonLd(isEn: boolean) {
       name: "Carlos A Narvaez Urbina",
       jobTitle: "Founder & Creative Director",
       url: BASE_URL + "/about",
+      description: isEn
+        ? "Venezuelan-born founder and creative director of Narvaez Digital Marketing, a bilingual boutique studio in Seattle designing brands, websites, and custom platforms for businesses across the Americas."
+        : "Fundador y director creativo venezolano de Narvaez Digital Marketing, un estudio boutique bilingüe en Seattle que diseña marcas, sitios web y plataformas a medida para negocios en las Américas.",
       // Reference only — the Organization is defined canonically in the global layout.
       worksFor: { "@id": BASE_URL + "/#organization" },
+      knowsAbout: [
+        "Bilingual brand and marketing systems for US and Latin American markets",
+        "Editorial brand identity design",
+        "Cross-cultural creative direction (English and Spanish)",
+        "Boutique digital studio operations and productization",
+        "Custom multi-tenant web platforms",
+        "Technical SEO and AI-search (GEO/AEO) readiness",
+      ],
       knowsLanguage: ["en", "es"],
       nationality: { "@type": "Country", name: "Venezuela" },
       workLocation: {
