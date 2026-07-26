@@ -37,8 +37,17 @@ export default function Navbar({
   ];
 
   const switchLang = lang === "en" ? "es" : "en";
+  // usePathname() reports the *internal* path under a middleware rewrite, so on
+  // an English page it returns "/en/about" even though the browser address bar
+  // shows "/about" (see src/middleware.ts). Prefixing that directly produced
+  // nested locales like /es/en/about, which 404s. Strip whichever locale
+  // segment is present, then build the target once from the bare path.
+  //
+  // The lookahead matters: a bare /^\/es/ would also eat the prefix of a real
+  // path such as /estudio.
+  const barePath = pathname.replace(/^\/(en|es)(?=\/|$)/, "") || "/";
   const switchHref =
-    lang === "en" ? `/es${pathname}` : pathname.replace(/^\/es/, "") || "/";
+    switchLang === "en" ? barePath : barePath === "/" ? "/es" : `/es${barePath}`;
 
   return (
     <>
