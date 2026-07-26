@@ -52,9 +52,10 @@ function aboutJsonLd(isEn: boolean) {
           addressCountry: "US",
         },
       },
+      // Same exact-match rule as the Organization's sameAs in [lang]/layout.tsx.
       sameAs: [
-        "https://www.linkedin.com/in/narvaezcarloscom/",
-        "https://www.instagram.com/narvaezcarloscom/",
+        "https://www.linkedin.com/in/narvaezcarloscom",
+        "https://www.instagram.com/narvaezcarloscom",
         "https://github.com/narvaezcarloscom",
       ],
     },
