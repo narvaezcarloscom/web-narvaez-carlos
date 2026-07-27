@@ -94,12 +94,28 @@ const organizationJsonLd = {
   },
   telephone: "+1-206-981-7078",
   email: "hello@narvaezcarlos.com",
+  // No `legalName` on purpose. WA DOR lists the registered entity as the person
+  // — "NARVAEZ URBINA, CARLOS A", entity type Sole Proprietor — and "Narvaez
+  // Digital Marketing" as a registered *trade name* on top of it. There is no
+  // registered company by that name, so claiming it as the legal name would
+  // assert an entity that does not exist. The founder link below carries the
+  // real one.
   // Strong entity identifiers, expressed as PropertyValue rather than free text
   // so a parser can tell which registry each number belongs to. NDM is a sole
   // proprietorship — the business and the founder are the same legal person — so
   // these identify the business as registered and stay on the Organization.
+  //
+  // Each value is written the way its issuing registry publishes it: D&B states
+  // a D-U-N-S as nine digits, WA DOR prints the UBI hyphenated. The point is to
+  // match the authoritative record, not to impose one house format.
   identifier: [
     { "@type": "PropertyValue", propertyID: "DUNS", value: "145070952" },
+    {
+      "@type": "PropertyValue",
+      propertyID: "UBI",
+      name: "Washington State Unified Business Identifier",
+      value: "606-080-258",
+    },
   ],
   address: {
     "@type": "PostalAddress",
