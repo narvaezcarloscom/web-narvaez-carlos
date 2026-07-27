@@ -108,6 +108,15 @@ const jsonLd = {
     { "@type": "Country", name: "Chile" },
   ],
   knowsLanguage: ["en", "es"],
+  slogan: "Designing with intention — from brand to platform.",
+  knowsAbout: [
+    "Bilingual brand and marketing systems for US and Latin American markets",
+    "Brand identity design",
+    "Web design and development",
+    "Custom multi-tenant web platforms",
+    "Digital advertising",
+    "Technical SEO and AI-search (GEO/AEO) readiness",
+  ],
   priceRange: "$$",
   hasOfferCatalog: {
     "@type": "OfferCatalog",
