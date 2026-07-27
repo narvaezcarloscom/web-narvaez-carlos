@@ -68,8 +68,11 @@ export async function generateMetadata({
   };
 }
 
-const jsonLd = {
-  "@context": "https://schema.org",
+// Site-wide entity graph. The Organization and the WebSite are the two nodes
+// that exist on every page, each with a stable absolute @id that other pages
+// reference instead of redefining — same pattern documented in trust/page.tsx.
+// The canonical Person lives on /about as #person.
+const organizationJsonLd = {
   "@type": ["ProfessionalService", "MarketingAgency"],
   "@id": `${BASE_URL}/#organization`,
   name: "Narvaez Digital Marketing",
@@ -91,6 +94,13 @@ const jsonLd = {
   },
   telephone: "+1-206-981-7078",
   email: "hello@narvaezcarlos.com",
+  // Strong entity identifiers, expressed as PropertyValue rather than free text
+  // so a parser can tell which registry each number belongs to. NDM is a sole
+  // proprietorship — the business and the founder are the same legal person — so
+  // these identify the business as registered and stay on the Organization.
+  identifier: [
+    { "@type": "PropertyValue", propertyID: "DUNS", value: "145070952" },
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "1431 Jefferson Ave NE",
@@ -128,12 +138,15 @@ const jsonLd = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Content & Social Media" } },
     ],
   },
+  // Canonical profile URLs, no trailing slashes and no locale subdomains: this
+  // array is an entity claim ("these accounts are the same NDM"), and an exact
+  // string match is what makes it resolvable. There are homonyms in this name.
   sameAs: [
-    "https://www.facebook.com/narvaezcarloscom/",
-    "https://www.instagram.com/narvaezcarloscom/",
-    "https://youtube.com/@narvaezcarloscom",
+    "https://www.facebook.com/narvaezcarloscom",
+    "https://www.instagram.com/narvaezcarloscom",
+    "https://www.youtube.com/@narvaezcarloscom",
     "https://github.com/narvaezcarloscom",
-    "https://www.linkedin.com/in/narvaezcarloscom/",
+    "https://www.linkedin.com/in/narvaezcarloscom",
     "https://maps.google.com/?cid=11170561863089871042",
   ],
   aggregateRating: {
@@ -142,6 +155,24 @@ const jsonLd = {
     reviewCount: "23",
     bestRating: "5",
   },
+};
+
+// trust/page.tsx already declared `isPartOf: { "@id": ".../#website" }`, but no
+// WebSite node existed anywhere — a dangling reference. This defines it once,
+// site-wide. No potentialAction/SearchAction: the site has no search, and
+// declaring one that does not exist is a claim we cannot honor.
+const websiteJsonLd = {
+  "@type": "WebSite",
+  "@id": `${BASE_URL}/#website`,
+  url: BASE_URL,
+  name: "Narvaez Digital Marketing",
+  inLanguage: ["en", "es"],
+  publisher: { "@id": `${BASE_URL}/#organization` },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [organizationJsonLd, websiteJsonLd],
 };
 
 export default async function LangLayout({
