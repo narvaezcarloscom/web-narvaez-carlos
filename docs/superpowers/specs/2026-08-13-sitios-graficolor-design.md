@@ -98,7 +98,7 @@ export type ShowcaseSite = {
 };
 ```
 
-**Por qué no se reutiliza `projects.ts`:** solo 2 de los 11 sitios están ahí
+**Por qué no se reutiliza `projects.ts`:** solo 2 de los 12 sitios están ahí
 (Angle Stone y Latinus), y ese archivo carga campos de case study — `challenge`,
 `solution`, `results`, `pullQuote`, `clientLocation` para JSON-LD — que aquí no
 tienen uso. Meterlos ahí obligaría a llenar campos vacíos o a hacer los
@@ -109,7 +109,7 @@ es exactamente lo contrario de lo que esta página necesita.
 Los textos van en `string` plano, no `LocaleText`. La página es monolingüe y el
 tipo bilingüe solo agregaría ruido.
 
-**Los 11 sitios**, en el orden en que se renderizan. Rubro y ciudad verificados
+**Los 12 sitios**, en el orden en que se renderizan. Rubro y ciudad verificados
 en cada sitio el 2026-08-13, no inferidos del dominio.
 
 | # | id | Rubro | Dónde |
@@ -122,9 +122,10 @@ en cada sitio el 2026-08-13, no inferidos del dominio.
 | 6 | `esm-construction` | Construcción y remodelación | Seattle, WA |
 | 7 | `bardales-roofing` | Techos | Seattle, WA |
 | 8 | `shark-bite-ceviches` | Ceviches y mariscos | Seattle, WA |
-| 9 | `spm-services` | Concreto comercial e industrial | Oklahoma |
-| 10 | `191-construction` | Concreto industrial | Houston, TX |
-| 11 | `latinus-foods` | Comida venezolana | Utah |
+| 9 | `darios-renovation` | Remodelación residencial y comercial | Burien, WA |
+| 10 | `spm-services` | Concreto comercial e industrial | Oklahoma |
+| 11 | `191-construction` | Concreto industrial | Houston, TX |
+| 12 | `latinus-foods` | Comida venezolana | Utah |
 
 **El orden es una decisión, no el resultado de una lista.** Las primeras cuatro
 tarjetas son lo único que ve alguien en un celular antes de hacer scroll, y
@@ -140,24 +141,28 @@ misma información contando una historia distinta según el orden.
 Angle Stone va tercero y no último por una razón de conjunto: es el más
 atractivo del grupo y levanta la percepción de todo lo que lo rodea.
 
-**Segundo criterio, subordinado al primero: variedad visual.** Al sumar tres
-sitios más (2026-08-13) el bloque local pasó a tener cuatro negocios que techan
-—Big House, All Mighty, Bardales, y ESM remodela— y sus fotos se parecen entre
-sí: tejado gris, cielo, operario con arnés. Cuatro seguidos harían que la
-grilla se lea como una sola imagen repetida.
+**Segundo criterio, subordinado al primero: variedad visual.** Al crecer el
+bloque local aparecieron dos familias de foto que se repiten y que, juntas,
+hacen que la grilla se lea como una sola imagen duplicada:
 
-Van separados a propósito en las posiciones 1, 4 y 7. En móvil las tarjetas se
-ven de dos en dos, así que ninguna fila muestra dos tejados juntos: techo +
-madera, jardín + cielo, casas + interior, techo + comida.
+- **Techos** (`big-house`, `all-mighty`, `bardales`): tejado gris, cielo,
+  operario con arnés. Posiciones 1, 4 y 7.
+- **Interiores** (`esm`, `darios`): cuarto terminado, luz plana. Posiciones 6
+  y 9.
+
+**Lo que se cumple, verificado a 375 / 800 / 1440 px: dos fotos de la misma
+familia nunca quedan contiguas.** Que no es lo mismo que "nunca en la misma
+fila" — a 4 columnas la primera fila lleva `big-house` y `all-mighty` con dos
+tarjetas de por medio. Eso se acepta: lo que canta es el par pegado, no la
+coincidencia de fila, y además esas dos fotos son muy distintas entre sí
+(tejado oscuro al atardecer contra cielo azul de mediodía).
 
 Al agregar un sitio nuevo, aplicar los dos criterios en ese orden: primero
 cercanía, después contraste de imagen.
 
-**Nota de conteo:** con 11 sitios la última fila queda con una tarjeta huérfana
-en todos los breakpoints (11 = 4+4+3 en desktop, 5 pares + 1 en móvil). No es
-un defecto —las grillas web se ven así todo el tiempo— pero un doceavo sitio
-haría que 2, 3 y 4 columnas cierren exactas. No se inventa uno para cuadrar la
-grilla; se anota por si aparece uno que valga por sí mismo.
+**Nota de conteo:** 12 cierra exacto en 2, 3 y 4 columnas (6×2, 4×3, 3×4). No
+queda tarjeta huérfana en ningún ancho. El sitio 13 vuelve a dejarlas — no es
+razón para rechazar uno bueno, pero sí para saber lo que se paga.
 
 ### 3.4 Layout autónomo — `src/app/sitios/layout.tsx`
 
@@ -251,7 +256,7 @@ así que el logo y la navegación siguen en cuadro.
 
 **Destino:** `/public/sitios/<id>.webp`
 
-**Formato:** captura PNG → `cwebp -q 78`. Las once pesan ~820 KB juntas. Vercel
+**Formato:** captura PNG → `cwebp -q 78`. Las doce pesan ~865 KB juntas. Vercel
 Image Optimization sirve WebP/AVIF en tiempo de respuesta de todos modos, así
 que el formato fuente importa poco; el WebP en repo es para no cargar 8 MB de
 PNG al git.
@@ -262,7 +267,7 @@ above-the-fold entre rápido con datos móviles; las otras 4 con carga diferida.
 
 **Punto de control:** después de capturar, se presentan juntas para
 curaduría antes de armar la página. Un sitio que no represente bien el trabajo
-sale. *Resultado del 2026-08-13: los 11 entran, ninguno se descartó.*
+sale. *Resultado del 2026-08-13: los 12 entran, ninguno se descartó.*
 
 ## 5. Medición
 
@@ -290,7 +295,7 @@ Corrida contra `npm start` (build de producción) el 2026-08-13:
 |---|---|---|
 | 1 | `npm run build` sin errores ni warnings nuevos | ✅ `/sitios` prerenderizada estática |
 | 2 | `npm run lint` | ✅ 0 errores (2 warnings preexistentes en `Hero.tsx` y `ParallaxImage.tsx`, ajenos a este trabajo) |
-| 3 | Los nombres, rubros y ciudades en el HTML sin ejecutar JS | ✅ los 11 |
+| 3 | Los nombres, rubros y ciudades en el HTML sin ejecutar JS | ✅ los 12 |
 | 4 | `<meta name="robots" content="noindex, nofollow">` | ✅ presente |
 | 5 | `/robots.txt` lista `/sitios` en `Disallow` | ✅ en las 2 reglas que enumeran rutas (la tercera, la de bots de entrenamiento, es `Disallow: /` y no enumera) |
 | 6 | `/sitemap.xml` **no** contiene `/sitios` | ✅ 0 coincidencias |

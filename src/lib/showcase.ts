@@ -26,13 +26,23 @@
  *      Puestos despues de los locales, los de fuera del estado dejan de leerse
  *      como "no son de aqui" y pasan a leerse como alcance.
  *
- *   2. VARIEDAD VISUAL dentro del bloque local. Hay cuatro negocios de techos
- *      (big-house, all-mighty, bardales, y big-house tambien techa), y sus
- *      fotos se parecen entre si. Quedan separados a proposito --posiciones 1,
- *      4 y 7-- para que ninguna fila de la grilla muestre dos tejados juntos.
- *      En movil se ven de dos en dos: cada par contrasta.
+ *   2. VARIEDAD VISUAL dentro del bloque local. Dos familias de foto se
+ *      repiten y hay que mantenerlas separadas:
  *
- * Al agregar un sitio nuevo, respeta los dos criterios en ese orden.
+ *        - TECHOS (big-house, all-mighty, bardales): tejado gris, cielo,
+ *          operario con arnes. Van en las posiciones 1, 4 y 7.
+ *        - INTERIORES (esm, darios): cuarto terminado, luz plana. Van en las
+ *          posiciones 6 y 9.
+ *
+ *      Lo que se cumple, verificado a 375 / 800 / 1440: DOS FOTOS DE LA MISMA
+ *      FAMILIA NUNCA QUEDAN CONTIGUAS. Que no es lo mismo que "nunca en la
+ *      misma fila": a 4 columnas la primera fila lleva big-house y all-mighty,
+ *      con dos tarjetas de por medio. Eso pasa --lo que canta es el par
+ *      pegado, no la coincidencia de fila-- y ademas esas dos fotos son muy
+ *      distintas entre si (tejado oscuro al atardecer contra cielo azul).
+ *
+ * Al agregar un sitio nuevo, respeta los dos criterios en ese orden. Y ojo con
+ * el conteo: 12 cierra exacto en 2, 3 y 4 columnas. El 13 deja huerfanas.
  */
 export type ShowcaseSite = {
   /** Slug estable. Es el nombre del archivo de imagen y el valor del evento. */
@@ -113,6 +123,14 @@ export const showcaseSites: ShowcaseSite[] = [
     industry: "Ceviches y mariscos",
     location: "Seattle, WA",
     image: "/sitios/shark-bite-ceviches.webp",
+  },
+  {
+    id: "darios-renovation",
+    name: "Dario's Renovation",
+    url: "https://dariosrenovation.com/",
+    industry: "Remodelación residencial y comercial",
+    location: "Burien, WA",
+    image: "/sitios/darios-renovation.webp",
   },
   {
     id: "spm-services",
