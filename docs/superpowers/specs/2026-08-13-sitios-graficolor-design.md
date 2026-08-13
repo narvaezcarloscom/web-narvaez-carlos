@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-08-13
 **Ruta:** `/sitios`
-**Estado:** diseño aprobado, pendiente de plan de implementación
+**Estado:** en producción desde 2026-08-13 — https://narvaezcarlos.com/sitios
 
 ---
 
@@ -29,8 +29,8 @@ Cada una se decidió explícitamente antes de escribir este documento.
 | Marca | **Neutral, sin marca visible** | Marca blanca en el sentido operativo: nada en la página debe estorbarle a Javier para cerrar con el cliente. Ni isotipo NDM, ni logo Graficolor, ni firma. |
 | Dominio | **`narvaezcarlos.com/sitios`** | No se compra dominio nuevo. La URL menciona un nombre que al cliente no le dice nada; el costo y la infraestructura de un dominio neutro no se justifican para un piloto de un solo punto de venta. |
 | Acuerdo comercial | **Referido** | Javier presenta, el cliente dice que sí, Javier conecta. El estudio cierra y factura. No es reventa, así que no hace falta contrato de subcontratación para lanzar esto. |
-| Estructura | **Grilla editorial** | 8 tarjetas escaneables de un vistazo. Descartada la lista vertical grande: 8 scrolls largos no los completa alguien parado en un mostrador. |
-| Curaduría | **Se decide viendo las capturas** | Se capturan los 8, Carlos revisa juntos, saca los que no representen bien el trabajo antes de armar la página. |
+| Estructura | **Grilla editorial** | Tarjetas escaneables de un vistazo. Descartada la lista vertical grande: once scrolls largos no los completa alguien parado en un mostrador. |
+| Curaduría | **Se decide viendo las capturas** | Se capturan todos, Carlos los revisa juntos, saca los que no representen bien el trabajo antes de armar la página. |
 | Idioma | **Español únicamente** | El público de Graficolor es hispanohablante. Español neutral LATAM. |
 
 ### Riesgo aceptado explícitamente
@@ -75,7 +75,7 @@ Los cuatro, no uno. Cada uno cubre un vector distinto:
    una vez.
 3. **Exclusión del `matcher`** en `src/middleware.ts` — sin esto, el middleware
    reescribe `/sitios` a `/en/sitios` y la ruta rompe. El matcher ya
-   excluye `emprendedor`; se agrega `portafolio` al mismo grupo.
+   excluye `emprendedor`; se agrega `sitios` al mismo grupo.
 4. **Ausencia del `sitemap.ts`** — el sitemap enumera rutas explícitamente, no
    las descubre. Basta con no agregarla. Se documenta aquí para que nadie la
    agregue "por completitud" en el futuro.
@@ -98,10 +98,10 @@ export type ShowcaseSite = {
 };
 ```
 
-**Por qué no se reutiliza `projects.ts`:** solo 2 de los 8 sitios están ahí
+**Por qué no se reutiliza `projects.ts`:** solo 2 de los 11 sitios están ahí
 (Angle Stone y Latinus), y ese archivo carga campos de case study — `challenge`,
 `solution`, `results`, `pullQuote`, `clientLocation` para JSON-LD — que aquí no
-tienen uso. Meter estos 8 ahí obligaría a llenar campos vacíos o a hacer los
+tienen uso. Meterlos ahí obligaría a llenar campos vacíos o a hacer los
 existentes opcionales, degradando un tipo que hoy es estricto. Además `projects.ts`
 alimenta el sitemap público: cualquier entrada nueva ahí aparecería indexada, que
 es exactamente lo contrario de lo que esta página necesita.
@@ -109,7 +109,7 @@ es exactamente lo contrario de lo que esta página necesita.
 Los textos van en `string` plano, no `LocaleText`. La página es monolingüe y el
 tipo bilingüe solo agregaría ruido.
 
-**Los 8 sitios**, en el orden en que se renderizan. Rubro y ciudad verificados
+**Los 11 sitios**, en el orden en que se renderizan. Rubro y ciudad verificados
 en cada sitio el 2026-08-13, no inferidos del dominio.
 
 | # | id | Rubro | Dónde |
@@ -117,11 +117,14 @@ en cada sitio el 2026-08-13, no inferidos del dominio.
 | 1 | `big-house-gc` | Pintura, techos y siding | Renton, WA |
 | 2 | `north-beam-framing` | Enmarcado de madera | Seattle, WA |
 | 3 | `angle-stone` | Paisajismo y mampostería | Federal Way, WA |
-| 4 | `ceja-paint` | Pintura residencial | Seattle, WA |
-| 5 | `shark-bite-ceviches` | Ceviches y mariscos | Seattle, WA |
-| 6 | `spm-services` | Concreto comercial e industrial | Oklahoma |
-| 7 | `191-construction` | Concreto industrial | Houston, TX |
-| 8 | `latinus-foods` | Comida venezolana | Utah |
+| 4 | `all-mighty-roofing` | Techos | Seattle, WA |
+| 5 | `ceja-paint` | Pintura residencial | Seattle, WA |
+| 6 | `esm-construction` | Construcción y remodelación | Seattle, WA |
+| 7 | `bardales-roofing` | Techos | Seattle, WA |
+| 8 | `shark-bite-ceviches` | Ceviches y mariscos | Seattle, WA |
+| 9 | `spm-services` | Concreto comercial e industrial | Oklahoma |
+| 10 | `191-construction` | Concreto industrial | Houston, TX |
+| 11 | `latinus-foods` | Comida venezolana | Utah |
 
 **El orden es una decisión, no el resultado de una lista.** Las primeras cuatro
 tarjetas son lo único que ve alguien en un celular antes de hacer scroll, y
@@ -135,7 +138,26 @@ dejan de leerse como "no son de aquí" y pasan a leerse como alcance. Es la
 misma información contando una historia distinta según el orden.
 
 Angle Stone va tercero y no último por una razón de conjunto: es el más
-atractivo de los ocho y levanta la percepción de todo lo que lo rodea.
+atractivo del grupo y levanta la percepción de todo lo que lo rodea.
+
+**Segundo criterio, subordinado al primero: variedad visual.** Al sumar tres
+sitios más (2026-08-13) el bloque local pasó a tener cuatro negocios que techan
+—Big House, All Mighty, Bardales, y ESM remodela— y sus fotos se parecen entre
+sí: tejado gris, cielo, operario con arnés. Cuatro seguidos harían que la
+grilla se lea como una sola imagen repetida.
+
+Van separados a propósito en las posiciones 1, 4 y 7. En móvil las tarjetas se
+ven de dos en dos, así que ninguna fila muestra dos tejados juntos: techo +
+madera, jardín + cielo, casas + interior, techo + comida.
+
+Al agregar un sitio nuevo, aplicar los dos criterios en ese orden: primero
+cercanía, después contraste de imagen.
+
+**Nota de conteo:** con 11 sitios la última fila queda con una tarjeta huérfana
+en todos los breakpoints (11 = 4+4+3 en desktop, 5 pares + 1 en móvil). No es
+un defecto —las grillas web se ven así todo el tiempo— pero un doceavo sitio
+haría que 2, 3 y 4 columnas cierren exactas. No se inventa uno para cuadrar la
+grilla; se anota por si aparece uno que valga por sí mismo.
 
 ### 3.4 Layout autónomo — `src/app/sitios/layout.tsx`
 
@@ -212,14 +234,14 @@ El `<title>` de la pestaña es el mismo encabezado, sin sufijo de estudio.
 ## 4. Imágenes
 
 **Captura:** Playwright, viewport 1440×900, above-the-fold, mismo encuadre para
-las 8. Encuadre consistente es lo que hace que la grilla se lea como un sistema
-y no como ocho capturas sueltas.
+todas. Encuadre consistente es lo que hace que la grilla se lea como un sistema
+y no como un montón de capturas sueltas.
 
 **Recorte a 16:9 (1440×810).** A 900px de alto casi todos los sitios dejaban
 asomar una franja de la sección siguiente: una barra a medio cortar en 191
 Construction, una fila de iconos en Ceja Paint, el titular del bloque de abajo
 en Shark Bite. Cada una parecía un defecto distinto; el problema era uno solo.
-Recortar los 810px de arriba corta el hero justo donde termina, en los ocho.
+Recortar los 810px de arriba corta el hero justo donde termina.
 **Toda captura nueva va a 1440×810.**
 
 Excepción registrada: SPM Services se captura con `scrollTo(0, 250)`. Su tarjeta
@@ -229,7 +251,7 @@ así que el logo y la navegación siguen en cuadro.
 
 **Destino:** `/public/sitios/<id>.webp`
 
-**Formato:** captura PNG → `cwebp -q 78`. Las ocho pesan ~580 KB juntas. Vercel
+**Formato:** captura PNG → `cwebp -q 78`. Las once pesan ~820 KB juntas. Vercel
 Image Optimization sirve WebP/AVIF en tiempo de respuesta de todos modos, así
 que el formato fuente importa poco; el WebP en repo es para no cargar 8 MB de
 PNG al git.
@@ -238,9 +260,9 @@ PNG al git.
 `sizes` responsive. Las primeras 4 tarjetas van con `priority` para que el
 above-the-fold entre rápido con datos móviles; las otras 4 con carga diferida.
 
-**Punto de control:** después de capturar las 8, se presentan juntas para
+**Punto de control:** después de capturar, se presentan juntas para
 curaduría antes de armar la página. Un sitio que no represente bien el trabajo
-sale. *Resultado del 2026-08-13: las 8 entran, ninguna se descartó.*
+sale. *Resultado del 2026-08-13: los 11 entran, ninguno se descartó.*
 
 ## 5. Medición
 
@@ -268,7 +290,7 @@ Corrida contra `npm start` (build de producción) el 2026-08-13:
 |---|---|---|
 | 1 | `npm run build` sin errores ni warnings nuevos | ✅ `/sitios` prerenderizada estática |
 | 2 | `npm run lint` | ✅ 0 errores (2 warnings preexistentes en `Hero.tsx` y `ParallaxImage.tsx`, ajenos a este trabajo) |
-| 3 | Los 8 nombres, rubros y ciudades en el HTML sin ejecutar JS | ✅ los 8 |
+| 3 | Los nombres, rubros y ciudades en el HTML sin ejecutar JS | ✅ los 11 |
 | 4 | `<meta name="robots" content="noindex, nofollow">` | ✅ presente |
 | 5 | `/robots.txt` lista `/sitios` en `Disallow` | ✅ en las 2 reglas que enumeran rutas (la tercera, la de bots de entrenamiento, es `Disallow: /` y no enumera) |
 | 6 | `/sitemap.xml` **no** contiene `/sitios` | ✅ 0 coincidencias |

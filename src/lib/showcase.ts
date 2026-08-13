@@ -17,11 +17,22 @@
  *
  * Los textos van en espanol plano, no `LocaleText`: la pagina es monolingue.
  *
- * ORDEN: importa y es deliberado. Las primeras cuatro tarjetas son lo unico
- * que ve alguien en un celular antes de hacer scroll, y el publico de este QR
- * esta parado en Renton. Primero el area de Seattle, despues el resto del pais.
- * Puestos en ese orden, los de fuera del estado dejan de leerse como "no son de
- * aqui" y pasan a leerse como alcance.
+ * ORDEN: importa y es deliberado. Responde a dos criterios, en este orden de
+ * prioridad:
+ *
+ *   1. CERCANIA. Primero el area de Seattle, despues el resto del pais. Las
+ *      primeras cuatro tarjetas son lo unico que ve alguien en un celular
+ *      antes de hacer scroll, y el publico de este QR esta parado en Renton.
+ *      Puestos despues de los locales, los de fuera del estado dejan de leerse
+ *      como "no son de aqui" y pasan a leerse como alcance.
+ *
+ *   2. VARIEDAD VISUAL dentro del bloque local. Hay cuatro negocios de techos
+ *      (big-house, all-mighty, bardales, y big-house tambien techa), y sus
+ *      fotos se parecen entre si. Quedan separados a proposito --posiciones 1,
+ *      4 y 7-- para que ninguna fila de la grilla muestre dos tejados juntos.
+ *      En movil se ven de dos en dos: cada par contrasta.
+ *
+ * Al agregar un sitio nuevo, respeta los dos criterios en ese orden.
  */
 export type ShowcaseSite = {
   /** Slug estable. Es el nombre del archivo de imagen y el valor del evento. */
@@ -64,12 +75,36 @@ export const showcaseSites: ShowcaseSite[] = [
     image: "/sitios/angle-stone.webp",
   },
   {
+    id: "all-mighty-roofing",
+    name: "All Mighty Roofing",
+    url: "https://allmightyroofingllc.com/",
+    industry: "Techos",
+    location: "Seattle, WA",
+    image: "/sitios/all-mighty-roofing.webp",
+  },
+  {
     id: "ceja-paint",
     name: "Ceja Paint",
     url: "https://cejapaint.com/",
     industry: "Pintura residencial",
     location: "Seattle, WA",
     image: "/sitios/ceja-paint.webp",
+  },
+  {
+    id: "esm-construction",
+    name: "ESM Construction & Remodeling",
+    url: "https://esmconstructionwa.com/",
+    industry: "Construcción y remodelación",
+    location: "Seattle, WA",
+    image: "/sitios/esm-construction.webp",
+  },
+  {
+    id: "bardales-roofing",
+    name: "Bardales Roofing",
+    url: "https://bardalesroofing.com/",
+    industry: "Techos",
+    location: "Seattle, WA",
+    image: "/sitios/bardales-roofing.webp",
   },
   {
     id: "shark-bite-ceviches",
