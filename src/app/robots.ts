@@ -29,6 +29,11 @@ const PRIVATE_PATHS = [
   // Landing del QR del mostrador de Graficolor. No es secreta, pero no aporta
   // nada al corpus: no lleva marca, no argumenta, solo muestra ocho sitios.
   "/sitios",
+  // Landing de captacion directa. Va por QR impreso y por ads; no se indexa
+  // para no canibalizar /services ni ensuciar el corpus con una pagina de
+  // precios de campana.
+  "/tu-negocio",
+  "/tu-negocio/gracias",
 ];
 
 /**
