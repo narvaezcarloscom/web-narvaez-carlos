@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-08-20
 **Ruta:** `/tu-negocio`
-**Estado:** diseño aprobado — sin construir
+**Estado:** construido y en revisión visual con Carlos (rama `feat/landing-tu-negocio`)
 **Rama:** `feat/landing-tu-negocio`
 **Fase:** 1 de 2. La hoja carta con QR es fase 2 y no se diseña aquí.
 
@@ -45,6 +45,7 @@ Cada una se decidió explícitamente con Carlos antes de escribir este documento
 | Ruta | **`/tu-negocio`** | Libre: no choca con ninguna de las 36 reglas heredadas de WordPress en `next.config.ts`. Se lee bien como URL de display en Google Ads y se puede teclear. Descartadas `/contratistas` (excluye house cleaning) y `/negocios` (genérica, no dice nada). |
 | Fotografía | **Cero stock, cero IA** | El PDF marca blanca usa contratistas generados. En una pieza de la marca del estudio eso contradice la tesis del estudio. La fotografía de esta página son los 12 sitios reales de clientes. |
 | Idioma | **Español únicamente** | El flyer va en tiendas latinas. Español neutral LATAM. |
+| Bloque oscuro | **Descartado (2026-08-20)** | Las cuatro puertas nacieron sobre charcoal a pantalla completa para cortar el scroll en dos. Carlos lo descartó al verlo construido: el salto de contraste era demasiado para el sistema del estudio. Va en ivory como el resto. El peso lo cargan la escala del titular y las reglas horizontales, no el fondo. **Consecuencia buscada:** el rojo queda reservado a los CTA, que es lo que pide la regla de acento como señal de `UI_QUALITY.md` §9. |
 
 ### 2.1 Consecuencia aceptada explícitamente: los precios se vuelven públicos
 
@@ -71,7 +72,6 @@ dos tiers de facto**. Se acepta a propósito, con tres consecuencias:
 
 1  HERO             Titular + promesa + WhatsApp + ancla a paquetes
 2  LAS CUATRO PUERTAS   Aseguradoras · Financiadoras · Bancos · IA
-                        Único bloque charcoal. Corta la página en dos.
 3  PRUEBA            Los 12 sitios reales de showcase.ts
 4  LOS TRES PAQUETES Presencia $800 · Captación $1,200 · Crecimiento $1,600
 5  LA BASE           Lo que va en los tres + la anualidad declarada de frente
@@ -102,7 +102,7 @@ Español neutral LATAM, tuteo. Este es el texto a validar; no hay copy
 >
 > **[Escríbenos por WhatsApp]**  ·  Ver los paquetes ↓
 
-### 4.2 Las cuatro puertas *(fondo charcoal)*
+### 4.2 Las cuatro puertas
 
 > `POR QUÉ AHORA`
 >
@@ -349,7 +349,7 @@ previa sale rota. Se genera con `next/og` siguiendo el patrón existente de
 | Componente | Tipo | Nota |
 |---|---|---|
 | `NegocioHero.tsx` | server | Reusa `GridTexture` y `DiagonalSlash`. |
-| `NegocioPuertas.tsx` | server | Bloque charcoal. Tipográfico, sin foto. |
+| `NegocioPuertas.tsx` | server | Tipográfico, sin foto. Fondo ivory. |
 | `NegocioPrueba.tsx` | server | Envuelve el `ShowcaseGrid` existente. |
 | `NegocioPaquetes.tsx` | server | Datos desde `src/lib/paquetes-negocio.ts`. |
 | `NegocioBase.tsx` | server | La base + el bloque de anualidad. |

@@ -15,6 +15,13 @@ import DiagonalSlash from "../DiagonalSlash";
   correr. Si aparece una fuente, la version aseverativa es mas fuerte.
 
   El punto de IA si es asercion, y es verificable.
+
+  NOTA DE DISENO (2026-08-20). Esta seccion nacio sobre charcoal a pantalla
+  completa, para cortar el scroll en dos. Carlos lo descarto al verlo: el salto
+  de contraste era demasiado para el sistema del estudio. Va en ivory como el
+  resto de la pagina. El peso lo cargan la escala del titular y las reglas
+  horizontales, no el fondo. NO reintroducir el bloque oscuro sin volver a
+  pasar por el.
 */
 const puertas = [
   {
@@ -45,39 +52,37 @@ const puertas = [
 
 export default function NegocioPuertas() {
   return (
-    // Unico bloque oscuro de la pagina. Corta el scroll en dos y le da peso al
-    // argumento antes de que aparezca cualquier precio.
-    <section className="bg-charcoal py-20 sm:py-28 md:py-32">
+    <section className="border-t border-neutral-light py-20 sm:py-28 md:py-32">
       <Container>
         <div className="mb-14 max-w-2xl md:mb-20">
-          <p className="mb-6 text-xs uppercase tracking-[0.25em] text-ivory/40">
+          <p className="mb-6 text-xs uppercase tracking-[0.25em] text-graphite/40">
             Por qué ahora
           </p>
-          <DiagonalSlash size="md" className="mb-4 text-narvaez-red/60" />
-          <h2 className="font-serif editorial-heading text-3xl text-ivory sm:text-4xl md:text-5xl">
-            Cuatro puertas que hoy se abren con un <em>sitio web.</em>
+          <DiagonalSlash size="md" className="mb-4 text-graphite/20" />
+          <h2 className="font-serif editorial-heading text-3xl text-charcoal sm:text-4xl md:text-5xl">
+            Cuatro puertas que hoy se abren con un <em>sitio&nbsp;web.</em>
           </h2>
         </div>
 
         <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 md:gap-y-14">
           {puertas.map((p) => (
-            <div key={p.n} className="border-t border-ivory/15 pt-6">
+            <div key={p.n} className="border-t border-neutral-light pt-6">
               <div className="mb-3 flex items-baseline gap-4">
-                <span className="text-xs uppercase tracking-widest text-ivory/35">
+                <span className="text-xs uppercase tracking-widest text-graphite/35">
                   {p.n}
                 </span>
-                <h3 className="font-serif text-2xl text-ivory sm:text-3xl">
+                <h3 className="font-serif text-2xl text-charcoal sm:text-3xl">
                   {p.titulo}
                 </h3>
               </div>
-              <p className="max-w-md text-base leading-relaxed text-ivory/65">
+              <p className="max-w-md text-base leading-relaxed text-graphite">
                 {p.texto}
               </p>
             </div>
           ))}
         </div>
 
-        <p className="mt-14 max-w-xl border-t border-ivory/15 pt-8 font-serif text-xl italic text-ivory/80 sm:text-2xl md:mt-20">
+        <p className="mt-14 max-w-xl border-t border-neutral-light pt-8 font-serif text-xl italic text-charcoal sm:text-2xl md:mt-20">
           Ninguna de las cuatro es publicidad. Las cuatro son operación.
         </p>
       </Container>
