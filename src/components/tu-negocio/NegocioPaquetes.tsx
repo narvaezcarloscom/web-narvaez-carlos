@@ -59,7 +59,8 @@ export default function NegocioPaquetes() {
                   <li key={punto} className="flex gap-3 text-sm leading-relaxed text-graphite">
                     <span
                       aria-hidden="true"
-                      className="mt-2 h-px w-4 shrink-0 bg-graphite/30"
+                      style={{ backgroundColor: "var(--text-faint)" }}
+                      className="mt-2 h-px w-4 shrink-0"
                     />
                     <span>{punto}</span>
                   </li>

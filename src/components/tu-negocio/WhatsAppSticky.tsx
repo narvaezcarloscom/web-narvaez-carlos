@@ -70,7 +70,8 @@ export default function WhatsAppSticky() {
       <div ref={sentinel} aria-hidden="true" className="absolute top-[80vh] h-px w-full" />
 
       <div
-        className={`fixed inset-x-0 bottom-0 z-40 border-t border-neutral-light bg-ivory/95 p-4 backdrop-blur transition-opacity duration-300 motion-reduce:transition-none md:hidden ${
+        style={{ backgroundColor: "color-mix(in srgb, var(--bg-primary) 95%, transparent)" }}
+        className={`fixed inset-x-0 bottom-0 z-40 border-t border-neutral-light p-4 backdrop-blur transition-opacity duration-300 motion-reduce:transition-none md:hidden ${
           visible ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
