@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Sitios web para negocios de servicios · King County, WA";
+export const alt = "Tu sitio web dejó de ser opcional · King County, WA";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -65,9 +65,9 @@ export default async function Image() {
               flexDirection: "column",
             }}
           >
-            <span>Te lo piden para trabajar.</span>
+            <span>Tu sitio web</span>
             <span>
-              Ya no es{" "}
+              dejó de ser{" "}
               <span style={{ fontStyle: "italic", color: "#F43B3E" }}>opcional.</span>
             </span>
           </div>

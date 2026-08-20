@@ -41,7 +41,7 @@ Cada una se decidió explícitamente con Carlos antes de escribir este documento
 | Geografía | **King County / área de Seattle** | Ahí están las tiendas autorizadas. El spec de `/sitios` ya identificó la cercanía como el factor decisivo de reconocimiento: "esto es de aquí, gente como yo". |
 | Indexado | **noindex en v1** | Consistente con las dos hermanas. Ni el QR ni los ads lo necesitan. Evita canibalizar `/services` y deja el copy 100% de conversión en vez de servir a dos amos. Se reconsidera si el nicho prueba. |
 | Espina narrativa | **Las puertas cerradas** | Arranca por la presión externa (aseguradoras, financiadoras, bancos, IA). No compite contra "no tengo tiempo para eso" — compite contra "me lo están pidiendo". Descartadas: "donde te buscan" (discurso genérico de agencia, ya lo ignoró) y "el trabajo habla" (funciona en `/sitios` porque Javier argumenta; en frío deja al visitante sin razón para quedarse). |
-| Titular | **Confrontativo** | "Te lo piden para trabajar. Ya no es opcional." Descartada la versión cálida del PDF ("Tu negocio ya existe...") — cierra bien una pieza impresa, pero no abre una página en frío. |
+| Titular | **"Tu sitio web dejó de ser opcional."** (2026-08-20, 2ª vuelta) | Tiene que hacer dos cosas a la vez. **Nombrar la cosa:** la primera versión decía "Te lo piden para trabajar", y ese "lo" no tenía referente en el titular — el sujeto solo aparecía en el párrafo lateral, así que quien escanea el QR no sabía si le hablaban de un seguro, una licencia o un sitio web. **Cargar la apuesta:** nombrar el producto y nada más lo aplana a "hacemos sitios web", la línea genérica de agencia; por eso se conserva "opcional". "Dejó de ser" y no "ya no es": el primero dice que cambió el mundo, el segundo se puede leer como que el atrasado es el lector. Beneficio lateral medido: en móvil baja de 3 líneas a 2. Descartadas: la versión cálida del PDF ("Tu negocio ya existe...") cierra bien un impreso pero no abre en frío; "Sin sitio web, no calificas" usa el verbo de la ventanilla pero puede leerse como rechazo. |
 | Ruta | **`/tu-negocio`** | Libre: no choca con ninguna de las 36 reglas heredadas de WordPress en `next.config.ts`. Se lee bien como URL de display en Google Ads y se puede teclear. Descartadas `/contratistas` (excluye house cleaning) y `/negocios` (genérica, no dice nada). |
 | Fotografía | **Cero stock, cero IA** | El PDF marca blanca usa contratistas generados. En una pieza de la marca del estudio eso contradice la tesis del estudio. La fotografía de esta página son los 12 sitios reales de clientes. |
 | Idioma | **Español únicamente** | El flyer va en tiendas latinas. Español neutral LATAM. |
@@ -94,13 +94,25 @@ Español neutral LATAM, tuteo. Este es el texto a validar; no hay copy
 
 > `NEGOCIOS DE SERVICIOS · KING COUNTY, WA`
 >
-> # Te lo piden para trabajar. Ya no es opcional.
+> # Tu sitio web dejó de ser *opcional.*
 >
-> Aseguradoras, financiadoras y bancos revisan si tu negocio existe en internet
-> antes de decir que sí. Construimos el sitio que responde por ti — en inglés y
-> en español.
+> Te lo piden las aseguradoras para renovar tu póliza, los bancos para abrirte
+> la cuenta y las financiadoras para aprobarte. **Nosotros lo construimos** —
+> en inglés y en español.
 >
 > **[Escríbenos por WhatsApp]**  ·  Ver los paquetes ↓
+
+El párrafo hereda lo que el titular soltó: las tres puertas, ahora nombradas
+con su trámite concreto (renovar la póliza / abrir la cuenta / aprobarte) en
+vez de en abstracto. El titular y el subtítulo se reparten el trabajo, no lo
+repiten.
+
+**Al cambiar este titular hay que cambiar tres archivos, no uno:**
+`NegocioHero.tsx`, el `metadata` de `layout.tsx` (`openGraph.title` y
+`twitter.title` — si no, la vista previa de WhatsApp y de Meta Ads sigue
+mostrando el viejo) y `opengraph-image.tsx`. El `<title>` de la pestaña se
+queda descriptivo a propósito: en una pestaña sirve más "Sitios web para
+negocios de servicios · King County, WA" que el titular.
 
 ### 4.2 Las cuatro puertas
 

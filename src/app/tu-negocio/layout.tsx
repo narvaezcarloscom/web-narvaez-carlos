@@ -38,10 +38,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://narvaezcarlos.com"),
   title: "Sitios web para negocios de servicios · King County, WA",
   description:
-    "Aseguradoras, financiadoras y bancos revisan si tu negocio existe en internet antes de decir que sí. Sitios web profesionales para negocios de servicios latinos en el área de Seattle.",
+    "Te lo piden las aseguradoras para renovar tu póliza, los bancos para abrirte la cuenta y las financiadoras para aprobarte. Sitios web profesionales para negocios de servicios latinos en el área de Seattle.",
   robots: { index: false, follow: false },
   openGraph: {
-    title: "Te lo piden para trabajar. Ya no es opcional.",
+    title: "Tu sitio web dejó de ser opcional.",
     description:
       "Sitios web profesionales para negocios de servicios latinos en King County, WA. En inglés y en español.",
     url: "https://narvaezcarlos.com/tu-negocio",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Te lo piden para trabajar. Ya no es opcional.",
+    title: "Tu sitio web dejó de ser opcional.",
     description:
       "Sitios web para negocios de servicios latinos en King County, WA.",
   },

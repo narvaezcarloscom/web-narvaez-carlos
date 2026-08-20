@@ -36,21 +36,37 @@ export default function NegocioHero() {
               <DiagonalSlash size="md" className="mb-4 text-ivory/30" />
               {/*
                 Titular confrontativo, no aspiracional. Este publico ya ignoro
-                "haz crecer tu negocio" cien veces. Lo que no puede ignorar es
-                que le esten pidiendo el sitio para poder trabajar.
+                "haz crecer tu negocio" cien veces.
+
+                DOS COSAS QUE ESTE TITULAR TIENE QUE HACER A LA VEZ, y por que
+                la version anterior fallaba una:
+
+                  1. NOMBRAR LA COSA. Decia "Te lo piden para trabajar". El
+                     pronombre "lo" no tenia referente en el titular: el sujeto
+                     solo aparecia en el parrafo de la derecha. Quien escanea
+                     el QR lee el titular primero y no sabia si le hablaban de
+                     un seguro, una licencia o un sitio web.
+                  2. CARGAR LA APUESTA. Nombrar el producto sin mas lo aplana a
+                     "hacemos sitios web", la linea generica de agencia. Por eso
+                     se conserva "opcional".
+
+                "Dejo de ser" y no "ya no es": el primero dice que cambio el
+                mundo, el segundo se puede leer como que el atrasado es el
+                lector.
               */}
               <h1 className="font-serif editorial-heading text-[3rem] text-ivory sm:text-5xl md:text-7xl lg:text-8xl">
-                <span className="block">Te lo piden para trabajar.</span>
-                <span className="block">Ya no es <em>opcional.</em></span>
+                <span className="block">Tu sitio web</span>
+                <span className="block">dejó de ser <em>opcional.</em></span>
               </h1>
             </div>
 
             <div className="md:col-span-4 md:pb-3">
               <p className="max-w-md text-base leading-relaxed text-ivory/75 md:text-lg">
-                Aseguradoras, financiadoras y bancos revisan si tu negocio
-                existe en internet antes de decir que sí.{" "}
+                Te lo piden las aseguradoras para renovar tu póliza, los
+                bancos para abrirte la cuenta y las financiadoras para
+                aprobarte.{" "}
                 <strong className="font-semibold text-ivory">
-                  Construimos el sitio que responde por ti
+                  Nosotros lo construimos
                 </strong>{" "}
                 — en inglés y en español.
               </p>
