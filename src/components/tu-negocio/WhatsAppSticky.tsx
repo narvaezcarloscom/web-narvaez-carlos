@@ -90,7 +90,9 @@ export default function WhatsAppSticky() {
           rel="noopener noreferrer"
           data-track-event="whatsapp_click"
           data-track-prop-position="sticky"
-          className="flex w-full items-center justify-center gap-2 bg-narvaez-red px-6 py-4 text-sm font-medium uppercase tracking-wide text-ivory"
+          // `narvaez-red` es rojo en los dos temas, asi que su texto va claro en los
+          // dos. Con `text-ivory` se volvia negro sobre rojo en modo oscuro.
+          className="flex w-full items-center justify-center gap-2 bg-narvaez-red px-6 py-4 text-sm font-medium uppercase tracking-wide text-[#F8F9F5]"
           tabIndex={visible ? 0 : -1}
         >
           Escríbenos por WhatsApp
