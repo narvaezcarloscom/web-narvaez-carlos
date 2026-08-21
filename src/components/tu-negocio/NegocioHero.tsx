@@ -78,6 +78,9 @@ export default function NegocioHero() {
                   rel="noopener noreferrer"
                   data-track-event="whatsapp_click"
                   data-track-prop-position="hero"
+                  // La barra fija observa ESTE boton para saber si ya salio de
+                  // pantalla. No quitar el atributo sin mirar WhatsAppSticky.
+                  data-hero-cta
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap bg-narvaez-red px-8 py-4 text-sm font-medium uppercase tracking-wide text-ivory transition-colors duration-300 hover:bg-narvaez-red-hover"
                 >
                   Escríbenos por WhatsApp

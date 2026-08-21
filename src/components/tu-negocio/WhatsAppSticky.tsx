@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { whatsappHref, WA_GENERAL } from "../../lib/whatsapp";
 
 /*
@@ -15,7 +15,6 @@ import { whatsappHref, WA_GENERAL } from "../../lib/whatsapp";
 export default function WhatsAppSticky() {
   const [pastHero, setPastHero] = useState(false);
   const [consentDecided, setConsentDecided] = useState(true);
-  const sentinel = useRef<HTMLDivElement>(null);
 
   /*
     El banner de cookies es `fixed bottom-0 z-50` y esta barra es z-40: si los
@@ -50,15 +49,28 @@ export default function WhatsAppSticky() {
     return () => document.removeEventListener("click", onClick);
   }, []);
 
+  /*
+    Se observa EL BOTON DEL HERO, no una altura.
+
+    La primera version ponia un centinela a `top-[80vh]` y mostraba la barra al
+    pasarlo. Fallaba: el hero mide 82vh MAS 160px de respiro para el banner de
+    cookies, asi que ese centinela quedaba dentro del hero, por encima del
+    boton. En un telefono real salian LOS DOS BOTONES A LA VEZ, identicos y
+    apilados — se lee como un error y se come media pantalla.
+
+    Una barra fija que repite el CTA solo tiene sentido cuando el CTA original
+    ya no esta al alcance. Eso no es una altura: es ese elemento. Se observa
+    directamente y se acaba la aritmetica de viewports.
+  */
   useEffect(() => {
-    const node = sentinel.current;
-    if (!node) return;
+    const cta = document.querySelector("[data-hero-cta]");
+    if (!cta) return; // sin CTA que observar, la barra no aparece
 
     const observer = new IntersectionObserver(
       ([entry]) => setPastHero(!entry.isIntersecting),
-      { rootMargin: "-120px 0px 0px 0px" }
+      { threshold: 0 }
     );
-    observer.observe(node);
+    observer.observe(cta);
     return () => observer.disconnect();
   }, []);
 
@@ -66,9 +78,6 @@ export default function WhatsAppSticky() {
 
   return (
     <>
-      {/* Marca el final del hero. Sin altura: no ocupa espacio. */}
-      <div ref={sentinel} aria-hidden="true" className="absolute top-[80vh] h-px w-full" />
-
       <div
         style={{ backgroundColor: "color-mix(in srgb, var(--bg-primary) 95%, transparent)" }}
         className={`fixed inset-x-0 bottom-0 z-40 border-t border-neutral-light p-4 backdrop-blur transition-opacity duration-300 motion-reduce:transition-none md:hidden ${
