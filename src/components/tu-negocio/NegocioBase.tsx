@@ -1,28 +1,42 @@
 import Container from "../Container";
 import DiagonalSlash from "../DiagonalSlash";
+import {
+  IconoBilingue,
+  IconoCorreo,
+  IconoDominio,
+  IconoHosting,
+  IconoLocal,
+  IconoResguardo,
+} from "./iconos";
 
 const base = [
   {
+    Icono: IconoDominio,
     titulo: "Dominio a tu nombre",
     texto: "Es tuyo. Lo administramos bajo resguardo, nunca como rehén.",
   },
   {
+    Icono: IconoHosting,
     titulo: "Hosting y respaldo",
     texto: "Tu sitio disponible y tu información protegida.",
   },
   {
+    Icono: IconoCorreo,
     titulo: "Correo con el nombre de tu negocio",
     texto: "Uno, dos o tres según el paquete.",
   },
   {
+    Icono: IconoBilingue,
     titulo: "En inglés y en español",
     texto: "No es un extra. Va incluido.",
   },
   {
+    Icono: IconoResguardo,
     titulo: "Formulario con resguardo",
     texto: "Validación, consentimiento y protección contra spam.",
   },
   {
+    Icono: IconoLocal,
     titulo: "Base técnica de búsqueda local",
     texto:
       "Nombre, dirección y teléfono consistentes; velocidad y lectura en el teléfono cuidadas desde el primer día.",
@@ -42,13 +56,18 @@ export default function NegocioBase() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-          {base.map((item) => (
-            <div key={item.titulo}>
+        <div
+          style={{ color: "var(--text-muted)" }}
+          className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {base.map(({ Icono, titulo, texto }) => (
+            <div key={titulo}>
+              {/* Gris apagado, no rojo: el rojo es señal de accion en esta pagina. */}
+              <Icono className="mb-4" />
               <h3 className="mb-2 font-sans text-base font-semibold text-charcoal">
-                {item.titulo}
+                {titulo}
               </h3>
-              <p className="text-sm leading-relaxed text-graphite">{item.texto}</p>
+              <p className="text-sm leading-relaxed text-graphite">{texto}</p>
             </div>
           ))}
         </div>
