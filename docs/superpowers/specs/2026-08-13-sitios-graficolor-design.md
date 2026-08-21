@@ -117,15 +117,41 @@ en cada sitio el 2026-08-13, no inferidos del dominio.
 | 1 | `big-house-gc` | Pintura, techos y siding | Renton, WA |
 | 2 | `north-beam-framing` | Enmarcado de madera | Seattle, WA |
 | 3 | `angle-stone` | Paisajismo y mampostería | Federal Way, WA |
-| 4 | `all-mighty-roofing` | Techos | Seattle, WA |
+| 4 | `alpha-architect-roofing` | Techos residenciales y comerciales | Everett, WA |
 | 5 | `ceja-paint` | Pintura residencial | Seattle, WA |
 | 6 | `esm-construction` | Construcción y remodelación | Seattle, WA |
 | 7 | `bardales-roofing` | Techos | Seattle, WA |
 | 8 | `shark-bite-ceviches` | Ceviches y mariscos | Seattle, WA |
 | 9 | `darios-renovation` | Remodelación residencial y comercial | Burien, WA |
-| 10 | `spm-services` | Concreto comercial e industrial | Oklahoma |
+| 10 | `all-mighty-roofing` | Techos | Seattle, WA |
 | 11 | `191-construction` | Concreto industrial | Houston, TX |
 | 12 | `latinus-foods` | Comida venezolana | Utah |
+
+**Cambio del 2026-08-21 — sale SPM Services, entra Alpha Architect Roofing.**
+
+SPM era la tarjeta más débil de la grilla para este público, y no por calidad:
+su hero dice **"Oklahoma"** en tipografía grande y roja. Quien escanea este QR
+está parado en Renton, y esa palabra es exactamente lo contrario del
+reconocimiento que el orden persigue.
+
+La objeción esperable —un cuarto techero hace la grilla repetitiva— **no
+aplica**, y se comprobó mirando las capturas juntas antes de decidir. Los otros
+tres techeros son cielo azul, sol y operario con arnés: una sola familia
+visual. El hero de Alpha es azul profundo con texto blanco. No suma
+monotonía, la corta.
+
+Alpha va en la **posición 4** porque las primeras cuatro tarjetas son lo único
+que ve alguien en un celular antes de hacer scroll, y es el techero mejor
+resuelto de los cuatro. All Mighty baja a la 10, que sigue estando dentro del
+bloque local.
+
+Everett es condado de Snohomish, no King. Se acepta: está a 30 minutos de
+Seattle, se sigue leyendo como "de aquí" y ensancha el alcance dentro de
+Western Washington sin perder cercanía. Rubro y ciudad verificados en el
+JSON-LD del propio sitio, no inferidos del dominio.
+
+**Consecuencia:** este archivo alimenta también `/tu-negocio`, así que el
+cambio se ve en las dos páginas.
 
 **El orden es una decisión, no el resultado de una lista.** Las primeras cuatro
 tarjetas son lo único que ve alguien en un celular antes de hacer scroll, y
@@ -249,10 +275,13 @@ en Shark Bite. Cada una parecía un defecto distinto; el problema era uno solo.
 Recortar los 810px de arriba corta el hero justo donde termina.
 **Toda captura nueva va a 1440×810.**
 
-Excepción registrada: SPM Services se captura con `scrollTo(0, 250)`. Su tarjeta
-de hero queda partida a la mitad desde el tope de la página, y a diferencia de
-las franjas de abajo eso sí se lee como error de render. Su header es `sticky`,
-así que el logo y la navegación siguen en cuadro.
+Excepción registrada (histórica): SPM Services se capturaba con
+`scrollTo(0, 250)` porque su tarjeta de hero quedaba partida a la mitad desde
+el tope. **Ese sitio salió de la grilla el 2026-08-21**, así que la excepción
+ya no aplica a nada; se deja anotada por si vuelve.
+
+Alpha Architect Roofing se capturó sin excepción: 1440×810 desde el tope,
+`cwebp -q 78`, mismo pipeline que los demás.
 
 **Destino:** `/public/sitios/<id>.webp`
 
