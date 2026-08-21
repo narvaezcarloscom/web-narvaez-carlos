@@ -71,7 +71,23 @@ export default function CookieBanner({ lang = "en" }: CookieBannerProps) {
     <div
       role="dialog"
       aria-label={isEn ? "Cookie consent" : "Consentimiento de cookies"}
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-neutral-light bg-ivory/95 backdrop-blur-sm"
+      /*
+        El fondo va en `style` y no como `bg-ivory/95`.
+
+        En este proyecto `ivory` NO es un token de Tailwind: el `@theme` de
+        globals.css solo declara `narvaez-red`, y `.bg-ivory` es una clase
+        escrita a mano con `!important`, que no genera la variante con opacidad.
+        `bg-ivory/95` no pintaba nada — medido en el navegador, backgroundColor
+        daba `rgba(0,0,0,0)`.
+
+        El defecto era invisible mientras toda pagina detras del banner fuera
+        ivory. La landing /tu-negocio tiene un hero oscuro y ahi el banner
+        quedaba ilegible: texto charcoal sobre video. Un banner de
+        consentimiento que no se lee compromete el consentimiento, no solo el
+        diseno.
+      */
+      style={{ backgroundColor: "color-mix(in srgb, var(--bg-primary) 95%, transparent)" }}
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-neutral-light backdrop-blur-sm"
     >
       <div className="mx-auto max-w-7xl px-6 py-4 sm:py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
         <p className="text-sm text-graphite leading-relaxed flex-1">
