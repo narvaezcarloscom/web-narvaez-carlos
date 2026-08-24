@@ -69,6 +69,13 @@ export async function POST(request: NextRequest) {
     utm_medium: str("utm_medium") || undefined,
     utm_campaign: str("utm_campaign") || undefined,
     utm_content: str("utm_content") || undefined,
+    // Solo se acepta el vocabulario cerrado: cualquier otra cosa viaja como
+    // undefined y Studio OS la guarda NULL, en vez de rechazar el lead entero
+    // por un valor que el cliente no deberia poder elegir.
+    resolved_from:
+      str("resolved_from") === "url" || str("resolved_from") === "heuristic_qr"
+        ? (str("resolved_from") as "url" | "heuristic_qr")
+        : undefined,
   };
 
   const consentTimestamp = new Date().toISOString();

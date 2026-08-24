@@ -41,6 +41,7 @@ export default function NegocioForm() {
           utm_medium: attribution?.utm_medium,
           utm_campaign: attribution?.utm_campaign,
           utm_content: attribution?.utm_content,
+          resolved_from: attribution?.resolved_from,
         }),
       });
 
