@@ -75,6 +75,15 @@ export type Attribution = {
   utm_campaign?: string;
   /** Cual tienda pego el flyer. Solo lo emite /tu-negocio. */
   utm_content?: string;
+  /**
+   * Si los UTM de arriba son DATO o SUPUESTO.
+   *
+   * Las landings estampan el canal del QR aunque la persona haya llegado sin
+   * ningun UTM (tecleando la URL, o desde redes). Sin este campo, Studio OS no
+   * puede distinguir quien escaneo de quien no, y el conteo por origen nace
+   * inflado. Solo lo emite /tu-negocio; /emprendedor sigue con su copia.
+   */
+  resolved_from?: "url" | "heuristic_qr";
 };
 
 /**
@@ -167,6 +176,13 @@ export async function sendLeadEmail(opts: {
   const a = opts.attribution;
   const origen = [a.utm_source, a.utm_medium, a.utm_campaign].map((v) => v || "—").join(" / ");
   const tienda = a.utm_content || "—";
+  // El correo es lo primero que se lee, asi que tiene que decir cuando el
+  // origen es deducido. Sin esta marca, un lead que llego por redes se lee
+  // igual que uno que escaneo el QR de un aliado.
+  const certeza =
+    a.resolved_from === "heuristic_qr"
+      ? ' <span style="color:#8a8a8a;">(asumido — llegó sin UTMs)</span>'
+      : "";
 
   await transporter.sendMail({
     from: `"Narvaez Digital Marketing" <${process.env.SMTP_USER}>`,
@@ -180,7 +196,7 @@ export async function sendLeadEmail(opts: {
           </table>
           ${longHtml}
           <div style="margin-top: 16px; padding: 12px 20px; background: #f0f0f0; font-size: 11px; color: #999;">
-            <p style="margin: 0;"><strong>Origen:</strong> ${origen}</p>
+            <p style="margin: 0;"><strong>Origen:</strong> ${origen}${certeza}</p>
             <p style="margin: 4px 0 0;"><strong>Tienda / contenido:</strong> ${tienda}</p>
             <p style="margin: 4px 0 0;"><strong>Política de Privacidad aceptada:</strong> ${opts.consentTimestamp}</p>
             <p style="margin: 4px 0 0;"><strong>IP:</strong> ${opts.ip}</p>
