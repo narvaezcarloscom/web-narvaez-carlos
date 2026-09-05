@@ -11,6 +11,16 @@ export type Project = {
   image: string;
   /** Optional hero/full-bleed image. Falls back to `image` (the listing thumbnail) when absent. */
   heroImage?: string;
+  /**
+   * Optional phase label, shown in the case meta and next to the live-site link.
+   *
+   * Use it when the published case documents a specific stage of a client relationship
+   * that the live site has since moved past — so a visitor understands the captures
+   * describe that stage, not whatever is at `url` today. Portfolio rights to show past
+   * work are covered by `studio-legal/politicas/propiedad-y-portafolio.md` §4.3; this
+   * field is what keeps the claim honest.
+   */
+  phase?: LocaleText;
   overview: LocaleText;
   challenge: LocaleText;
   solution: LocaleText;
@@ -135,6 +145,10 @@ export const projects: Project[] = [
     url: "https://avantegroup.cl",
     image: "/work/avante-group.jpg",
     heroImage: "/work/avante-group-hero.webp",
+    phase: {
+      en: "Phase 1 — 2026",
+      es: "Fase 1 — 2026",
+    },
     clientLocation: { city: "Santiago", country: "CL", areaServed: "Chile" },
     editorialHeadline: {
       en: "A brand returned to its own idea.",

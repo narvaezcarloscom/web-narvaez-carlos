@@ -40,6 +40,7 @@ const en = {
     year: "Year",
     category: "Category",
     servicesLabel: "Services",
+    phase: "Phase",
     liveSite: "Live site",
     visitWebsite: "Visit website",
     overview: "Overview",

@@ -42,6 +42,7 @@ const es: Dictionary = {
     year: "Año",
     category: "Categoría",
     servicesLabel: "Servicios",
+    phase: "Fase",
     liveSite: "Sitio en vivo",
     visitWebsite: "Visitar sitio web",
     overview: "Resumen",

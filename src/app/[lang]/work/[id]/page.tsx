@@ -94,6 +94,7 @@ export default async function ProjectDetail({ params }: Props) {
   const tagline = localize(project.tagline, lang);
   const category = localize(project.category, lang);
   const services = project.services.map((s) => localize(s, lang));
+  const phase = project.phase ? localize(project.phase, lang) : undefined;
   const overview = localize(project.overview, lang);
   const challenge = localize(project.challenge, lang);
   const solution = localize(project.solution, lang);
@@ -226,6 +227,16 @@ export default async function ProjectDetail({ params }: Props) {
                   {project.year}
                 </dd>
               </div>
+              {phase && (
+                <div>
+                  <dt className="text-[10px] uppercase tracking-[0.25em] text-graphite/50 font-sans mb-2">
+                    {t.phase}
+                  </dt>
+                  <dd className="font-serif text-charcoal text-base">
+                    {phase}
+                  </dd>
+                </div>
+              )}
             </dl>
 
             {project.url !== "#" && (
