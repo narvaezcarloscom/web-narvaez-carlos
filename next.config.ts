@@ -22,8 +22,10 @@ const nextConfig: NextConfig = {
       { source: "/etapas-en-el-proceso-del-diseno-web/", destination: "/journal/design-is-a-process", permanent: true },
 
       // WordPress projects → Work
-      { source: "/proyectos/gtr-appliance-repair", destination: "/work/gtr-appliance-repair", permanent: true },
-      { source: "/proyectos/gtr-appliance-repair/", destination: "/work/gtr-appliance-repair", permanent: true },
+      { source: "/work/gtr-appliance-repair", destination: "/work", permanent: true },
+      { source: "/:lang(en|es)/work/gtr-appliance-repair", destination: "/:lang/work", permanent: true },
+      { source: "/proyectos/gtr-appliance-repair", destination: "/work", permanent: true },
+      { source: "/proyectos/gtr-appliance-repair/", destination: "/work", permanent: true },
       { source: "/proyectos/rigos-remodeling", destination: "/work/rigos-remodeling", permanent: true },
       { source: "/proyectos/rigos-remodeling/", destination: "/work/rigos-remodeling", permanent: true },
       { source: "/proyectos/arepa-fusion", destination: "/work/arepa-fusion", permanent: true },
