@@ -248,7 +248,7 @@ Regla: todo dato que comunique confianza o sea indexable (cifras, texto, structu
 
 ## Portafolio
 
-SIRCON, Bloom Sante, SWC Decor, Luxury Appliance Repair, Myan Realty, Yhon Pena
+SIRCON, Bloom Sante, SWC Decor, Myan Realty, Yhon Pena
 
 ## Notas
 

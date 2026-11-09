@@ -348,57 +348,6 @@ export const projects: Project[] = [
   },
   // — 2024 —
   {
-    id: "gtr-appliance-repair",
-    name: "Luxury Appliance Repair",
-    tagline: {
-      en: "Luxury appliance repair for Florida's finest homes.",
-      es: "Reparación de electrodomésticos de lujo para las mejores residencias de Florida.",
-    },
-    year: "2024",
-    category: {
-      en: "Web Design & Development",
-      es: "Diseño y Desarrollo Web",
-    },
-    services: [
-      { en: "Web Design", es: "Diseño Web" },
-      { en: "SEO", es: "SEO" },
-      { en: "Content Strategy", es: "Estrategia de Contenido" },
-    ],
-    url: "https://gtrappliancerepair.com",
-    image: "/work/gtr-appliance-repair.jpg",
-    heroImage: "/work/gtr-appliance-repair-hero.webp",
-    overview: {
-      en: "GTR Appliance Repair is a premium appliance service company based in South Florida, specializing in high-end brands like Sub-Zero, Wolf, and Viking. They needed a digital presence that matched the luxury positioning of their brand and the clientele they serve.",
-      es: "GTR Appliance Repair es una empresa premium de servicio de electrodomésticos con sede en el sur de Florida, especializada en marcas de alta gama como Sub-Zero, Wolf y Viking. Necesitaban una presencia digital a la altura del posicionamiento de lujo de su marca y de la clientela que atienden.",
-    },
-    challenge: {
-      en: "The previous website failed to communicate the premium nature of their service. It looked generic, lacked trust signals, and didn't convert visitors into booked appointments. The challenge was to reposition GTR as the go-to luxury appliance repair service in the Florida market.",
-      es: "El sitio anterior no lograba comunicar la naturaleza premium de su servicio. Se veía genérico, carecía de señales de confianza y no convertía a los visitantes en citas reservadas. El reto era reposicionar a GTR como el servicio de referencia para la reparación de electrodomésticos de lujo en el mercado de Florida.",
-    },
-    solution: {
-      en: "We designed and developed a custom website with a refined, dark aesthetic that immediately communicates premium quality. The layout emphasizes trust — certified technicians, warranty-backed repairs, and fast discreet service. A clear booking flow reduces friction from visit to appointment.",
-      es: "Diseñamos y desarrollamos un sitio a medida con una estética oscura y depurada que comunica de inmediato una calidad premium. El diseño hace énfasis en la confianza —técnicos certificados, reparaciones con garantía y un servicio rápido y discreto. Un flujo de reserva claro reduce la fricción entre la visita y la cita.",
-    },
-    results: [
-      {
-        en: "Premium brand perception established",
-        es: "Percepción de marca premium establecida",
-      },
-      {
-        en: "Clear conversion path from visit to booking",
-        es: "Ruta de conversión clara, de la visita a la reserva",
-      },
-      {
-        en: "Mobile-optimized for on-the-go homeowners",
-        es: "Optimizado para móviles, para propietarios en movimiento",
-      },
-      {
-        en: "Local SEO foundation for South Florida market",
-        es: "Base de SEO local para el mercado del sur de Florida",
-      },
-    ],
-  },
-  {
     id: "myan-realty",
     name: "Myan Realty",
     tagline: {
